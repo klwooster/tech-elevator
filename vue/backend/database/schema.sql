@@ -1,5 +1,9 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS person;
+DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS address;
+DROP TABLE IF EXISTS application;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
@@ -21,14 +25,14 @@ CREATE TABLE address (
     constraint pk_address_id primary key (address_id)
 );
 
-CREATE TABLE application (
-    application_id serial,
+CREATE TABLE account (
+    account_id serial,
     address_id int,
     email VARCHAR(40),
     phone_number int,
     status VARCHAR(8),
 
-    constraint pk_application_id primary key (application_id),
+    constraint pk_account_id primary key (account_id),
     constraint fk_address_id foreign key (address_id) references address (address_id)
 );
 
@@ -37,11 +41,11 @@ CREATE TABLE person (
     first_name VARCHAR(20) NOT NULL,
     last_name VARCHAR(25) NOT NULL,
     date_of_birth date,
-    application_id int,
+    account_id int,
     primary_applicant boolean,
 
     constraint pk_person_id primary key (person_id),
-    constraint fk_application_id foreign key (application_id) references application (application_id)
+    constraint fk_account_id foreign key (account_id) references account (account_id)
 );
 
 COMMIT TRANSACTION;
