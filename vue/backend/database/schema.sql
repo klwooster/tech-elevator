@@ -14,38 +14,62 @@ CREATE TABLE users (
   role varchar(255) NOT NULL default('user')
 );
 
-CREATE TABLE address (
-    address_id serial,
-    address_line1 VARCHAR(40) NOT NULL,
-    address_line2 VARCHAR(40),
-    city VARCHAR(25) NOT NULL,
-    state VARCHAR(15) NOT NULL,
-    zip_code int,
-
-    constraint pk_address_id primary key (address_id)
-);
-
-CREATE TABLE account (
-    account_id serial,
-    address_id int,
-    email VARCHAR(40),
-    phone_number int,
-    status VARCHAR(8),
-
-    constraint pk_account_id primary key (account_id),
-    constraint fk_address_id foreign key (address_id) references address (address_id)
-);
-
 CREATE TABLE person (
     person_id serial,
     first_name VARCHAR(20) NOT NULL,
     last_name VARCHAR(25) NOT NULL,
-    date_of_birth date,
-    account_id int,
-    primary_applicant boolean,
+    preferred_name VARCHAR(25),
+    date_of_birth VARCHAR(20),
+    email VARCHAR(40),
+    phone VARCHAR(13)
 
-    constraint pk_person_id primary key (person_id),
-    constraint fk_account_id foreign key (account_id) references account (account_id)
+    constraint pk_person primary key (person_id)
+);
+
+CREATE TABLE account (
+    account_id serial,
+    person_id int,
+
+    constraint pk_account primary key (account_id, person_id),
+	constraint fk_account_person foreign key (person_id) references person (person_id)
+);
+
+CREATE TABLE application ( 
+	application_id serial,
+	applicant_id int NOT NULL,
+	account_id int NOT NULL,
+	guardian_id int,
+	emergency_contact_id int,
+	dietary_preference VARCHAR(15),
+	dietary_restrictions VARCHAR(200),
+	mobility_issues VARCHAR(200),
+	medical_concerns VARCHAR(200),
+	meal_plan VARCHAR(100),
+	program VARCHAR(50),
+	dorm_assignment VARCHAR(50),
+	tshirt_size VARCHAR(5),
+	
+	constraint pk_application primary key (application_id),
+	constraint fk_application_person foreign key (applicant_id, guardian_id, emergency_contact_id) references person (person_id)
+);
+
+CREATE TABLE notes (
+	note_id serial,
+	note_body VARCHAR(250),
+	create_date date,
+	application_id int,
+	
+	constraint pk_notes primary key (note_id),
+	constraint fk_notes_application foreign key (application_id) references application (application_id)
+);
+
+CREATE TABLE workshops (
+	application_id int,
+	workshop VARCHAR(200),
+	rank int,
+	
+	constraint pk_workshops primary key (application_id, workshop),
+	constraint fk_workshops_application foreign key (application_id) references application (application_id)
 );
 
 COMMIT TRANSACTION;
