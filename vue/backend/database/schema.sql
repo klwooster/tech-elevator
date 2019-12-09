@@ -22,7 +22,7 @@ CREATE TABLE person (
     preferred_name VARCHAR(25),
     date_of_birth VARCHAR(20),
     email VARCHAR(40),
-    phone VARCHAR(13)
+    phone VARCHAR(13),
 
     constraint pk_person primary key (person_id)
 );
@@ -51,7 +51,9 @@ CREATE TABLE application (
 	tshirt_size VARCHAR(5),
 	
 	constraint pk_application primary key (application_id),
-	constraint fk_application_person foreign key (applicant_id, guardian_id, emergency_contact_id) references person (person_id)
+	constraint fk_application_person_applicant foreign key (applicant_id) references person (person_id),
+    constraint fk_application_person_guardian foreign key (guardian_id) references person (person_id),
+    constraint fk_application_person_emergency_contact foreign key (emergency_contact_id) references person (person_id)
 );
 
 CREATE TABLE notes (
