@@ -16,6 +16,7 @@ CREATE TABLE person (
     last_name VARCHAR(25) NOT NULL,
     date_of_birth date,
     application_id int,
+    primary_applicant boolean,
 
     constraint pk_person_id primary key (person_id),
     constraint fk_application_id foreign key (application_id) references application (application_id)
@@ -23,14 +24,12 @@ CREATE TABLE person (
 
 CREATE TABLE application (
     application_id serial,
-    main_contact_id int NOT NULL,
     address_id int,
     email VARCHAR(40),
     phone_number int,
     status VARCHAR(8),
 
     constraint pk_application_id primary key (application_id),
-    constraint fk_main_contact_id foreign key (main_contact_id) references person (person_id),
     constraint fk_address_id foreign key (address_id) references address (address_id)
 );
 
