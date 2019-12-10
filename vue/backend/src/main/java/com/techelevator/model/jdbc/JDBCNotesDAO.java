@@ -7,11 +7,13 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Application;
 import com.techelevator.model.INotesDAO;
 import com.techelevator.model.Notes;
 
+@Component
 public class JDBCNotesDAO implements INotesDAO {
 
 	private JdbcTemplate jdbcTemplate;

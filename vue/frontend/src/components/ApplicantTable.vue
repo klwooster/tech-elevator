@@ -1,16 +1,20 @@
 <template>
   <div id="applicant-list" class="list">
       <div class="list-header">
+          <span class="applicant-data">ID</span>
           <span class="applicant-data">First Name</span>
           <span class="applicant-data">Last Name</span>
+          <span class="applicant-data">Preferred Name</span>
           <span class="applicant-data">Date of Birth</span>
           <span class="applicant-data">Email</span>
           <span class="applicant-data">Phone</span>
           <span class="applicant-data">Account #</span>
       </div>
-      <div v-for="applicant in applicants" v-bind:key="applicant.applicantId" class="list-row">
+      <div v-for="applicant in applicants" v-bind:key="applicant.personId" class="list-row">
+          <span class="applicant-data">{{applicant.personId}}</span>
           <span class="applicant-data">{{applicant.firstName}}</span>
           <span class="applicant-data">{{applicant.lastName}}</span>
+          <span class="applicant-data">{{applicant.preferredName}}</span>
           <span class="applicant-data">{{applicant.dateOfBirth}}</span>
           <span class="applicant-data">{{applicant.email}}</span>
           <span class="applicant-data">{{applicant.phone}}</span>
@@ -27,20 +31,7 @@ export default {
   },
   data() {
     return {
-        applicants: [ 
-            // {
-            //     firstName: "Marie",
-            //     lastName: "Curie",
-            //     dateOfBirth: "1/10/1900",
-            //     applicationId: 1
-            // },
-            // {
-            //     firstName: "Jonas",
-            //     lastName: "Salk",
-            //     dateOfBirth: "5/16/1920",
-            //     applicationId: 2
-            // }
-        ]
+        applicants: []
     };
   },
   methods: { 

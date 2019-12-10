@@ -30,7 +30,9 @@ public class ApiController {
 
     @Autowired
     private AuthProvider authProvider;
+    @Autowired
     private IApplicationDAO applicationDao;
+    @Autowired
     private IPersonDAO personDao;
     
     public ApiController(IApplicationDAO applicationDao, IPersonDAO personDao) {
