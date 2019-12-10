@@ -11,6 +11,11 @@ export default {
   components: {
       ApplicantTable
   },
+  data() {
+      return {
+          api_url: 'http://localhost:8080/AuthenticationApplication/api/applicants'
+      }
+  },
   methods: { }
 };
 </script>

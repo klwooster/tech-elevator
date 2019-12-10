@@ -7,11 +7,13 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Account;
 import com.techelevator.model.Application;
 import com.techelevator.model.IApplicationDAO;
 
+@Component
 public class JDBCApplicationDAO implements IApplicationDAO {
 
 	private JdbcTemplate jdbcTemplate;

@@ -25,13 +25,13 @@ import org.springframework.web.util.UriComponents;
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/api/applicants")
+@RequestMapping("/api")
 public class ApiController {
 
     @Autowired
     private AuthProvider authProvider;
-    private final IApplicationDAO applicationDao;
-    private final IPersonDAO personDao;
+    private IApplicationDAO applicationDao;
+    private IPersonDAO personDao;
     
     public ApiController(IApplicationDAO applicationDao, IPersonDAO personDao) {
     	this.applicationDao = applicationDao;
@@ -53,8 +53,9 @@ public class ApiController {
         return "Success";
     }
     
-    @GetMapping
+    @GetMapping(path = "/applicants")
     public List <Person> getAllPersonsWithApplicantId() {
+    	System.out.println("I am here");
     	return personDao.getAllPersonsWithApplicantId();
     }
     

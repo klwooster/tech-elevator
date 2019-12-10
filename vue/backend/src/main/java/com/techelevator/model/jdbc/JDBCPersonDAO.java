@@ -7,12 +7,14 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Account;
 import com.techelevator.model.Application;
 import com.techelevator.model.IPersonDAO;
 import com.techelevator.model.Person;
 
+@Component
 public class JDBCPersonDAO implements IPersonDAO {
 
 	private JdbcTemplate jdbcTemplate;
