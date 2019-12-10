@@ -49,9 +49,14 @@ public class ApiController {
     }
     
 //    @GetMapping
-//    public List <Person> getApplicants() {
+//    public List <Person> getAllApplicants() {
 //    	return applicantDAO.getAll();
 //    }
+    
+   // @GetMapping
+//  public List <Person> getApplicantById() {
+//  	return applicantDAO.getApplicantById();
+//  }
     
 //    @PostMapping
 //    public ResponseEntity<Void> updateApplicant (@RequestBody Applicant applicant) {
