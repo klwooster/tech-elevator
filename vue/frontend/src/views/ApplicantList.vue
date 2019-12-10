@@ -6,6 +6,7 @@
 
 <script>
 import ApplicantTable from '@/components/ApplicantTable.vue'
+
 export default {
   name: 'applicant-list',
   components: {

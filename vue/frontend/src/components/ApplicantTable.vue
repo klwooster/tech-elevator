@@ -10,7 +10,7 @@
           <span class="applicant-data">Phone</span>
           <span class="applicant-data">Account #</span>
       </div>
-      <div v-for="applicant in applicants" v-bind:key="applicant.personId" class="list-row">
+      <div class="list-row" v-for="applicant in applicants" :key="applicant.personId">
           <span class="applicant-data">{{applicant.personId}}</span>
           <span class="applicant-data">{{applicant.firstName}}</span>
           <span class="applicant-data">{{applicant.lastName}}</span>
@@ -26,20 +26,25 @@
 <script>
 export default {
   name: 'applicant-table',
-  props: {
-      api_url: String
-  },
+//   props: {
+//       api_url: String
+//   },
   data() {
     return {
-        applicants: []
+        applicants: [],
+        api_url: 'http://localhost:8080/AuthenticationApplication/api/applicants'
     };
   },
   methods: { 
-      created() {
+      showApplicants() {
           fetch(this.api_url)
           .then(response => response.json())
           .then(applicants => (this.applicants = applicants))
           .catch(err => console.error(err));
+      },
+
+      created() {
+          this.showApplicants();
       }
   }
 };
