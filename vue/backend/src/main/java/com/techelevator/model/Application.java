@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public class Application {
 	private int applicationId;
 	private int applicantId;
@@ -14,6 +16,12 @@ public class Application {
 	private String program;
 	private String dormAssignment;
 	private String tshirtSize;
+	
+	private Person applicant;
+	private Person guardian;
+	private Person emergencyContact;
+	
+	private List<Notes> notes;
 	
 	public int getApplicationId() {
 		return applicationId;
@@ -93,4 +101,30 @@ public class Application {
 	public void setTshirtSize(String tshirtSize) {
 		this.tshirtSize = tshirtSize;
 	}
+	public Person getApplicant() {
+		return applicant;
+	}
+	public void setApplicant(Person applicant) {
+		this.applicant = applicant;
+	}
+	public Person getGuardian() {
+		return guardian;
+	}
+	public void setGuardian(Person guardian) {
+		this.guardian = guardian;
+	}
+	public Person getEmergencyContact() {
+		return emergencyContact;
+	}
+	public void setEmergencyContact(Person emergencyContact) {
+		this.emergencyContact = emergencyContact;
+	}
+	public List<Notes> getNotes() {
+		return notes;
+	}
+	public void setNotes(List<Notes> notes) {
+		this.notes = notes;
+	}
+	
+	
 }

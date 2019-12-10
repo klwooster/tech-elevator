@@ -12,14 +12,21 @@ import org.springframework.stereotype.Component;
 import com.techelevator.model.Account;
 import com.techelevator.model.Application;
 import com.techelevator.model.IApplicationDAO;
+import com.techelevator.model.INotesDAO;
+import com.techelevator.model.IPersonDAO;
+import com.techelevator.model.Person;
 
 @Component
 public class JDBCApplicationDAO implements IApplicationDAO {
 
-	private JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
+	private final IPersonDAO personDAO;
+	private final INotesDAO notesDAO;
 
-	public JDBCApplicationDAO(DataSource dataSource) {
+	public JDBCApplicationDAO(DataSource dataSource, IPersonDAO personDAO, INotesDAO notesDAO) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.personDAO = personDAO;
+		this.notesDAO = notesDAO;
 	}
 	
 	@Override
@@ -63,6 +70,31 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		}
 
 		return applications;
+	}
+	
+	@Override
+	public Application getFullApplicationByApplicantId(int id) {
+		
+		Application theApplication = null;
+		String sqlFindApplicationByApplicationId = "SELECT application_id, applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size FROM application WHERE application_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindApplicationByApplicationId, id);
+		if (results.next()) {
+			theApplication = mapRowToApplication(results);
+		}
+		
+		//Get the Person Data for the Applicant
+		theApplication.setApplicant(personDAO.getPersonByPersonId(id));
+		
+		//Get the Person Data for the Guardian
+		theApplication.setGuardian(personDAO.getPersonByPersonId(theApplication.getGuardianId()));
+		
+		//Get the Person Data for the Emergency Contact
+		theApplication.setEmergencyContact(personDAO.getPersonByPersonId(theApplication.getEmergencyContactId()));
+		
+		//Get the Notes for the Applicant Id
+		theApplication.setNotes(notesDAO.getNotesByApplicationId(id));
+		
+		return theApplication;
 	}
 	
 	private Application mapRowToApplication(SqlRowSet results) {
