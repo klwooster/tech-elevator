@@ -95,4 +95,12 @@ public class JDBCPersonDAOIntegrationTest {
 		assertEquals(count, results.size());
 	}
 	
+	@Test
+	public void getAllPersonsAndAccountIdTest() throws SQLException {
+		List<Person> results = dao.getAllPersons();
+		int count = results.size();
+		assertNotNull(results);
+		assertEquals(count, results.size());
+	}
+	
 }

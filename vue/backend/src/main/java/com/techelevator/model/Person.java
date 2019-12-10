@@ -10,6 +10,7 @@ public class Person {
 	private String dateOfBirth;
 	private String email;
 	private String phone;
+	private int accountId;
 	
 	public int getPersonId() {
 		return personId;
@@ -53,4 +54,12 @@ public class Person {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public int getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
+	
+	
 }
