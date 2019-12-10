@@ -1,10 +1,14 @@
 package com.techelevator.model.jdbc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import com.techelevator.model.Account;
 import com.techelevator.model.Application;
 import com.techelevator.model.IPersonDAO;
 import com.techelevator.model.Person;
@@ -27,6 +31,23 @@ public class JDBCPersonDAO implements IPersonDAO {
 		}
 		return thePerson;
 	}
+	
+	@Override
+	public List<Person> getAllPersons() {
+		List<Person> personIds = new ArrayList<>();
+
+		String sqlFindAllPersons = "SELECT person_id, first_name, last_name, preferred_name, date_of_birth, email, phone FROM person";
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllPersons);
+
+		while (results.next()) {
+			Person thePerson = mapRowToPerson(results);
+			personIds.add(thePerson);
+		}
+
+		return personIds;
+	}
+
 	
 	private Person mapRowToPerson(SqlRowSet results) {
 		Person thePerson;
