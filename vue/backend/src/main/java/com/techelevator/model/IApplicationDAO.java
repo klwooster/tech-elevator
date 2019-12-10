@@ -13,4 +13,7 @@ public interface IApplicationDAO {
 	//List of Applications by Account Id
 	public List<Application> getApplicationsByAccountId(int id);
 	
+	//Full Application Data including Person data for Applicant, Guardian, Emergency Contact, and Notes
+	public Application getFullApplicationByApplicantId(int id);
+	
 }

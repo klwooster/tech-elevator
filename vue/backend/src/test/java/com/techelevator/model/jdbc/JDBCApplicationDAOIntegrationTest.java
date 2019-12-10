@@ -18,6 +18,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import com.techelevator.model.Account;
 import com.techelevator.model.Application;
+import com.techelevator.model.IPersonDAO;
 
 public class JDBCApplicationDAOIntegrationTest {
 
@@ -49,7 +50,9 @@ public class JDBCApplicationDAOIntegrationTest {
 	public void setup() {
 		// String sqlInsertEmployee= "INSERT INTO department (name) VALUES (Sales)";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		dao = new JDBCApplicationDAO(dataSource);
+		JDBCPersonDAO personDAO = new JDBCPersonDAO(dataSource);
+		JDBCNotesDAO notesDAO = new JDBCNotesDAO(dataSource);
+		dao = new JDBCApplicationDAO(dataSource,personDAO,notesDAO);
 	}
 
 	/*
@@ -100,6 +103,15 @@ public class JDBCApplicationDAOIntegrationTest {
 		int count = results.size();
 		assertNotNull(results);
 		assertEquals(count, results.size());
+	}
+	
+	@Test
+	public void getFullApplicationByApplicantIdTest() throws SQLException {
+		Application theApplication = new Application();
+
+		theApplication = dao.getFullApplicationByApplicantId(1);
+
+		assertNotNull(theApplication);
 	}
 	
 }

@@ -2,6 +2,9 @@ package com.techelevator.controller;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.IApplicationDAO;
+import com.techelevator.model.IPersonDAO;
+import com.techelevator.model.Person;
 
 import java.util.List;
 
@@ -27,11 +30,15 @@ public class ApiController {
 
     @Autowired
     private AuthProvider authProvider;
-    //private final ApplicantDAO applicantDAO;
+    @Autowired
+    private IApplicationDAO applicationDao;
+    @Autowired
+    private IPersonDAO personDao;
     
-//    public ApiController(ApplicantDAO applicantDao) {
-//    	this.applicantDao = applicantDao;
-//    }
+    public ApiController(IApplicationDAO applicationDao, IPersonDAO personDao) {
+    	this.applicationDao = applicationDao;
+    	this.personDao = personDao;
+    }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String authorizedOnly() throws UnauthorizedException {
@@ -48,15 +55,16 @@ public class ApiController {
         return "Success";
     }
     
-//    @GetMapping
-//    public List <Person> getAllApplicants() {
-//    	return applicantDAO.getAll();
-//    }
+    @GetMapping(path = "/applicants")
+    public List <Person> getAllPersonsWithApplicantId() {
+    	System.out.println("I am here");
+    	return personDao.getAllPersonsWithApplicantId();
+    }
     
-   // @GetMapping
-//  public List <Person> getApplicantById() {
-//  	return applicantDAO.getApplicantById();
-//  }
+//    @GetMapping
+//    public List <Person> getApplicantById() {
+//  	return personDao.getPersonByPersonId(id);
+//    }
     
 //    @PostMapping
 //    public ResponseEntity<Void> updateApplicant (@RequestBody Applicant applicant) {

@@ -7,12 +7,14 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Account;
 import com.techelevator.model.Application;
 import com.techelevator.model.IPersonDAO;
 import com.techelevator.model.Person;
 
+@Component
 public class JDBCPersonDAO implements IPersonDAO {
 
 	private JdbcTemplate jdbcTemplate;
@@ -32,6 +34,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		return thePerson;
 	}
 	
+	
 	@Override
 	public List<Person> getAllPersons() {
 		List<Person> personIds = new ArrayList<>();
@@ -47,8 +50,44 @@ public class JDBCPersonDAO implements IPersonDAO {
 
 		return personIds;
 	}
-
 	
+	@Override
+	public List<Person> getAllPersonsAndAccountId() {
+		List<Person> personIds = new ArrayList<>();
+
+		String sqlFindAllPersons = "SELECT p.person_id, p.first_name, p.last_name, p.preferred_name, p.date_of_birth, p.email, p.phone, a.account_id \n" + 
+				"FROM person p, account a\n" + 
+				"WHERE p.person_id = a.person_id";
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllPersons);
+
+		while (results.next()) {
+			Person thePerson = mapRowToPersonAndAccountId(results);
+			personIds.add(thePerson);
+		}
+
+		return personIds;
+	}
+	
+	@Override
+	public List<Person> getAllPersonsWithApplicantId() {
+		List<Person> personIds = new ArrayList<>();
+
+		String sqlFindAllPersonsWithApplicantId = "SELECT p.person_id, p.first_name, p.last_name, p.preferred_name, p.date_of_birth, p.email, p.phone, a.account_id \n" + 
+				"FROM person p, account a, application app\n" + 
+				"WHERE p.person_id = a.person_id\n" + 
+				"AND p.person_id = app.applicant_id";
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllPersonsWithApplicantId);
+
+		while (results.next()) {
+			Person thePerson = mapRowToPersonAndAccountId(results);
+			personIds.add(thePerson);
+		}
+
+		return personIds;
+	}
+
 	private Person mapRowToPerson(SqlRowSet results) {
 		Person thePerson;
 		thePerson = new Person();
@@ -61,7 +100,21 @@ public class JDBCPersonDAO implements IPersonDAO {
 		thePerson.setPhone(results.getString("phone"));
 		
 		return thePerson;
-
+	}
+	
+	private Person mapRowToPersonAndAccountId(SqlRowSet results) {
+		Person thePerson;
+		thePerson = new Person();
+		thePerson.setPersonId(results.getInt("person_id"));
+		thePerson.setFirstName(results.getString("first_name"));
+		thePerson.setLastName(results.getString("last_name"));
+		thePerson.setPreferredName(results.getString("preferred_name"));
+		thePerson.setDateOfBirth(results.getString("date_of_birth"));
+		thePerson.setEmail(results.getString("email"));
+		thePerson.setPhone(results.getString("phone"));
+		thePerson.setAccountId(results.getInt("account_id"));
+		
+		return thePerson;
 	}
 
 }

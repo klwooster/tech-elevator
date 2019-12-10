@@ -29,6 +29,7 @@
 						<!-- Every url in the app must be authenticated except /login -->
 						<value>/login</value>
 						<value>/register</value>
+						<value>/api/applicants</value>
 					</list>
 				</property>
 			</bean>
