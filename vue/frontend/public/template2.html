@@ -6,21 +6,27 @@
     <style>
         * {
             box-sizing: border-box;
+            font-family: 'Open Sans Condensed', sans-serif;
+            color: #112F40;
         }
         
         body {
             margin: 0px;
             padding: 0px;
-            background: red;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            justify-content: stretch;
+            font-size: 16px;
         }
         
         header {
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
-            min-height: 100vh;
+            flex-basis: 15%;
+            flex-grow: 0;
+            flex-shrink: 0;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             flex-wrap: wrap;
         }
         
@@ -47,9 +53,11 @@
         }
         
         nav {
+            flex-basis: 100%;
+            flex-shrink: 0;
+            flex-grow: 0;
             display: flex;
             flex-direction: row;
-            flex-wrap: auto;
             justify-content: center;
             background: #112F40;
         }
@@ -57,18 +65,18 @@
         nav ul {
             list-style-type: none;
             margin: 0px;
-            padding: 0px;
+            width: 90%;
         }
         
         nav ul li {
             display: inline-block;
-            font-size: 35px;
-            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 200%;
             text-transform: uppercase;
             color: #ffffff;
             padding: 10px 25px 10px 25px;
             margin: 0px;
             height: 100%;
+            width: auto;
         }
         
         nav ul li i.transparent {
@@ -89,23 +97,58 @@
         }
         
         #main {
+            flex-basis: 85%;
+            width: 85%;
+            flex-shrink: 0;
+            flex-grow: 0;
+            padding: 20px 0px 20px 0px;
+            margin-left: auto;
+            margin-right: auto;
             display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            justify-items: stretch;
-            align-content: space-around;
-            background: blue;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
         
         .sidebar {
-            flex-basis: 15%;
+            flex-basis: 25%;
             flex-grow: 0;
             flex-shrink: 0;
             background: #71C4C1;
+            padding: 60px 15px 15px 15px;
         }
         
         .list {
-            flex-basis: 84%;
+            flex-basis: 70%;
+        }
+        
+        .list>h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.3em;
+            margin: 5px 0px 20px -15px;
+        }
+        
+        .row:nth-of-type(even) {
+            background-color: #DAC3D1;
+        }
+        
+        .row>p {
+            display: inline-block;
+            font-size: 1.2em;
+            width: 24%;
+            margin: auto;
+            padding: 4px;
+        }
+        
+        .row>.title {
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+        
+        .list hr {
+            border-top: 1px solid #792359;
+            margin: 10px 0px 15px 0px;
         }
     </style>
 
@@ -124,10 +167,42 @@
     </header>
     <section id="main">
         <div class="sidebar">
-            sdfsdf
+            <p class="title">Filters</p>
+            <ul>
+                <li>Group by Account</li>
+                <li>Age Group 6-8</li>
+                <li>Age Group 9-11</li>
+                <li>Age Group 12-14</li>
+            </ul>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
         <div class="list">
-
+            <h1>Applicants</h1>
+            <div class="row">
+                <p class="title">Applicant ID</p>
+                <p class="title">First Name</p>
+                <p class="title">Last Name</p>
+                <p class="title">Account #</p>
+            </div>
+            <hr>
+            <div class="row">
+                <p>1</p>
+                <p>Kelsey</p>
+                <p>Wooster</p>
+                <p>000012345</p>
+            </div>
+            <div class="row">
+                <p>2</p>
+                <p>Jenny</p>
+                <p>Dihrkop</p>
+                <p>00006789</p>
+            </div>
+            <div class="row">
+                <p>3</p>
+                <p>Mike</p>
+                <p>Ballard</p>
+                <p>123333444</p>
+            </div>
         </div>
     </section>
 </body>
