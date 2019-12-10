@@ -9,4 +9,7 @@ public interface INotesDAO {
 	
 	//List of Notes for Application Id
 	public List<Notes> getNotesByApplicationId(int id);
+	
+	//Update Notes for Note Id
+	public void updateNotes(Notes notes);
 }

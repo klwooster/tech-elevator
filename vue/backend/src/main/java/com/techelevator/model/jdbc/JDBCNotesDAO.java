@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.bouncycastle.util.encoders.Base64;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -47,6 +48,18 @@ public class JDBCNotesDAO implements INotesDAO {
 		}
 
 		return notes;
+	}
+	
+	@Override
+	public void updateNotes(Notes inputNotes) {
+		
+		 int note_id = inputNotes.getNoteId();
+		 String note_body = inputNotes.getNoteBody();
+		 String create_date = inputNotes.getCreateDate();
+		 int application_id = inputNotes.getApplicationId();
+	     
+		 String sqlUpdateNotes = "UPDATE notes SET note_body=?, create_date=?, application_id=? WHERE note_id=?";
+	     jdbcTemplate.update(sqlUpdateNotes, note_body, create_date, application_id,note_id);
 	}
 
 	private Notes mapRowToApplication(SqlRowSet results) {

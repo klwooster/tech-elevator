@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -93,6 +94,20 @@ public class JDBCNotesDAOIntegrationTest {
 		int count = results.size();
 		assertNotNull(results);
 		assertEquals(count, results.size());
+	}
+	
+	@Test
+	public void updateNotesTest() throws SQLException {
+		Notes theNotes = new Notes();
+
+		theNotes.setNoteId(1);
+		theNotes.setNoteBody("Testing the Update");
+		theNotes.setCreateDate(null);
+		theNotes.setApplicationId(1);
+		
+		dao.updateNotes(theNotes);
+
+		assertNotNull(theNotes);
 	}
 	
 }
