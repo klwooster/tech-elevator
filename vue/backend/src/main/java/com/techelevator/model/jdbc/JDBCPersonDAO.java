@@ -66,6 +66,25 @@ public class JDBCPersonDAO implements IPersonDAO {
 
 		return personIds;
 	}
+	
+	@Override
+	public List<Person> getAllPersonsWithApplicantId() {
+		List<Person> personIds = new ArrayList<>();
+
+		String sqlFindAllPersonsWithApplicantId = "SELECT p.person_id, p.first_name, p.last_name, p.preferred_name, p.date_of_birth, p.email, p.phone, a.account_id \n" + 
+				"FROM person p, account a, application app\n" + 
+				"WHERE p.person_id = a.person_id\n" + 
+				"AND p.person_id = app.applicant_id";
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllPersonsWithApplicantId);
+
+		while (results.next()) {
+			Person thePerson = mapRowToPersonAndAccountId(results);
+			personIds.add(thePerson);
+		}
+
+		return personIds;
+	}
 
 	private Person mapRowToPerson(SqlRowSet results) {
 		Person thePerson;

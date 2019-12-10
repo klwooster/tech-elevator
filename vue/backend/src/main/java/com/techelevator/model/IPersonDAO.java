@@ -13,4 +13,7 @@ public interface IPersonDAO {
 	//Person by Person Id
 	public Person getPersonByPersonId(int id);
 	
+	//A Person that has an Applicant Id on Application is a Camper
+	public List<Person> getAllPersonsWithApplicantId();
+	
 }
