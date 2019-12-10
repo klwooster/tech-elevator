@@ -87,4 +87,12 @@ public class JDBCPersonDAOIntegrationTest {
 		assertNotNull(thePerson);
 	}
 	
+	@Test
+	public void getAllPersonsTest() throws SQLException {
+		List<Person> results = dao.getAllPersons();
+		int count = results.size();
+		assertNotNull(results);
+		assertEquals(count, results.size());
+	}
+	
 }
