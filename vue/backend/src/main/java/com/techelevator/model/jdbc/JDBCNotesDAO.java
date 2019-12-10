@@ -1,11 +1,14 @@
 package com.techelevator.model.jdbc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import com.techelevator.model.Application;
 import com.techelevator.model.INotesDAO;
 import com.techelevator.model.Notes;
 
@@ -19,14 +22,41 @@ public class JDBCNotesDAO implements INotesDAO {
 	
 	@Override
 	public Notes getNotesByNoteId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Notes theNotes = null;
+		String sqlFindNotesByNoteId = "SELECT note_id, note_body, create_date, application_id FROM notes WHERE note_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindNotesByNoteId, id);
+		if (results.next()) {
+			theNotes = mapRowToApplication(results);
+		}
+		return theNotes;
 	}
 
 	@Override
 	public List<Notes> getNotesByApplicationId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Notes> notes = new ArrayList<>();
+
+		String sqlNotesByApplicationId = "SELECT note_id, note_body, create_date, application_id FROM notes WHERE application_id = ?";
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlNotesByApplicationId, id);
+
+		while (results.next()) {
+			Notes theNotes = mapRowToApplication(results);
+			notes.add(theNotes);
+		}
+
+		return notes;
 	}
 
+	private Notes mapRowToApplication(SqlRowSet results) {
+		Notes theNotes;
+		theNotes = new Notes();
+		theNotes.setNoteId(results.getInt("note_id"));
+		theNotes.setNoteBody(results.getString("note_body"));
+		theNotes.setCreateDate(results.getString("create_date"));
+		theNotes.setApplicationId(results.getInt("application_id"));
+		
+		return theNotes;
+
+	}
+	
 }
