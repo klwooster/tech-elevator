@@ -10,7 +10,7 @@ export default {
 
      getById(applicantId) {
          console.log('getting applicant');
-         return fetch('http://localhost:8080/AuthenticationApplication/api/applicants/${personId}')
+         return fetch(`http://localhost:8080/AuthenticationApplication/api/applicants/${applicantId}`)
          .then((response) => {
              return response.json();
          });

@@ -74,13 +74,11 @@ public class ApiController {
     }
     
     @PostMapping(path = "/applicants/{applicantId}")
-    public ResponseEntity<Void> updateApplicant (@RequestBody Application application, @RequestBody Notes notes, @RequestBody Person person) {
+    public ResponseEntity<Void> updateApplicant (@RequestBody Application application, Person person, Notes notes) {
     	applicationDao.updateApplication(application);
     	personDao.updatePerson(person);
     	notesDao.updateNotes(notes);
     	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
-    	UriComponents notesUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(notes.getNoteId())).build();
-    	UriComponents personUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(person.getPersonId())).build();
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
