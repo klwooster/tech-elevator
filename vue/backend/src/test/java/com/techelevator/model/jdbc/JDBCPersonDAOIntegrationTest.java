@@ -18,6 +18,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import com.techelevator.model.Account;
 import com.techelevator.model.Application;
+import com.techelevator.model.Notes;
 import com.techelevator.model.Person;
 
 public class JDBCPersonDAOIntegrationTest {
@@ -103,4 +104,23 @@ public class JDBCPersonDAOIntegrationTest {
 		assertEquals(count, results.size());
 	}
 	
+	@Test
+	public void updatePersonTest() throws SQLException {
+		Person thePerson = new Person();
+		Person dirtyPersonCheck = new Person();
+	 	
+	    thePerson.setPersonId(1);
+	    thePerson.setFirstName("Wayne");
+	    thePerson.setLastName("Wayne Jr");
+	    thePerson.setPreferredName("Jill");
+	    thePerson.setDateOfBirth("11/22/63");
+	    thePerson.setEmail("jill@fake.com");
+	    thePerson.setPhone("8675309");
+		
+		dao.updatePerson(thePerson);
+		
+		dirtyPersonCheck = dao.getPersonByPersonId(1);
+		
+		assertEquals(dirtyPersonCheck.getEmail(), "jill@fake.com");
+	}
 }
