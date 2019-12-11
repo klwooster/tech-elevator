@@ -2,10 +2,10 @@
             <div class="details">
             <div class="details-top">
                 <h1>{{application.applicant.firstName}} {{application.applicant.lastName}}</h1>
-                <div class="control">
+                <!-- <div class="control">
                     <button>Edit</button>
                     <button>Recent Changes</button>
-                </div>
+                </div> -->
             </div>
             <h3>Application #{{application.applicationId}}<br>Account #{{application.accountId}}</h3>
             <div class="row">
