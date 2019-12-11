@@ -5,7 +5,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import ApplicantList from './views/ApplicantList.vue'
-import ApplicantInfo from './components/ApplicantInfo.vue'
+import ApplicantInfo from './views/ApplicantInfo.vue'
 
 Vue.use(Router)
 
@@ -26,7 +26,7 @@ const router = new Router({
             name: 'home',
             component: Home,
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             }
         },
         {
@@ -54,9 +54,10 @@ const router = new Router({
             }
         },
         {
-            path: "/applicant-info",
+            path: "/applicant-info/:applicantId",
             name: "applicantinfo",
             component: ApplicantInfo,
+            params: true,
             meta: {
                 requiresAuth: false
             }

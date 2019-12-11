@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -73,7 +74,7 @@ public class ApiController {
   	return applicationDao.getFullApplicationByApplicantId(Integer.parseInt(applicantId));
     }
     
-    @PostMapping(path = "/applicants/{applicantId}")
+    @PutMapping(path = "/applicants/{applicantId}")
     public ResponseEntity<Void> updateApplicant (@RequestBody Application application, Person person, Notes notes) {
     	applicationDao.updateApplication(application);
     	personDao.updatePerson(person);

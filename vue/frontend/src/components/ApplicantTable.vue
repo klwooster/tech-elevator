@@ -9,7 +9,7 @@
                 </div>
                 <hr>
                 <div class="row" v-for="applicant in applicants" :key="applicant.personId">
-                    <p><router-link :to="{name: 'applicantinfo' , params:{id: applicant.personId}}">{{applicant.personId}}</router-link></p>
+                    <p v-on:click="viewApplicantDetails(applicant.personId)">{{applicant.personId}}</p>
                     <p>{{applicant.firstName}}</p>
                     <p>{{applicant.lastName}}</p>
                     <p>{{applicant.accountId}}</p>
@@ -19,6 +19,7 @@
 
 <script>
 import APIService from '@/service/APIService';
+import router from '@/router';
 
 export default {
   name: 'applicant-table',
@@ -31,6 +32,9 @@ export default {
   methods: { 
       getApplicants() {
           APIService.listApplicants().then(applicants => this.applicants = applicants);
+      },
+      viewApplicantDetails(id) {
+          router.push({ name: 'applicantinfo', params: { applicantId: id } })
       }
   },
   created() {

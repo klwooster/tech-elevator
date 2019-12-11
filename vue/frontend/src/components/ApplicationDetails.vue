@@ -3,37 +3,39 @@
             <div class="row">
                 <p class="title">Guardian</p>
                 <div class="subdata">
-                    Tech Elevator<br> (614) 555-1234
+                    {{applicationdata.guardian.firstName}} {{applicationdata.guardian.lastName}}<br> 
+                    {{applicationdata.guardian.phone}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Emergency Contact</p>
                 <div class="subdata">
-                    Tyler Kendall<br> (614) 843-1234
+                    {{applicationdata.emergencyContact.firstName}} {{applicationdata.emergencyContact.lastName}}<br> 
+                    {{applicationdata.emergencyContact.phone}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Program</p>
                 <div class="subdata">
-                    Super Fun Workshop!
+                    {{applicationdata.program}}
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <p class="title">Workshop Preferences</p>
                 <div class="subdata">
                     1st Choice - Workshop A<br> 2nd Choice - Workshop B
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <p class="title">Dorm Assignment</p>
                 <div class="subdata">
-                    Taylor Tower
+                    {{applicationdata.dormAssignment}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Meal Plan</p>
                 <div class="subdata">
-                    All lunch and dinner to be provided.
+                    {{applicationdata.mealPlan}}
                 </div>
             </div>
         </div>
@@ -41,7 +43,10 @@
 
 <script>
 export default {
-    name: 'application-details'
+    name: 'application-details',
+    props: {
+        applicationdata: null
+    }
 }
 </script>
 
