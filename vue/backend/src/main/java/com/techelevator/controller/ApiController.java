@@ -4,7 +4,9 @@ import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.model.Application;
 import com.techelevator.model.IApplicationDAO;
+import com.techelevator.model.INotesDAO;
 import com.techelevator.model.IPersonDAO;
+import com.techelevator.model.Notes;
 import com.techelevator.model.Person;
 
 import java.util.List;
@@ -36,10 +38,13 @@ public class ApiController {
     private IApplicationDAO applicationDao;
     @Autowired
     private IPersonDAO personDao;
+    @Autowired
+    private INotesDAO notesDao;
     
-    public ApiController(IApplicationDAO applicationDao, IPersonDAO personDao) {
+    public ApiController(IApplicationDAO applicationDao, IPersonDAO personDao, INotesDAO notesDao) {
     	this.applicationDao = applicationDao;
     	this.personDao = personDao;
+    	this.notesDao = notesDao;
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
@@ -68,11 +73,15 @@ public class ApiController {
   	return applicationDao.getFullApplicationByApplicantId(Integer.parseInt(applicantId));
     }
     
-//    @PostMapping
-//    public ResponseEntity<Void> updateApplicant (@RequestBody Applicant applicant) {
-//    	applicantDao.updateApplicant(applicant);
-//    	UriComponents uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(applicant.getId())).build();
-//    	
-//    	return ResponseEntity.created(uri.toUri()).build();
-//    }
+    @PostMapping(path = "/applicants/{applicantId}")
+    public ResponseEntity<Void> updateApplicant (@RequestBody Application application, @RequestBody Notes notes, @RequestBody Person person) {
+    	applicationDao.updateApplication(application);
+    	personDao.updatePerson(person);
+    	notesDao.updateNotes(notes);
+    	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
+    	UriComponents notesUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(notes.getNoteId())).build();
+    	UriComponents personUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(person.getPersonId())).build();
+    	
+    	return ResponseEntity.created(applicationUri.toUri()).build();
+    }
 }
