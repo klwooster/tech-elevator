@@ -16,4 +16,9 @@ public interface IApplicationDAO {
 	//Full Application Data including Person data for Applicant, Guardian, Emergency Contact, and Notes
 	public Application getFullApplicationByApplicantId(int id);
 	
+	//Update Application for Application Id
+	public void updateApplication(Application application);
+	
+	//Update FullApplication for Application Id
+	public void updateFullApplication(Application application);
 }
