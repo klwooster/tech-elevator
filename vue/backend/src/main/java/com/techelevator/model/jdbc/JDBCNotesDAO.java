@@ -58,7 +58,7 @@ public class JDBCNotesDAO implements INotesDAO {
 		 String create_date = inputNotes.getCreateDate();
 		 int application_id = inputNotes.getApplicationId();
 	     
-		 String sqlUpdateNotes = "UPDATE notes SET note_body=?, create_date=?, application_id=? WHERE note_id=?";
+		 String sqlUpdateNotes = "UPDATE notes SET note_body = ?, create_date = ?, application_id = ? WHERE note_id = ?";
 	     jdbcTemplate.update(sqlUpdateNotes, note_body, create_date, application_id,note_id);
 	}
 

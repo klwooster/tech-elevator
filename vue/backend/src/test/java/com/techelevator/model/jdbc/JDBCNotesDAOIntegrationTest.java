@@ -99,6 +99,7 @@ public class JDBCNotesDAOIntegrationTest {
 	@Test
 	public void updateNotesTest() throws SQLException {
 		Notes theNotes = new Notes();
+		Notes dirtyNotesCheck = new Notes();
 
 		theNotes.setNoteId(1);
 		theNotes.setNoteBody("Testing the Update");
@@ -106,8 +107,10 @@ public class JDBCNotesDAOIntegrationTest {
 		theNotes.setApplicationId(1);
 		
 		dao.updateNotes(theNotes);
-
-		assertNotNull(theNotes);
+		
+		dirtyNotesCheck = dao.getNotesByNoteId(1);
+		
+		assertEquals(dirtyNotesCheck.getNoteBody(), "Testing the Update");
 	}
 	
 }
