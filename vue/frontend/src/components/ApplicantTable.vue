@@ -38,15 +38,17 @@ export default {
   },
   methods: { 
       showApplicants() {
+          console.log('getting ready to get applicants');
           fetch(this.api_url)
           .then(response => response.json())
           .then(data => (this.applicants = data))
           .catch(err => console.error(err));
       },
 
-      created() {
+      
+  },
+  created() {
           this.showApplicants();
-      }
   }
 };
 </script>
