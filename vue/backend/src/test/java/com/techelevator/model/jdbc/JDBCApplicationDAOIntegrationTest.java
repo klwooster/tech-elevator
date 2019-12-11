@@ -19,6 +19,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import com.techelevator.model.Account;
 import com.techelevator.model.Application;
 import com.techelevator.model.IPersonDAO;
+import com.techelevator.model.Person;
 
 public class JDBCApplicationDAOIntegrationTest {
 
@@ -114,4 +115,29 @@ public class JDBCApplicationDAOIntegrationTest {
 		assertNotNull(theApplication);
 	}
 	
+	@Test
+	public void updateApplicationTest() throws SQLException {
+		Application theApplication = new Application();
+		Application dirtyApplicationCheck = new Application();
+	    
+	    theApplication.setApplicationId(1);
+		theApplication.setApplicantId(1);
+		theApplication.setAccountId(2);
+		theApplication.setGuardianId(3);
+		theApplication.setEmergencyContactId(4);
+		theApplication.setDietaryPreference("dietary_");
+		theApplication.setDietaryRestrictions("ds");
+		theApplication.setMobilityIssues("mobili");
+		theApplication.setMedicalConcerns("ns");
+		theApplication.setMealPlan("meal_");
+		theApplication.setProgram("program");
+		theApplication.setDormAssignment("dort");
+		theApplication.setTshirtSize("te");
+		
+		dao.updateApplication(theApplication);
+		
+		dirtyApplicationCheck = dao.getApplicationByApplicationId(1);
+		
+		assertEquals(dirtyApplicationCheck.getDormAssignment(), "dort");
+	}
 }
