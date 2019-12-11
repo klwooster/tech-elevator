@@ -1,73 +1,70 @@
 <template>
             <div class="details">
             <div class="details-top">
-                <h1>Kelsey Wooster</h1>
+                <h1>{{application.applicant.firstName}} {{application.applicant.lastName}}</h1>
                 <div class="control">
                     <button>Edit</button>
                     <button>Recent Changes</button>
                 </div>
             </div>
-            <h3>Application #123456<br>Account #0000335</h3>
+            <h3>Application #{{application.applicationId}}<br>Account #{{application.accountId}}</h3>
             <div class="row">
                 <p class="title"><b>Preferred Name</b></p>
                 <hr>
-                <p>Kelsey</p>
+                <p>{{application.applicant.preferredName}}</p>
             </div>
             <div class="row">
                 <p class="title"><b>Date of Birth</b></p>
                 <hr>
-                <p>8/26/1987</p>
+                <p>{{application.applicant.dateOfBirth}}</p>
             </div>
             <div class="row">
                 <p class="title">Email</p>
                 <hr>
-                <p>kelsey.wooster@gmail.com</p>
+                <p>{{application.applicant.email}}</p>
             </div>
             <div class="row">
                 <p class="title">Phone Number</p>
                 <hr>
-                <p>(614) 226-2599</p>
-            </div>
-            <div class="row">
-                <p class="title">Congregation</p>
-                <hr>
-                <p>Church of the Flying Spaghetti Monster</p>
+                <p>{{application.applicant.phone}}</p>
             </div>
             <div class="row">
                 <p class="title">T-Shirt Size</p>
                 <hr>
-                <p>XS</p>
+                <p>{{application.tshirtSize}}</p>
             </div>
             <div class="row">
                 <p class="title">Dietary Preference</p>
                 <hr>
-                <p>Omnivore</p>
+                <p>{{application.dietaryPreference}}</p>
             </div>
             <div class="row">
                 <p class="title">Dietary Restrictions</p>
                 <hr>
-                <p>Gluten-Free (allergy)</p>
+                <p>{{application.dietaryRestrictions}}</p>
             </div>
             <div class="row">
                 <p class="title">Mobility Issues</p>
                 <hr>
-                <p>N/A</p>
+                <p>{{application.mobilityIssues}}</p>
             </div>
             <div class="row">
                 <p class="title">Medical Concerns</p>
                 <hr>
-                <p>N/A</p>
+                <p>{{application.medicalConcerns}}</p>
             </div>
         </div>
 </template>
 
 <script>
 export default {
-    name: 'applicant-details',
-    data: {
-        application: { }
+  name: 'applicant-info',
+    props: {
+        applicationdata: {
+            type: Object
+        }
     }
-}
+};
 </script>
 
 <style>        
