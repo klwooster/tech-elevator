@@ -12,6 +12,7 @@
       </div>
       <div class="list-row" v-for="applicant in applicants" :key="applicant.personId">
           <span class="applicant-data">{{applicant.personId}}</span>
+          <span><router-link :to="{name: 'applicantinfo' , params:{id: applicant.personId}}">{{applicant.firstName}}</router-link></span>
           <span class="applicant-data">{{applicant.firstName}}</span>
           <span class="applicant-data">{{applicant.lastName}}</span>
           <span class="applicant-data">{{applicant.preferredName}}</span>
@@ -24,29 +25,23 @@
 </template>
 
 <script>
+import APIService from '@/service/APIService';
+
 export default {
   name: 'applicant-table',
-  props: {
-      apiurl: String
-  },
+  
   data() {
     return {
         applicants: [],
     };
   },
   methods: { 
-      showApplicants() {
-          console.log('getting ready to get applicants');
-          fetch(this.apiurl)
-          .then(response => response.json())
-          .then(data => (this.applicants = data))
-          .catch(err => console.error(err));
-      },
-
-      
+      getApplicants() {
+          APIService.listApplicants().then(applicants => this.applicants = applicants);
+      }
   },
   created() {
-          this.showApplicants();
+          this.getApplicants();
   }
 };
 </script>

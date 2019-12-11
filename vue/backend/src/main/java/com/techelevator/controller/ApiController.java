@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.Application;
 import com.techelevator.model.IApplicationDAO;
 import com.techelevator.model.IPersonDAO;
 import com.techelevator.model.Person;
@@ -62,9 +63,9 @@ public class ApiController {
     	return personDao.getAllPersonsWithApplicantId();
     }
     
-    @GetMapping(path = "/applicants/{personId}")
-    public Person getApplicantById(@PathVariable String personId) {
-  	return personDao.getPersonByPersonId(Integer.parseInt(personId));
+    @GetMapping(path = "/applicants/{applicantId}")
+    public Application getApplicantById(@PathVariable String applicantId) {
+  	return applicationDao.getFullApplicationByApplicantId(Integer.parseInt(applicantId));
     }
     
 //    @PostMapping

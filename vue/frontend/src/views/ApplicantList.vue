@@ -1,6 +1,6 @@
 <template>
   <div>
-      <applicant-table :apiurl="apiurl"/>
+      <applicant-table/>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   },
   data() {
       return {
-          apiurl: 'http://localhost:8080/AuthenticationApplication/api/applicants'
+          //apiurl: 'http://localhost:8080/AuthenticationApplication/api/applicants'
       }
   },
   methods: { }
