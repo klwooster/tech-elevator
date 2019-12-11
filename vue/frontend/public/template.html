@@ -6,47 +6,83 @@
     <style>
         * {
             box-sizing: border-box;
+            font-family: 'Open Sans Condensed', sans-serif;
+            color: #112F40;
         }
         
         body {
             margin: 0px;
             padding: 0px;
-        }
-        
-        header {
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
-            min-height: 100vh;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: stretch;
-            justify-items: stretch;
-            align-content: stretch;
-            align-items: stretch;
+        }
+        
+        header {
+            flex-basis: 100%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
         }
         
         .splash {
             flex-basis: 100%;
             flex-shrink: 0;
             flex-grow: 0;
-            padding: 0px;
+            padding: 50px;
             margin: 0px;
             background: url("mountains.jpg") no-repeat center;
             background-size: cover;
-            display: flex;
         }
         
-        .splash h1 {
-            font-size: 85px;
+        .login {
+            position: absolute;
+            width: 45%;
+            min-height: 50%;
+            left: 10%;
+            top: auto;
+            bottom: auto;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .login h1 {
+            flex-basis: 80%;
+            font-size: 50px;
             color: #792359;
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            text-shadow: 1px 1px 2px #112F40, 0 0 25px #0B6E4F, 0 0 5px #20A39E;
-            text-align: center;
-            align-self: flex-end;
-            flex-basis: 100%;
+            text-shadow: 1px 1px 2px #112F40, 0 0 5px #0B6E4F;
+            text-align: left;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+        
+        .login>input {
+            margin: 5px;
+            border: 1px solid #792359;
+            background-color: white;
+            flex-basis: 80%;
+            width: 80%;
+            font-size: 1em;
+        }
+        
+        .login>button {
+            flex-basis: 40%;
+            margin: 5px;
+            border: 1px solid #792359;
+            background-color: white;
+            width: 40%;
+            font-size: 1em;
         }
         
         nav {
@@ -90,20 +126,15 @@
 <body>
     <header>
         <div class="splash">
-            <h1>Camp North Star</h1>
+            <div class="login">
+                <h1>Camp North Star</h1>
+                <input id="username" placeholder="USERNAME">
+                <input id="password" placeholder="PASSWORD">
+                <button>Login</button>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><i class="fas fa-campground transparent"></i> Dashboard</li>
-                <li><i class="fas fa-campground transparent"></i> Applicants</li>
-                <li><i class="fas fa-campground transparent"></i> Communication Center</li>
-                <li><i class="fas fa-campground transparent"></i> Invoicing</li>
-            </ul>
-        </nav>
     </header>
-    <section id="main">
 
-    </section>
 </body>
 
 </html>

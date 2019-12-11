@@ -1,0 +1,412 @@
+<html>
+
+<head>
+    <script src="https://kit.fontawesome.com/670ac097f1.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400,400i,700,700i&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Open Sans Condensed', sans-serif;
+            color: #112F40;
+        }
+        
+        body {
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            justify-content: stretch;
+            font-size: 16px;
+        }
+        
+        header {
+            flex-basis: 15%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        
+        .splash {
+            flex-basis: 85%;
+            flex-shrink: 0;
+            flex-grow: 0;
+            padding: 0px;
+            margin: 0px;
+            background: url("mountains.jpg") no-repeat center;
+            background-size: cover;
+            display: flex;
+        }
+        
+        .splash h1 {
+            font-size: 85px;
+            color: #792359;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-shadow: 1px 1px 2px #112F40, 0 0 25px #0B6E4F, 0 0 5px #20A39E;
+            text-align: center;
+            align-self: flex-end;
+            flex-basis: 100%;
+        }
+        
+        nav {
+            flex-basis: 100%;
+            flex-shrink: 0;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            background: #112F40;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0px;
+            width: 90%;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            font-size: 200%;
+            text-transform: uppercase;
+            color: #ffffff;
+            padding: 10px 25px 10px 25px;
+            margin: 0px;
+            height: 100%;
+            width: auto;
+        }
+        
+        nav ul li i.transparent {
+            display: inline-block;
+            color: transparent;
+        }
+        
+        nav ul li i {
+            padding-right: 5px;
+        }
+        
+        #selected,
+        #selected i,
+        li:hover,
+        li:hover i {
+            background: #792359 !important;
+            color: #ffffff !important;
+        }
+        
+        #main {
+            flex-basis: 85%;
+            width: 85%;
+            flex-shrink: 0;
+            flex-grow: 0;
+            padding: 20px 0px 20px 0px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .sidebar {
+            flex-basis: 25%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            background: #71C4C1;
+            padding: 15px 15px 15px 15px;
+        }
+        
+        .list,
+        .details {
+            flex-basis: 70%;
+        }
+        
+        .row>p {
+            font-size: 1.2em;
+            margin: auto;
+            padding: 4px;
+        }
+        
+        .list>h1,
+        .details-top>h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.3em;
+            margin: 5px 0px 20px -15px;
+        }
+        
+        .details-top>h1 {
+            display: inline-block;
+            width: 65%;
+        }
+        
+        .details-top .control {
+            display: inline-block;
+            width: auto;
+            margin-right: 20px;
+        }
+        
+        .control>* {
+            border: 1px solid #792359;
+            background-color: #DAC3D1;
+            color: #792359;
+            font-size: 1.1em;
+            margin: 5px;
+        }
+        
+        .details>h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1em;
+            margin-top: -10px;
+        }
+        
+        .list .row:nth-of-type(even) {
+            background-color: #DAC3D1;
+        }
+        
+        .list .row>p {
+            display: inline-block;
+            width: 24%;
+        }
+        
+        .details .row {
+            display: inline-block;
+            width: 40%;
+            margin: 0px 10px 15px 0px;
+        }
+        
+        .sidebar .row {
+            display: block;
+            width: 95%;
+            margin: 5px 0px 15px 0px;
+        }
+        
+        .details .row>p,
+        .sidebar .row>p {
+            display: block;
+        }
+        
+        .subdata {
+            padding-left: 15px;
+        }
+        
+        .row .title {
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+        
+        .sidebar .row .title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-transform: capitalize;
+        }
+        
+        .list hr,
+        .details hr {
+            border-top: 1px solid #792359;
+            margin: 10px 0px 15px 0px;
+        }
+        
+        .row hr {
+            border-top: 1px solid #792359;
+            margin: 0px 0px 0px 0px;
+        }
+        
+        .notes {
+            flex-basis: 90%;
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+        
+        .notes>div {
+            background-color: #F7F0C2;
+            margin: 20px 0x 20px 0px;
+            padding: 0px 20px 20px 20px;
+        }
+        
+        .notes>div h2 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8em;
+            padding: 10px 0px 10px 0px;
+            color: #792359;
+        }
+        
+        .details>h3,
+        .row>h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1em;
+        }
+        
+        .row>h3 {
+            margin-bottom: -4px;
+        }
+        
+        .notes>div>.form {
+            border-bottom: 1px solid #792359;
+            padding: 0px 0px 15px 0px;
+            margin-top: -15px;
+        }
+        
+        .form>textarea,
+        .form>button,
+        .form>input,
+        .subdata>input {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin: 5px;
+            border: 1px solid #792359;
+            width: 98%;
+            font-size: 0.9em;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li id="selected"><i class="fas fa-campground transparent"></i> Dashboard</li>
+                <li><i class="fas fa-campground transparent"></i> Applicants</li>
+                <li><i class="fas fa-campground transparent"></i> Communication Center</li>
+                <li><i class="fas fa-campground transparent"></i> Invoicing</li>
+            </ul>
+        </nav>
+    </header>
+    <section id="main">
+        <div class="sidebar">
+            <div class="row">
+                <p class="title">Guardian</p>
+                <div class="subdata">
+                    <input id="" placeholder="Tech Elevator">
+                    <input id="" placeholder="(614) 555-1234">
+                </div>
+            </div>
+            <div class="row">
+                <p class="title">Emergency Contact</p>
+                <div class="subdata">
+                    <input id="" placeholder="Tyler Kendall">
+                    <input id="" placeholder="(614) 843-1234">
+                </div>
+            </div>
+            <div class="row">
+                <p class="title">Program</p>
+                <div class="subdata">
+                    <input id="" placeholder="Super Fun Workshop!">
+                </div>
+            </div>
+            <div class=" row ">
+                <p class="title ">Workshop Preferences</p>
+                <div class="subdata ">
+                    <input id=" " placeholder="1st Choice - Workshop A ">
+                    <input id=" " placeholder="2nd Choice - Workshop B ">
+                </div>
+            </div>
+            <div class="row ">
+                <p class="title ">Dorm Assignment</p>
+                <div class="subdata ">
+                    <input id=" " placeholder="Taylor Tower ">
+                </div>
+            </div>
+            <div class="row ">
+                <p class="title ">Meal Plan</p>
+                <div class="subdata ">
+                    <input id=" " placeholder="All lunch and dinner to be provided. ">
+                </div>
+            </div>
+        </div>
+        <div class="details ">
+            <div class="details-top ">
+                <h1>Kelsey Wooster</h1>
+                <div class="control ">
+                    <button>Edit</button>
+                    <button>Recent Changes</button>
+                </div>
+            </div>
+            <h3>Application #123456<br>Account #0000335</h3>
+            <div class="row ">
+                <p class="title "><b>Preferred Name</b></p>
+                <hr>
+                <p class="form"><input id=" " placeholder="Kelsey"></p>
+            </div>
+            <div class="row ">
+                <p class="title "><b>Date of Birth</b></p>
+                <hr>
+                <p class="form"><input id=" " placeholder="8/26/1987"></p>
+            </div>
+            <div class="row ">
+                <p class="title ">Email</p>
+                <hr>
+                <p class="form"><input id=" " placeholder="kelsey.wooster@gmail.com"></p>
+            </div>
+            <div class="row ">
+                <p class="title ">Phone Number</p>
+                <hr>
+                <p class="form"><input id=" " placeholder="(614) 226-2599"></p>
+            </div>
+            <div class="row ">
+                <p class="title ">Congregation</p>
+                <hr>
+                <p class="form"><input id=" " placeholder="Church of the Flying Spaghetti Monster"></p>
+            </div>
+            <div class="row ">
+                <p class="title ">T-Shirt Size</p>
+                <hr>
+                <p class="form"><input id=" " placeholder="XS"></p>
+            </div>
+            <div class="row ">
+                <p class="title ">Dietary Preference</p>
+                <hr>
+                <p class="form"><input id=" " placeholder="Omnivore"></p>
+            </div>
+            <div class="row ">
+                <p class="title ">Dietary Restrictions</p>
+                <hr>
+                <p class="form"><input id=" " placeholder="Gluten-Free (allergy)"></p>
+            </div>
+            <div class="row ">
+                <p class="title ">Mobility Issues</p>
+                <hr>
+                <p class="form"><input id=" " placeholder="N/A"></p>
+            </div>
+            <div class="row ">
+                <p class="title ">Medical Concerns</p>
+                <hr>
+                <p class="form"><input id=" " placeholder="N/A"></p>
+            </div>
+        </div>
+        <div class="notes ">
+            <div>
+                <h2>Notes</h2>
+                <div class="form ">
+                    <label for="new-note ">Add a new note:</label>
+                    <textarea id="new-note "></textarea>
+                    <button>Submit</button>
+                </div>
+                <div class="row ">
+                    <h3>12/1/19 - Employee Name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="row ">
+                    <h3>12/1/19 - Employee Name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="row ">
+                    <h3>12/1/19 - Employee Name</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
