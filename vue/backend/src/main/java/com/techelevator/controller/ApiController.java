@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,10 +62,10 @@ public class ApiController {
     	return personDao.getAllPersonsWithApplicantId();
     }
     
-//    @GetMapping
-//    public List <Person> getApplicantById() {
-//  	return personDao.getPersonByPersonId(id);
-//    }
+    @GetMapping(path = "/applicants/{personId}")
+    public Person getApplicantById(@PathVariable String personId) {
+  	return personDao.getPersonByPersonId(Integer.parseInt(personId));
+    }
     
 //    @PostMapping
 //    public ResponseEntity<Void> updateApplicant (@RequestBody Applicant applicant) {
