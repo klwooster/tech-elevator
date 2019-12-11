@@ -118,23 +118,64 @@
             padding: 15px 15px 15px 15px;
         }
         
-        .list,
-        .details {
+        .list {
             flex-basis: 70%;
         }
         
-        .row>p {
-            font-size: 1.2em;
-            margin: auto;
-            padding: 4px;
+        .list>h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.3em;
+            margin: 5px 0px 20px -15px;
         }
         
-        .list>h1,
+        .control>* {
+            border: 1px solid #792359;
+            background-color: #DAC3D1;
+            color: #792359;
+            font-size: 1.1em;
+            margin: 5px;
+        }
+        
+        .list .row:nth-of-type(even) {
+            background-color: #DAC3D1;
+        }
+        
+        .list .row>p {
+            display: inline-block;
+            width: 24%;
+        }
+        
+        .list hr {
+            border-top: 1px solid #792359;
+            margin: 10px 0px 15px 0px;
+        }
+        
+        .sidebar .row {
+            display: block;
+            width: 95%;
+            margin: 5px 0px 15px 0px;
+        }
+        
+        .sidebar .row .title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-transform: capitalize;
+        }
+        
+        .sidebar .row>p {
+            display: block;
+        }
+        
         .details-top>h1 {
             font-family: 'Playfair Display', serif;
             font-style: italic;
             font-size: 2.3em;
             margin: 5px 0px 20px -15px;
+        }
+        
+        .details {
+            flex-basis: 70%;
         }
         
         .details-top>h1 {
@@ -148,28 +189,11 @@
             margin-right: 20px;
         }
         
-        .control>* {
-            border: 1px solid #792359;
-            background-color: #DAC3D1;
-            color: #792359;
-            font-size: 1.1em;
-            margin: 5px;
-        }
-        
         .details>h3 {
             font-family: 'Playfair Display', serif;
             font-style: italic;
             font-size: 1em;
             margin-top: -10px;
-        }
-        
-        .list .row:nth-of-type(even) {
-            background-color: #DAC3D1;
-        }
-        
-        .list .row>p {
-            display: inline-block;
-            width: 24%;
         }
         
         .details .row {
@@ -178,19 +202,30 @@
             margin: 0px 10px 15px 0px;
         }
         
-        .sidebar .row {
+        .details .row>p {
             display: block;
-            width: 95%;
-            margin: 5px 0px 15px 0px;
         }
         
-        .details .row>p,
-        .sidebar .row>p {
-            display: block;
+        .details hr {
+            border-top: 1px solid #792359;
+            margin: 10px 0px 15px 0px;
+        }
+        
+        .details>h3,
+        .row>h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1em;
         }
         
         .subdata {
             padding-left: 15px;
+        }
+        
+        .row>p {
+            font-size: 1.2em;
+            margin: auto;
+            padding: 4px;
         }
         
         .row .title {
@@ -198,21 +233,13 @@
             text-transform: uppercase;
         }
         
-        .sidebar .row .title {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            text-transform: capitalize;
-        }
-        
-        .list hr,
-        .details hr {
-            border-top: 1px solid #792359;
-            margin: 10px 0px 15px 0px;
-        }
-        
         .row hr {
             border-top: 1px solid #792359;
             margin: 0px 0px 0px 0px;
+        }
+        
+        .row>h3 {
+            margin-bottom: -4px;
         }
         
         .notes {
@@ -233,17 +260,6 @@
             font-size: 1.8em;
             padding: 10px 0px 10px 0px;
             color: #792359;
-        }
-        
-        .details>h3,
-        .row>h3 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1em;
-        }
-        
-        .row>h3 {
-            margin-bottom: -4px;
         }
         
         .form {
