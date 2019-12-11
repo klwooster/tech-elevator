@@ -3,21 +3,21 @@
             <div class="row">
                 <p class="title">Guardian</p>
                 <div class="subdata">
-                    {{application.guardian.firstName}} {{application.guardian.lastName}}<br> 
-                    {{application.guardian.phone}}
+                    {{applicationdata.guardian.firstName}} {{applicationdata.guardian.lastName}}<br> 
+                    {{applicationdata.guardian.phone}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Emergency Contact</p>
                 <div class="subdata">
-                    {{application.emergencyContact.firstName}} {{application.emergencyContact.lastName}}<br> 
-                    {{application.emergencyContact.phone}}
+                    {{applicationdata.emergencyContact.firstName}} {{applicationdata.emergencyContact.lastName}}<br> 
+                    {{applicationdata.emergencyContact.phone}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Program</p>
                 <div class="subdata">
-                    {{application.program}}
+                    {{applicationdata.program}}
                 </div>
             </div>
             <!-- <div class="row">
@@ -29,13 +29,13 @@
             <div class="row">
                 <p class="title">Dorm Assignment</p>
                 <div class="subdata">
-                    {{application.dormAssignment}}
+                    {{applicationdata.dormAssignment}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Meal Plan</p>
                 <div class="subdata">
-                    {{application.mealPlan}}
+                    {{applicationdata.mealPlan}}
                 </div>
             </div>
         </div>
@@ -45,9 +45,7 @@
 export default {
     name: 'application-details',
     props: {
-        applicationdata: {
-            type: Object
-        }
+        applicationdata: null
     }
 }
 </script>

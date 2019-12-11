@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <application-details applicationdata="application" />
-    <applicant-details applicationdata="application" />
+    <application-details v-bind:applicationdata="application" />
+    <applicant-details v-bind:applicationdata="application" />
   </div>
 </template>
 
@@ -28,11 +28,23 @@ export default {
       }
   },
   created() {
-          this.showApplicant();
+      this.showApplicant(this.$route.params.applicantId);
   }
 };
 </script>
 
 <style>
-   
+   #main {
+            flex-basis: 85%;
+            width: 85%;
+            flex-shrink: 0;
+            flex-grow: 0;
+            padding: 20px 0px 20px 0px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
 </style>

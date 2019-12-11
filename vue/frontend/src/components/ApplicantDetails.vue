@@ -1,57 +1,57 @@
 <template>
             <div class="details">
             <div class="details-top">
-                <h1>{{application.applicant.firstName}} {{application.applicant.lastName}}</h1>
+                <h1>{{applicationdata.applicant.firstName}} {{applicationdata.applicant.lastName}}</h1>
                 <!-- <div class="control">
                     <button>Edit</button>
                     <button>Recent Changes</button>
                 </div> -->
             </div>
-            <h3>Application #{{application.applicationId}}<br>Account #{{application.accountId}}</h3>
+            <h3>Application #{{applicationdata.applicationId}}<br>Account #{{applicationdata.accountId}}</h3>
             <div class="row">
                 <p class="title"><b>Preferred Name</b></p>
                 <hr>
-                <p>{{application.applicant.preferredName}}</p>
+                <p>{{applicationdata.applicant.preferredName}}</p>
             </div>
             <div class="row">
                 <p class="title"><b>Date of Birth</b></p>
                 <hr>
-                <p>{{application.applicant.dateOfBirth}}</p>
+                <p>{{applicationdata.applicant.dateOfBirth}}</p>
             </div>
             <div class="row">
                 <p class="title">Email</p>
                 <hr>
-                <p>{{application.applicant.email}}</p>
+                <p>{{applicationdata.applicant.email}}</p>
             </div>
             <div class="row">
                 <p class="title">Phone Number</p>
                 <hr>
-                <p>{{application.applicant.phone}}</p>
+                <p>{{applicationdata.applicant.phone}}</p>
             </div>
             <div class="row">
                 <p class="title">T-Shirt Size</p>
                 <hr>
-                <p>{{application.tshirtSize}}</p>
+                <p>{{applicationdata.tshirtSize}}</p>
             </div>
             <div class="row">
                 <p class="title">Dietary Preference</p>
                 <hr>
-                <p>{{application.dietaryPreference}}</p>
+                <p>{{applicationdata.dietaryPreference}}</p>
             </div>
             <div class="row">
                 <p class="title">Dietary Restrictions</p>
                 <hr>
-                <p>{{application.dietaryRestrictions}}</p>
+                <p>{{applicationdata.dietaryRestrictions}}</p>
             </div>
             <div class="row">
                 <p class="title">Mobility Issues</p>
                 <hr>
-                <p>{{application.mobilityIssues}}</p>
+                <p>{{applicationdata.mobilityIssues}}</p>
             </div>
             <div class="row">
                 <p class="title">Medical Concerns</p>
                 <hr>
-                <p>{{application.medicalConcerns}}</p>
+                <p>{{applicationdata.medicalConcerns}}</p>
             </div>
         </div>
 </template>
@@ -59,11 +59,7 @@
 <script>
 export default {
   name: 'applicant-info',
-    props: {
-        applicationdata: {
-            type: Object
-        }
-    }
+    props: [ 'applicationdata' ]
 };
 </script>
 

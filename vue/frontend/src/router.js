@@ -54,9 +54,10 @@ const router = new Router({
             }
         },
         {
-            path: "/applicant-info",
+            path: "/applicant-info/:applicantId",
             name: "applicantinfo",
             component: ApplicantInfo,
+            params: true,
             meta: {
                 requiresAuth: false
             }

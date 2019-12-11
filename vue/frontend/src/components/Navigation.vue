@@ -6,7 +6,7 @@
                     <i class="fas fa-campground transparent"></i>
                     <router-link v-bind:to="{name: 'home'}">Dashboard</router-link>
                 </li>
-                <li>
+                <li id="selected">
                     <i class="fas fa-campground transparent"></i> 
                     <router-link v-bind:to="{name: 'applicantlist'}">Applicants</router-link>
                 </li>
