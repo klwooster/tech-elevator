@@ -18,56 +18,55 @@ Vue.use(Router)
  */
 
 const router = new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: Login,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/register",
-      name: "register",
-      component: Register,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/applicant-list",
-      name: "applicantlist",
-      component: ApplicantList,
-      meta: {
-        requiresAuth: false
-      }
-    }
-  ]
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [{
+            path: '/',
+            name: 'home',
+            component: Home,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/register",
+            name: "register",
+            component: Register,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/applicant-list",
+            name: "applicant-list",
+            component: ApplicantList,
+            meta: {
+                requiresAuth: false
+            }
+        }
+    ]
 })
 
 router.beforeEach((to, from, next) => {
-  // Determine if the route requires Authentication
-  const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-  const user = auth.getUser();
+    // Determine if the route requires Authentication
+    const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+    const user = auth.getUser();
 
-  // If it does and they are not logged in, send the user to "/login"
-  if (requiresAuth && !user) {
-    next("/login");
-  } else {
-    // Else let them go to their next destination
-    next();
-  }
+    // If it does and they are not logged in, send the user to "/login"
+    if (requiresAuth && !user) {
+        next("/login");
+    } else {
+        // Else let them go to their next destination
+        next();
+    }
 });
 
 export default router;
