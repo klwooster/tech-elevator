@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.Application;
 import com.techelevator.model.IApplicationDAO;
 import com.techelevator.model.IPersonDAO;
 import com.techelevator.model.Person;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,10 +63,10 @@ public class ApiController {
     	return personDao.getAllPersonsWithApplicantId();
     }
     
-//    @GetMapping
-//    public List <Person> getApplicantById() {
-//  	return personDao.getPersonByPersonId(id);
-//    }
+    @GetMapping(path = "/applicants/{applicantId}")
+    public Application getApplicantById(@PathVariable String applicantId) {
+  	return applicationDao.getFullApplicationByApplicantId(Integer.parseInt(applicantId));
+    }
     
 //    @PostMapping
 //    public ResponseEntity<Void> updateApplicant (@RequestBody Applicant applicant) {

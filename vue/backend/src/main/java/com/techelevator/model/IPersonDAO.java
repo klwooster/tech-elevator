@@ -16,4 +16,7 @@ public interface IPersonDAO {
 	//A Person that has an Applicant Id on Application is a Camper
 	public List<Person> getAllPersonsWithApplicantId();
 	
+	//Update Person for Person Id
+	public void updatePerson(Person person);
+	
 }

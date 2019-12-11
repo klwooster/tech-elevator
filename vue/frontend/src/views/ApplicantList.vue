@@ -15,11 +15,11 @@ export default {
       ApplicantTable,
       ApplicantFilters
   },
-//   data() {
-//       return {
-//           api_url: 'http://localhost:8080/AuthenticationApplication/api/applicants'
-//       }
-//   },
+  data() {
+      return {
+          //apiurl: 'http://localhost:8080/AuthenticationApplication/api/applicants'
+      }
+  },
   methods: { }
 };
 </script>

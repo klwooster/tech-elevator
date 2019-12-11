@@ -9,7 +9,7 @@
                 </div>
                 <hr>
                 <div class="row" v-for="applicant in applicants" :key="applicant.personId">
-                    <p>{{applicant.personId}}</p>
+                    <p><router-link :to="{name: 'applicantinfo' , params:{id: applicant.personId}}">{{applicant.personId}}</router-link></p>
                     <p>{{applicant.firstName}}</p>
                     <p>{{applicant.lastName}}</p>
                     <p>{{applicant.accountId}}</p>
@@ -18,31 +18,23 @@
 </template>
 
 <script>
+import APIService from '@/service/APIService';
+
 export default {
   name: 'applicant-table',
-//   props: {
-//       api_url: String
-//   },
+  
   data() {
     return {
         applicants: [],
-        api_url: 'http://localhost:8080/AuthenticationApplication/api/applicants'
-        /*moved the api link here instead of ApplicantList because the browser was showing the api_url as undefinied*/
     };
   },
   methods: { 
-      showApplicants() {
-          console.log('getting ready to get applicants');
-          fetch(this.api_url)
-          .then(response => response.json())
-          .then(data => (this.applicants = data))
-          .catch(err => console.error(err));
-      },
-
-      
+      getApplicants() {
+          APIService.listApplicants().then(applicants => this.applicants = applicants);
+      }
   },
   created() {
-          this.showApplicants();
+          this.getApplicants();
   }
 };
 </script>
