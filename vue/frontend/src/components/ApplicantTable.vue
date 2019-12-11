@@ -33,13 +33,14 @@ export default {
     return {
         applicants: [],
         api_url: 'http://localhost:8080/AuthenticationApplication/api/applicants'
+        /*moved the api link here instead of ApplicantList because the browser was showing the api_url as undefinied*/
     };
   },
   methods: { 
       showApplicants() {
           fetch(this.api_url)
           .then(response => response.json())
-          .then(applicants => (this.applicants = applicants))
+          .then(data => (this.applicants = data))
           .catch(err => console.error(err));
       },
 
