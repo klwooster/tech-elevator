@@ -30,6 +30,7 @@
 						<value>/login</value>
 						<value>/register</value>
 						<value>/api/applicants</value>
+						<value>/applicants/{applicantId}</value>
 					</list>
 				</property>
 			</bean>
