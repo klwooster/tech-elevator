@@ -25,7 +25,17 @@ export default {
   methods: { 
       showApplicant(applicantId) {
           APIService.getById(applicantId).then(application => this.application = application);
+      },
+
+      updateApplication() {
+        APIService.updateApplication(applicantId)
+        .then(response => {
+          if(response.ok) {
+            console.log('Save was successful');
+          }
+        })
       }
+
   },
   created() {
       this.showApplicant(this.$route.params.applicantId);
