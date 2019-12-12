@@ -64,8 +64,8 @@ const router = new Router({
             }
         },
         {
-            path: "/new-applicant",
-            name: "newapplicant",
+            path: "/camp-registration",
+            name: "campregistration",
             component: CampRegistration,
             meta: {
                 requiresAuth: false

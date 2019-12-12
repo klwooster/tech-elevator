@@ -12,7 +12,7 @@
                 </li>
                 <li>
                     <i class="fas fa-campground transparent"></i> 
-                    <router-link v-bind:to="{name: 'newapplicant'}">Register Now!</router-link>
+                    <router-link v-bind:to="{name: 'campregistration'}">Register Now!</router-link>
                 </li>
                 <!-- <li>
                     <i class="fas fa-campground transparent"></i> 

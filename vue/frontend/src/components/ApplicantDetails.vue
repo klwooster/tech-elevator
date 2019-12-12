@@ -41,7 +41,7 @@
             <div class="row">
                 <p class="title">Dietary Preference</p>
                 <hr>
-                <p v-if="isInEditMode" class="form"><input id="dietaryPreference" v-model="applicationdata.dietaryPreference" /></p>
+                <p v-if="isInEditMode" class="form"><input id="dietaryPreference" placeholder="Omnivore, Vegetarian, Vegan, Gluten Free, etc." v-model="applicationdata.dietaryPreference" /></p>
                 <p v-else>{{applicationdata.dietaryPreference}}</p>
             </div>
             <div class="row">

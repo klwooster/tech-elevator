@@ -3,10 +3,10 @@
             <div class="row">
                 <p class="title">Guardian</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <input id="guardian.firstName" v-model="applicationdata.guardian.firstName" />
-                    <input id="guardian.lastName" v-model="applicationdata.guardian.lastName" />
-                    <input id="guardian.email" v-model="applicationdata.guardian.email" />
-                    <input id="guardian.phone" v-model="applicationdata.guardian.phone" />
+                    <input id="guardian.firstName" placeholder="First Name" v-model="applicationdata.guardian.firstName" />
+                    <input id="guardian.lastName" placeholder="Last Name" v-model="applicationdata.guardian.lastName" />
+                    <input id="guardian.email" placeholder="Email" v-model="applicationdata.guardian.email" />
+                    <input id="guardian.phone" placeholder="Phone Number" v-model="applicationdata.guardian.phone" />
                 </div>
                 <div v-else class="subdata">
                     {{applicationdata.guardian.firstName}} {{applicationdata.guardian.lastName}}<br> 
@@ -17,10 +17,10 @@
             <div class="row">
                 <p class="title">Emergency Contact</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <input id="emergencyContact.firstName" v-model="applicationdata.emergencyContact.firstName" />
-                    <input id="emergencyContact.lastName" v-model="applicationdata.emergencyContact.lastName" />
-                    <input id="emergencyContact.email" v-model="applicationdata.emergencyContact.email" />
-                    <input id="emergencyContact.phone" v-model="applicationdata.emergencyContact.phone" />
+                    <input id="emergencyContact.firstName" placeholder="First Name" v-model="applicationdata.emergencyContact.firstName" />
+                    <input id="emergencyContact.lastName" placeholder="Last Name" v-model="applicationdata.emergencyContact.lastName" />
+                    <input id="emergencyContact.email" placeholder="Email" v-model="applicationdata.emergencyContact.email" />
+                    <input id="emergencyContact.phone" placeholder="Phone Number" v-model="applicationdata.emergencyContact.phone" />
                 </div>
                 <div v-else class="subdata">
                     {{applicationdata.emergencyContact.firstName}} {{applicationdata.emergencyContact.lastName}}<br> 
@@ -31,7 +31,12 @@
             <div class="row">
                 <p class="title">Program</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <input id="program" v-model="applicationdata.program" />
+                    <!-- <input id="program" v-model="applicationdata.program" /> -->
+                    <select id ="program" placeholder="Camp Choice" v-model="applicationdata.program">
+                        <option value="camp1">Camp 1</option>
+                        <option value="camp2">Camp 2</option>
+                        <option value="camp3">Camp 3</option>
+                    </select>
                 </div>
                 <div v-else class="subdata">
                     {{applicationdata.program}}
