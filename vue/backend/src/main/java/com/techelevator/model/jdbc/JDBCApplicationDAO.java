@@ -202,8 +202,8 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 String dorm_assignment = inputApplication.getDormAssignment();
 		 String tshirt_size = inputApplication.getTshirtSize();
 	     
-		 String sqlUpdateApplicationBApplicationId = "INSERT INTO application  (applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues,  medical_concerns, meal_plan, program, dorm_assignment, tshirt_size) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-	     jdbcTemplate.update(sqlUpdateApplicationBApplicationId, applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues, medical_concerns, meal_plan, program, dorm_assignment, tshirt_size, application_id);
+		 String sqlCreateNewApplication = "INSERT INTO application  (applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues,  medical_concerns, meal_plan, program, dorm_assignment, tshirt_size) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+	     jdbcTemplate.update(sqlCreateNewApplication, applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues, medical_concerns, meal_plan, program, dorm_assignment, tshirt_size);
 	}
 	
 	@Override
@@ -215,9 +215,6 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 Notes newNotes = new Notes();
 			
 		 //First Create Applicant Data to save to the Person Table
-		 //Get the next person id to save to the Application Table
-		 int newApplicantId = getNextPersonId();
-		
 		 newApplicant.setFirstName(inputApplication.getApplicant().getFirstName());
 		 newApplicant.setLastName(inputApplication.getApplicant().getLastName());
 		 newApplicant.setPreferredName(inputApplication.getApplicant().getPreferredName());
@@ -226,11 +223,9 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 newApplicant.setPhone(inputApplication.getApplicant().getPhone());
 		 
 		 personDAO.createNewPerson(newApplicant);
+		 int newApplicantId = getNextPersonId();
 		 
 		 //Next Create Guardian Data to save to the Person Table
-		 //Get the next person id to save to the Application Table
-		 int newGuardianId = getNextPersonId();
-		
 		 newGuardian.setFirstName(inputApplication.getGuardian().getFirstName());
 		 newGuardian.setLastName(inputApplication.getGuardian().getLastName());
 		 newGuardian.setPreferredName(inputApplication.getGuardian().getPreferredName());
@@ -239,11 +234,9 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 newGuardian.setPhone(inputApplication.getGuardian().getPhone());
 		
 		 personDAO.createNewPerson(newGuardian);
+		 int newGuardianId = getNextPersonId();
 		 
 		 //Next Create Emergency Contact Data to save to the Person Table
-		 //Get the next person id to save to the Application Table
-		 int newEmergencyContactId = getNextPersonId();
-		
 		 newEmergencyContact.setFirstName(inputApplication.getEmergencyContact().getFirstName());
 		 newEmergencyContact.setLastName(inputApplication.getEmergencyContact().getLastName());
 		 newEmergencyContact.setPreferredName(inputApplication.getEmergencyContact().getPreferredName());
@@ -252,15 +245,15 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 newEmergencyContact.setPhone(inputApplication.getEmergencyContact().getPhone());
 		
 		 personDAO.createNewPerson(newEmergencyContact);
+		 int newEmergencyContactId = getNextPersonId();
 		 
 		 //Next Create Notes Data to save to the Notes Table
-		 //Get the next notes id to save to the Application Table
-		 int newApplicationId = getNextApplicationId();
 		 newNotes.setNoteBody(inputApplication.getNotes().get(0).getNoteBody());
 		 newNotes.setCreateDate(inputApplication.getNotes().get(0).getCreateDate());
 		 newNotes.setApplicationId(1);
 		 
 		 notesDAO.createNewNotes(newNotes);
+		 int newApplicationId = getNextApplicationId();
 		
 		 //Create the Application data to save
 		 newApplication.setApplicantId(newApplicantId);
@@ -280,7 +273,6 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 
 		 //The Application Id on the Notes Table now has to be updates to sync the Foreign Key
 		 newNotes.setApplicationId(newApplicationId);
-		 
 		 notesDAO.updateNotes(newNotes);
 		 
 	}
@@ -307,7 +299,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	}
 
 	private int getNextPersonId() {
-		String sqlSelectNextId = "SELECT NEXTVAL('person_person_id_seq')";
+		String sqlSelectNextId = "SELECT CURRVAL('person_person_id_seq')";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		int id = 0;
