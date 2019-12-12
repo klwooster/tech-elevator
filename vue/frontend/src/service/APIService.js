@@ -26,5 +26,15 @@ export default {
             },
             body: JSON.stringify(application)
         });
+    },
+    createApplication(application) {
+        console.log('creating application....');
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(application)
+        });
     }
 }

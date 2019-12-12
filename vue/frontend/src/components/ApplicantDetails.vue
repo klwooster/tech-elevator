@@ -9,6 +9,18 @@
             </div>
             <h3>Application #{{applicationdata.applicationId}}<br>Account #{{applicationdata.accountId}}</h3>
             <div class="row">
+                <p class="title"><b>First Name</b></p>
+                <hr>
+                <p v-if="isInEditMode" class="form"><input id="firstName" v-model="applicationdata.applicant.firstName" /></p>
+                <p v-else>{{applicationdata.applicant.firstName}}</p>
+            </div>
+            <div class="row">
+                <p class="title"><b>Last Name</b></p>
+                <hr>
+                <p v-if="isInEditMode" class="form"><input id="lastName" v-model="applicationdata.applicant.lastName" /></p>
+                <p v-else>{{applicationdata.applicant.lastName}}</p>
+            </div>
+            <div class="row">
                 <p class="title"><b>Preferred Name</b></p>
                 <hr>
                 <p v-if="isInEditMode" class="form"><input id="preferredName" v-model="applicationdata.applicant.preferredName" /></p>
@@ -41,7 +53,7 @@
             <div class="row">
                 <p class="title">Dietary Preference</p>
                 <hr>
-                <p v-if="isInEditMode" class="form"><input id="dietaryPreference" v-model="applicationdata.dietaryPreference" /></p>
+                <p v-if="isInEditMode" class="form"><input id="dietaryPreference" placeholder="Omnivore, Vegetarian, Vegan, Gluten Free, etc." v-model="applicationdata.dietaryPreference" /></p>
                 <p v-else>{{applicationdata.dietaryPreference}}</p>
             </div>
             <div class="row">
@@ -64,7 +76,7 @@
             </div>
             <div v-show="isInEditMode" class="control">
                 <button v-on:click="$emit('discard-changes')">Cancel</button> 
-                <button v-on:click="$emit('save-changes')">Save Changes</button>
+                <button v-on:click="$emit('save-changes')">Sumbit</button>
             </div>
         </div>
 </template>

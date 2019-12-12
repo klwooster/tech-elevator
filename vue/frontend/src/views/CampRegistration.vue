@@ -11,13 +11,14 @@ import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
 
 export default {
-  name: 'applicant-info',
+  name: 'camp-registration',
   components: {
     ApplicationDetails,
     ApplicantDetails
   },
   data() {
     return {
+        isEditMode: true,
         application: {
             applicationId: "",
             applicantId: "",
@@ -69,8 +70,8 @@ export default {
         
   },
   methods: { 
-    createApplication () {
-        
+    sumbitApplication () {
+
     }
   },
   created() {

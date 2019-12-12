@@ -6,9 +6,17 @@
                     <i class="fas fa-campground transparent"></i>
                     <router-link v-bind:to="{name: 'home'}">Dashboard</router-link>
                 </li>
+                <li>
+                    <i class="fas fa-campground transparent"></i> 
+                    <router-link v-bind:to="{name: 'camphome'}">Home</router-link>
+                </li>
                 <li id="selected">
                     <i class="fas fa-campground transparent"></i> 
                     <router-link v-bind:to="{name: 'applicantlist'}">Applicants</router-link>
+                </li>
+                <li>
+                    <i class="fas fa-campground transparent"></i> 
+                    <router-link v-bind:to="{name: 'campregistration'}">Register Now!</router-link>
                 </li>
                 <!-- <li>
                     <i class="fas fa-campground transparent"></i> 
