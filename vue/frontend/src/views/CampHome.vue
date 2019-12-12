@@ -48,7 +48,7 @@ export default {
                 'date': 'July 10th - July 31st',
                 'ageRange': '21+',
                 'description': 'A fun getaway for the grownups to have grownup time',
-                'image': './public/Camp-grown-ups-MAIN.jpg'
+                'image': './Camp-grown-ups-MAIN.jpg'
             }
         ]
         
