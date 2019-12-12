@@ -247,17 +247,17 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 personDAO.createNewPerson(newEmergencyContact);
 		 int newEmergencyContactId = getNextPersonId();
 		 
-		 //Next Create Notes Data to save to the Notes Table
-		 newNotes.setNoteBody(inputApplication.getNotes().get(0).getNoteBody());
-		 newNotes.setCreateDate(inputApplication.getNotes().get(0).getCreateDate());
-		 newNotes.setApplicationId(1);
-		 
-		 notesDAO.createNewNotes(newNotes);
-		 int newApplicationId = getNextApplicationId();
+//		 //Next Create Notes Data to save to the Notes Table
+//		 newNotes.setNoteBody(inputApplication.getNotes().get(0).getNoteBody());
+//		 newNotes.setCreateDate(inputApplication.getNotes().get(0).getCreateDate());
+//		 newNotes.setApplicationId(1);
+//		 
+//		 notesDAO.createNewNotes(newNotes);
+		// int newApplicationId = getNextApplicationId();
 		
 		 //Create the Application data to save
 		 newApplication.setApplicantId(newApplicantId);
-		 newApplication.setAccountId(0);
+		 newApplication.setAccountId(1);
 		 newApplication.setGuardianId(newGuardianId);
 		 newApplication.setEmergencyContactId(newEmergencyContactId);
 		 newApplication.setDietaryPreference(inputApplication.getDietaryPreference());
@@ -272,8 +272,8 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 createNewApplication(newApplication);
 		 
 		 //The Application Id on the Notes Table now has to be updates to sync the Foreign Key
-		 newNotes.setApplicationId(newApplicationId);
-		 notesDAO.updateNotes(newNotes);
+		 //newNotes.setApplicationId(newApplicationId);
+		 //notesDAO.updateNotes(newNotes);
 		 
 	}
 	
