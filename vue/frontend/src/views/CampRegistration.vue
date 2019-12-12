@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
-    <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode"/>
+    <applicant-details v-on:create-application="submitApplication" v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode"/>
   </div>
 </template>
 
@@ -71,11 +71,15 @@ export default {
   },
   methods: { 
     sumbitApplication () {
-
+        APIService.createApplication(application)
+        .then(result => {
+          if(result.ok) {
+            console.log('Creation was successful');
+          }else {
+              console.log(result);
+          }
+        })
     }
-  },
-  created() {
-      
   }
 };
 </script>
