@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -73,14 +74,10 @@ public class ApiController {
   	return applicationDao.getFullApplicationByApplicantId(Integer.parseInt(applicantId));
     }
     
-    @PostMapping(path = "/applicants/{applicantId}")
-    public ResponseEntity<Void> updateApplicant (@RequestBody Application application, @RequestBody Notes notes, @RequestBody Person person) {
-    	applicationDao.updateApplication(application);
-    	personDao.updatePerson(person);
-    	notesDao.updateNotes(notes);
+    @PutMapping(path = "/applicants/{applicantId}")
+    public ResponseEntity<Void> updateApplicant (@RequestBody Application application) {
+    	applicationDao.updateFullApplication(application);
     	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
-    	UriComponents notesUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(notes.getNoteId())).build();
-    	UriComponents personUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(person.getPersonId())).build();
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
