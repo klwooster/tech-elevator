@@ -19,4 +19,7 @@ public interface IPersonDAO {
 	//Update Person for Person Id
 	public void updatePerson(Person person);
 	
+	//Create Person
+	public void createNewPerson(Person person);
+	
 }

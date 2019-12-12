@@ -62,6 +62,17 @@ public class JDBCNotesDAO implements INotesDAO {
 	     jdbcTemplate.update(sqlUpdateNotes, note_body, create_date, application_id,note_id);
 	}
 
+	@Override
+	public void createNewNotes(Notes inputNotes) {
+		 
+		 String note_body = inputNotes.getNoteBody();
+		 String create_date = inputNotes.getCreateDate();
+		 int application_id = inputNotes.getApplicationId();
+	     
+		 String sqlNewNotes = "INSERT INTO notes (note_body, create_date, application_id VALUES (?,?,?)";
+	     jdbcTemplate.update(sqlNewNotes, note_body, create_date, application_id);
+	}
+	
 	private Notes mapRowToApplication(SqlRowSet results) {
 		Notes theNotes;
 		theNotes = new Notes();
@@ -73,5 +84,5 @@ public class JDBCNotesDAO implements INotesDAO {
 		return theNotes;
 
 	}
-	
+
 }

@@ -103,6 +103,22 @@ public class JDBCPersonDAO implements IPersonDAO {
 	     jdbcTemplate.update(sqlUpdatePerson, first_name, last_name, preferred_name, date_of_birth, email, phone, person_id);
 		
 	}
+	
+	@Override
+	public void createNewPerson(Person inputPerson) {
+		
+		 int person_id = inputPerson.getPersonId();
+		 String first_name = inputPerson.getFirstName();
+		 String last_name = inputPerson.getLastName();
+		 String preferred_name = inputPerson.getPreferredName();
+		 String date_of_birth = inputPerson.getDateOfBirth();
+		 String email = inputPerson.getEmail();
+		 String phone = inputPerson.getPhone();
+	     
+		 String sqlCreatePerson = "INSERT INTO person (first_name, last_name, preferred_name, date_of_birth, email, phone) VALUES (?,?,?,?,?,?)";
+	     jdbcTemplate.update(sqlCreatePerson, first_name, last_name, preferred_name, date_of_birth, email, phone, person_id);
+		
+	}
 
 	private Person mapRowToPerson(SqlRowSet results) {
 		Person thePerson;

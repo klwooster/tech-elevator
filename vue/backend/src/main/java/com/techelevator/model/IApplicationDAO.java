@@ -22,5 +22,9 @@ public interface IApplicationDAO {
 	//Update FullApplication for Application Id
 	public void updateFullApplication(Application application);
 	
+	//Create New Application
 	public void createNewApplication(Application application);
+	
+	//Create New FullApplication
+	public void createNewFullApplication(Application application);
 }

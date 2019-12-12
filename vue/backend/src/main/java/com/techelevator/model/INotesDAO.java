@@ -12,4 +12,7 @@ public interface INotesDAO {
 	
 	//Update Notes for Note Id
 	public void updateNotes(Notes notes);
+	
+	//Create New Note
+	public void createNewNotes(Notes notes);
 }
