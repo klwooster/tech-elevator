@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
    #main {
             flex-basis: 85%;
             width: 85%;

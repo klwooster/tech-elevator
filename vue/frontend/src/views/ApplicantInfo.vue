@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <application-details v-bind:applicationdata="application" />
-    <applicant-details v-bind:applicationdata="application" />
+    <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
+    <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" />
   </div>
 </template>
 
@@ -18,14 +18,18 @@ export default {
   },
   data() {
     return {
-        application: null
+        application: null,
+        isEditMode: false
     }
         
   },
   methods: { 
       showApplicant(applicantId) {
           APIService.getById(applicantId).then(application => this.application = application);
-      }
+      },
+      edit() {
+            this.isEditMode = !this.isEditMode;
+        }
   },
   created() {
       this.showApplicant(this.$route.params.applicantId);
@@ -33,7 +37,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
    #main {
             flex-basis: 85%;
             width: 85%;

@@ -8,11 +8,11 @@
                     <p class="title">Account #</p>
                 </div>
                 <hr>
-                <div class="row" v-for="applicant in applicants" :key="applicant.personId">
-                    <p v-on:click="viewApplicantDetails(applicant.personId)">{{applicant.personId}}</p>
+                <div class="row" v-for="applicant in applicants" :key="applicant.personId" v-on:click="viewApplicantDetails(applicant.personId)">
+                    <a href="#"><p>{{applicant.personId}}</p>
                     <p>{{applicant.firstName}}</p>
                     <p>{{applicant.lastName}}</p>
-                    <p>{{applicant.accountId}}</p>
+                    <p>{{applicant.accountId}}</p></a>
                 </div>
             </div>
 </template>
@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
         .list {
             flex-basis: 70%;
         }
@@ -59,7 +59,7 @@ export default {
             background-color: #DAC3D1;
         }
         
-        .row>p {
+        .row>a>p, .row>p {
             display: inline-block;
             font-size: 1.2em;
             width: 24%;
