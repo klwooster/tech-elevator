@@ -75,10 +75,8 @@ public class ApiController {
     }
     
     @PutMapping(path = "/applicants/{applicantId}")
-    public ResponseEntity<Void> updateApplicant (@RequestBody Application application, Person person, Notes notes) {
-    	applicationDao.updateApplication(application);
-    	personDao.updatePerson(person);
-    	notesDao.updateNotes(notes);
+    public ResponseEntity<Void> updateApplicant (@RequestBody Application application) {
+    	applicationDao.updateFullApplication(application);
     	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
