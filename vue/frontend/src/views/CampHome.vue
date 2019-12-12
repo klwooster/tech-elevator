@@ -6,7 +6,7 @@
         <p>{{camp.date}}</p>
         <p>{{camp.ageRange}}</p>
         <p>{{camp.description}}</p>
-        <!-- <img :src="camp.image"/>-->
+        <img :src="camp.image"/>
     </div>
     <div>
         <router-link v-bind:to="{name: 'campregistration'}">
@@ -32,7 +32,7 @@ export default {
                 'date': 'June 7th - July 2nd',
                 'ageRange': '7-12',
                 'description': 'A fun getaway for your kids to get out of your hair',
-                'image': ''
+                'image': './assets/best-family-summer-camp-canoeing.jpg'
             },
             {
                 'name': 'Camp Wannahockaloogi',
@@ -40,7 +40,7 @@ export default {
                 'date': 'July 10th - July 31st',
                 'ageRange': '13-20',
                 'description': 'A fun getaway for your teen/ young adult to buzz off to',
-                'image': ''
+                'image': './assets/webcover.jpg'
             },
             {
                 'name': 'Camp Wanadrinkaton',
@@ -48,7 +48,7 @@ export default {
                 'date': 'July 10th - July 31st',
                 'ageRange': '21+',
                 'description': 'A fun getaway for the grownups to have grownup time',
-                'image': ''
+                'image': './assets/Camp-grown-ups-MAIN.jpg'
             }
         ]
         
