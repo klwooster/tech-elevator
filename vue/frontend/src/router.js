@@ -6,6 +6,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import ApplicantList from './views/ApplicantList.vue'
 import ApplicantInfo from './views/ApplicantInfo.vue'
+import CampRegistration from './views/CampRegistration.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,14 @@ const router = new Router({
             name: "applicantinfo",
             component: ApplicantInfo,
             params: true,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/new-applicant",
+            name: "newapplicant",
+            component: CampRegistration,
             meta: {
                 requiresAuth: false
             }

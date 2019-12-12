@@ -18,6 +18,7 @@ export default {
   },
   data() {
     return {
+        isEditMode: true,
         application: {
             applicationId: "",
             applicantId: "",
@@ -70,7 +71,7 @@ export default {
   },
   methods: { 
     createApplication () {
-        
+
     }
   },
   created() {

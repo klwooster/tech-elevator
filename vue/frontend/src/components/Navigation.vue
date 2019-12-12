@@ -10,6 +10,10 @@
                     <i class="fas fa-campground transparent"></i> 
                     <router-link v-bind:to="{name: 'applicantlist'}">Applicants</router-link>
                 </li>
+                <li>
+                    <i class="fas fa-campground transparent"></i> 
+                    <router-link v-bind:to="{name: 'newapplicant'}">Register Now!</router-link>
+                </li>
                 <!-- <li>
                     <i class="fas fa-campground transparent"></i> 
                     Communication Center
