@@ -11,7 +11,7 @@ import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
 
 export default {
-  name: 'applicant-info',
+  name: 'camp-registration',
   components: {
     ApplicationDetails,
     ApplicantDetails
