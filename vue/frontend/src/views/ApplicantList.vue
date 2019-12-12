@@ -1,13 +1,14 @@
 <template>
   <div id="main">
-      <applicant-filters v-on:filter-data="filter($event)" />
-      <applicant-table/>
+      <applicant-filters v-bind:filterProperties="filters" v-on:sort-applicants="sort($event)"/>
+      <applicant-table v-bind:applicants="applicantList" v-bind:filterProperties="filters"/>
   </div>
 </template>
 
 <script>
 import ApplicantTable from '@/components/ApplicantTable.vue';
 import ApplicantFilters from '@/components/ApplicantFilters.vue';
+import APIService from '@/service/APIService';
 
 export default {
   name: 'applicant-list',
@@ -17,14 +18,28 @@ export default {
   },
   data() {
       return {
-          //apiurl: 'http://localhost:8080/AuthenticationApplication/api/applicants'
+          applicantList: [],
+          filters: {
+              filterType: '',
+              filterData: '',
+              sortAsc: true,
+              sortTarget: 'a'
+          }
       }
   },
   methods: {
-      filter(newFilter) {
-          
+      getApplicants() {
+          APIService.listApplicants().then(applicantData => this.applicantList = applicantData);
+      },
+      sort(evt) {
+          console.log('EVENT VALUE: ' + evt);
+          this.filters.sortAsc = !this.filters.sortAsc;
+          this.filters.sortTarget = evt;
       }
-   }
+   },
+  created() {
+          this.getApplicants();
+  }
 };
 </script>
 

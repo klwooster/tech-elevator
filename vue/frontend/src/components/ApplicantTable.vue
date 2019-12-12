@@ -1,6 +1,6 @@
 <template>
     <div id="applicant-table" class="list">
-        <div class="row" v-for="applicant in applicants" :key="applicant.personId" v-on:click="viewApplicantDetails(applicant.personId)">
+        <div class="row" v-for="applicant in applicantsFiltered" :key="applicant.personId" v-on:click="viewApplicantDetails(applicant.personId)">
             <a href="#"><p>{{applicant.personId}}</p>
             <p>{{applicant.firstName}}</p>
             <p>{{applicant.lastName}}</p>
@@ -10,28 +10,100 @@
 </template>
 
 <script>
-import APIService from '@/service/APIService';
 import router from '@/router';
 
 export default {
   name: 'applicant-table',
-  
-  data() {
-    return {
-        applicants: [],
-    };
-  },
+  props: [ 'applicants', 'filterProperties' ],
+
   methods: { 
-      getApplicants() {
-          APIService.listApplicants().then(applicants => this.applicants = applicants);
-      },
       viewApplicantDetails(id) {
           router.push({ name: 'applicantinfo', params: { applicantId: id } })
+      },
+      sortList() {
+          if(this.filterProperties.sortTarget == 'applicantId') {
+              this.applicants = this.sortByApplicantId();
+          } else if(this.filterProperties.sortTarget == 'firstName') {
+              this.applicants = this.sortByFirstName();
+          } else if(this.filterProperties.sortTarget == 'lastName') {
+              this.applicants = this.sortByLastName();
+          } else if(this.filterProperties.sortTarget == 'accountId') {
+              this.applicants = this.sortByAccountId();
+          } else {
+              this.applicants = this.applicants;
+          }
+
+          if(!this.filterProperties.sortAsc) {
+              this.applicants.reverse();
+          }
+      },
+      sortByApplicantId() {
+          return this.applicants.sort((a, b) => {
+                  if(a.applicantId > b.applicantId) {
+                      return -1;
+                  } else if (b.applicantId > a.applicantId) {
+                      return 1;
+                  } else {
+                      return 0;
+                  }
+              })
+      },
+      sortByFirstName() {
+          return this.applicants.sort((a, b) => {
+                  if(String(a.firstName) > String(b.firstName)) {
+                      return -1;
+                  } else if (String(b.firstName) > String(a.firstName)) {
+                      return 1;
+                  } else {
+                      return 0;
+                  }
+              })
+      },
+      sortByLastName() {
+          return this.applicants.sort((a, b) => {
+                  if(String(a.lastName) > String(b.lastName)) {
+                      return -1;
+                  } else if (String(b.lastName) > String(a.lastName)) {
+                      return 1;
+                  } else {
+                      return 0;
+                  }
+              })
+      },
+      sortByAccountId() {
+          return this.applicants.sort((a, b) => {
+                  if(String(a.accountId) > String(b.accountId)) {
+                      return -1;
+                  } else if (String(b.accountId) > String(a.accountId)) {
+                      return 1;
+                  } else {
+                      return 0;
+                  }
+              })
       }
   },
-  created() {
-          this.getApplicants();
-  }
+   computed: {
+      applicantsFiltered() {
+          this.sortList();
+          if (this.filterProperties.filterData == '') {
+                return this.applicants;
+          } else if (this.filterProperties.filterType == 'applicantId') {
+                return this.applicants.filter(applicant => 
+                    String(applicant.personId).toLowerCase().startsWith(this.filterProperties.filterData.toLowerCase))
+          } else if (this.filterProperties.filterType == 'firstName') {
+                return this.applicants.filter(applicant => 
+                    String(applicant.firstName).toLowerCase().startsWith(this.filterProperties.filterData.toLowerCase()))
+          } else if (this.filterProperties.filterType == 'lastName') {
+                return this.applicants.filter(applicant => 
+                    String(applicant.lastName).toLowerCase().startsWith(this.filterProperties.filterData.toLowerCase))
+          } else if (this.filterProperties.filterType == 'accountId') {
+                return this.applicants.filter(applicant => 
+                    String(applicant.accountId).toLowerCase().startsWith(this.filterProperties.filterData.toLowerCase))
+          } else {
+              return this.applicants;
+          }
+      }
+   }
 };
 </script>
 
@@ -46,7 +118,7 @@ export default {
             margin: 5px 0px 20px -15px;
         }
         
-        .row:nth-of-type(even) {
+        .row:nth-of-type(odd) {
             background-color: #DAC3D1;
         }
         
