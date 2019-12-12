@@ -107,7 +107,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 	@Override
 	public void createNewPerson(Person inputPerson) {
 		
-		 int person_id = inputPerson.getPersonId();
+//		 int person_id = inputPerson.getPersonId();
 		 String first_name = inputPerson.getFirstName();
 		 String last_name = inputPerson.getLastName();
 		 String preferred_name = inputPerson.getPreferredName();
