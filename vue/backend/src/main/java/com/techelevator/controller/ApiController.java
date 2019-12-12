@@ -81,4 +81,12 @@ public class ApiController {
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
+    
+    @PostMapping(path="/newapplicant")
+    public ResponseEntity<Void> createApplicant (@RequestBody Application application) {
+    	applicationDao.createNewApplication(application);
+    	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
+    	
+    	return ResponseEntity.created(applicationUri.toUri()).build();
+    }
 }
