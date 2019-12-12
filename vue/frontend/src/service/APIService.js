@@ -1,3 +1,5 @@
+// import axios from 'axios';
+
 export default {
 
     listApplicants() {
@@ -8,24 +10,21 @@ export default {
             });
     },
 
-     getById(applicantId) {
-         console.log('getting applicant');
-         return fetch(`http://localhost:8080/AuthenticationApplication/api/applicants/${applicantId}`)
-         .then((response) => {
-             return response.json();
-         });
-     },
-
-     updateApplication(applicantId) {
-         console.log('making updates....');
-         return fetch(`http://localhost:8080/AuthenticationApplication/api/applicants/${applicantId}`, {
-             method: 'PUT',
-             headers: {
-                 'Content-Type': 'application/json'
-             },
-             body: JSON.stringify(this.application)
-         });
-     }
-
-
+    getById(applicantId) {
+        console.log('getting applicant');
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/applicants/${applicantId}`)
+            .then((response) => {
+                return response.json();
+            });
+    },
+    updateApplication(application, applicantId) {
+        console.log('making updates....');
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/applicants/${applicantId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(application)
+        });
+    }
 }
