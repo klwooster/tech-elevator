@@ -2,11 +2,11 @@
   <div id="main">
     <div class="row" v-for="camp in camps" v-bind:key="camp.name">
         <p>{{camp.name}}</p>
-        <p>{{camp.location}}</p>
-        <p>{{camp.date}}</p>
-        <p>{{camp.ageRange}}</p>
-        <p>{{camp.description}}</p>
         <img :src="camp.image"/>
+        <p>Location: {{camp.location}}</p>
+        <p>When: {{camp.date}}</p>
+        <p>Ages: {{camp.ageRange}}</p>
+        <p>{{camp.description}}</p>
     </div>
     <div>
         <router-link v-bind:to="{name: 'campregistration'}">
@@ -32,7 +32,7 @@ export default {
                 'date': 'June 7th - July 2nd',
                 'ageRange': '7-12',
                 'description': 'A fun getaway for your kids to get out of your hair',
-                'image': './public/best-family-summer-camp-canoeing.jpg'
+                'image': './best-family-summer-camp-canoeing.jpg'
             },
             {
                 'name': 'Camp Wannahockaloogi',
@@ -40,7 +40,7 @@ export default {
                 'date': 'July 10th - July 31st',
                 'ageRange': '13-20',
                 'description': 'A fun getaway for your teen/ young adult to buzz off to',
-                'image': './public/webcover.jpg'
+                'image': './webcover.jpg'
             },
             {
                 'name': 'Camp Wanadrinkaton',
@@ -48,7 +48,7 @@ export default {
                 'date': 'July 10th - July 31st',
                 'ageRange': '21+',
                 'description': 'A fun getaway for the grownups to have grownup time',
-                'image': './public/Camp-grown-ups-MAIN.jpg'
+                'image': './Camp-grown-ups-MAIN.jpg'
             }
         ]
         
