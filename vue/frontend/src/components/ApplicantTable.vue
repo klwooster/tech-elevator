@@ -1,20 +1,12 @@
 <template>
-            <div class="list">
-                <h1>Applicants</h1>
-                <div class="row">
-                    <p class="title">Applicant ID</p>
-                    <p class="title">First Name</p>
-                    <p class="title">Last Name</p>
-                    <p class="title">Account #</p>
-                </div>
-                <hr>
-                <div class="row" v-for="applicant in applicants" :key="applicant.personId" v-on:click="viewApplicantDetails(applicant.personId)">
-                    <a href="#"><p>{{applicant.personId}}</p>
-                    <p>{{applicant.firstName}}</p>
-                    <p>{{applicant.lastName}}</p>
-                    <p>{{applicant.accountId}}</p></a>
-                </div>
-            </div>
+    <div id="applicant-table" class="list">
+        <div class="row" v-for="applicant in applicants" :key="applicant.personId" v-on:click="viewApplicantDetails(applicant.personId)">
+            <a href="#"><p>{{applicant.personId}}</p>
+            <p>{{applicant.firstName}}</p>
+            <p>{{applicant.lastName}}</p>
+            <p>{{applicant.accountId}}</p></a>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -45,9 +37,8 @@ export default {
 
 <style scoped>
         .list {
-            flex-basis: 70%;
+            flex-basis: 100%;
         }
-        
         .list>h1 {
             font-family: 'Playfair Display', serif;
             font-style: italic;

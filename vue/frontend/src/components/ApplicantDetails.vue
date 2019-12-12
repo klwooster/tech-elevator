@@ -63,8 +63,8 @@
                 <p v-else>{{applicationdata.medicalConcerns}}</p>
             </div>
             <div v-show="isInEditMode" class="control">
-                <button v-on:click="$emit('toggle-edit-mode')">Cancel</button> 
-                <button v-on:click="$emit('toggle-edit-mode')">Save Changes</button>
+                <button v-on:click="$emit('discard-changes')">Cancel</button> 
+                <button v-on:click="$emit('save-changes')">Save Changes</button>
             </div>
         </div>
 </template>

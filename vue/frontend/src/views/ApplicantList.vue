@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-      <applicant-filters/>
+      <applicant-filters v-on:filter-data="filter($event)" />
       <applicant-table/>
   </div>
 </template>
@@ -20,7 +20,11 @@ export default {
           //apiurl: 'http://localhost:8080/AuthenticationApplication/api/applicants'
       }
   },
-  methods: { }
+  methods: {
+      filter(newFilter) {
+          
+      }
+   }
 };
 </script>
 

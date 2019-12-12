@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
-    <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" />
+    <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:save-changes="updateApplication" />
+    <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" v-on:save-changes="updateApplication"/>
   </div>
 </template>
 
@@ -27,16 +27,18 @@ export default {
       showApplicant(applicantId) {
           APIService.getById(applicantId).then(application => this.application = application);
       },
-
+      edit() {
+            this.isEditMode = !this.isEditMode;
+      },
       updateApplication() {
-        APIService.updateApplication(applicantId)
-        .then(response => {
-          if(response.ok) {
+        APIService.updateApplication(this.application, this.application.applicant.applicantId)
+        .then(result => {
+          if(result.ok) {
             console.log('Save was successful');
+            this.edit();
           }
         })
       }
-
   },
   created() {
       this.showApplicant(this.$route.params.applicantId);
