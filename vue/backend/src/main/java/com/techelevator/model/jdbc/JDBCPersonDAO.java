@@ -116,7 +116,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		 String phone = inputPerson.getPhone();
 	     
 		 String sqlCreatePerson = "INSERT INTO person (first_name, last_name, preferred_name, date_of_birth, email, phone) VALUES (?,?,?,?,?,?)";
-	     jdbcTemplate.update(sqlCreatePerson, first_name, last_name, preferred_name, date_of_birth, email, phone, person_id);
+	     jdbcTemplate.update(sqlCreatePerson, first_name, last_name, preferred_name, date_of_birth, email, phone);
 		
 	}
 
