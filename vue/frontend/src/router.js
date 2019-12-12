@@ -23,6 +23,7 @@ Vue.use(Router)
 const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
+    linkActiveClass: "selected",
     routes: [{
             path: '/',
             name: 'home',
@@ -73,7 +74,7 @@ const router = new Router({
             }
         },
         {
-            path:"/camp-home",
+            path: "/camp-home",
             name: "camphome",
             component: CampHome,
             meta: {

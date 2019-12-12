@@ -1,5 +1,6 @@
 package com.techelevator.model.jdbc;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,10 +67,10 @@ public class JDBCNotesDAO implements INotesDAO {
 	public void createNewNotes(Notes inputNotes) {
 		 
 		 String note_body = inputNotes.getNoteBody();
-		 String create_date = inputNotes.getCreateDate();
+		 LocalDate create_date = LocalDate.now();
 		 int application_id = inputNotes.getApplicationId();
 	     
-		 String sqlNewNotes = "INSERT INTO notes (note_body, create_date, application_id VALUES (?,?,?)";
+		 String sqlNewNotes = "INSERT INTO notes (note_body, create_date, application_id) VALUES (?,?,?)";
 	     jdbcTemplate.update(sqlNewNotes, note_body, create_date, application_id);
 	}
 	
