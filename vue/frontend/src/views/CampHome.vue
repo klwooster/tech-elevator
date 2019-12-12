@@ -6,7 +6,7 @@
         <p>{{camp.date}}</p>
         <p>{{camp.ageRange}}</p>
         <p>{{camp.description}}</p>
-        <!-- <p>{{camp.image}}</p> -->
+        <!-- <img :src="camp.image"/>-->
     </div>
     <div>
         <router-link v-bind:to="{name: 'campregistration'}">
@@ -31,7 +31,7 @@ export default {
                 'location': 'Seattle, WA',
                 'date': 'June 7th - July 2nd',
                 'ageRange': '7-12',
-                'description': 'A fun getaway for your kids',
+                'description': 'A fun getaway for your kids to get out of your hair',
                 'image': ''
             },
             {
@@ -39,7 +39,7 @@ export default {
                 'location': 'Bend, OR',
                 'date': 'July 10th - July 31st',
                 'ageRange': '13-20',
-                'description': 'A fun getaway for your teen/ young adult',
+                'description': 'A fun getaway for your teen/ young adult to buzz off to',
                 'image': ''
             },
             {
