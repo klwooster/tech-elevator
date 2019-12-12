@@ -70,7 +70,7 @@ export default {
         
   },
   methods: { 
-    createApplication () {
+    sumbitApplication () {
 
     }
   },

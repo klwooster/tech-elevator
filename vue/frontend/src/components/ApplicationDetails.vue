@@ -32,7 +32,7 @@
                 <p class="title">Program</p>
                 <div v-if="isInEditMode" class="subdata form">
                     <!-- <input id="program" v-model="applicationdata.program" /> -->
-                    <select id ="program" placeholder="Camp Choice" v-model="applicationdata.program">
+                    <select id ="program" v-model="applicationdata.program">
                         <option value="camp1">Camp 1</option>
                         <option value="camp2">Camp 2</option>
                         <option value="camp3">Camp 3</option>
@@ -60,7 +60,11 @@
             <div class="row">
                 <p class="title">Meal Plan</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <input id="mealPlan" v-model="applicationdata.mealPlan" />
+                    <select id ="mealPlan" v-model="applicationdata.mealPlan">
+                        <option value="standard">Standard</option>
+                        <option value="light">Light</option>
+                        <option value="delux">Delux</option>
+                    </select>
                 </div>
                 <div v-else class="subdata">
                     {{applicationdata.mealPlan}}
