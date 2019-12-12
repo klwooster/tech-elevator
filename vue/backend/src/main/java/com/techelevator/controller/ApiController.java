@@ -65,7 +65,7 @@ public class ApiController {
     
     @GetMapping(path = "/applicants")
     public List <Person> getAllPersonsWithApplicantId() {
-    	System.out.println("I am here");
+    	
     	return personDao.getAllPersonsWithApplicantId();
     }
     
