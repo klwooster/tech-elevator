@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <application-details v-bind:applicationdata="application" />
-    <applicant-details v-bind:applicationdata="application" />
+    <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
+    <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" />
   </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
   },
   data() {
     return {
-        application: null
+        application: null,
+        isEditMode: false
     }
         
   },
@@ -43,7 +44,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
    #main {
             flex-basis: 85%;
             width: 85%;

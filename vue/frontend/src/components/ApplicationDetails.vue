@@ -2,21 +2,38 @@
     <div class="sidebar">
             <div class="row">
                 <p class="title">Guardian</p>
-                <div class="subdata">
+                <div v-if="isInEditMode" class="subdata form">
+                    <input id="guardian.firstName" v-model="applicationdata.guardian.firstName" />
+                    <input id="guardian.lastName" v-model="applicationdata.guardian.lastName" />
+                    <input id="guardian.email" v-model="applicationdata.guardian.email" />
+                    <input id="guardian.phone" v-model="applicationdata.guardian.phone" />
+                </div>
+                <div v-else class="subdata">
                     {{applicationdata.guardian.firstName}} {{applicationdata.guardian.lastName}}<br> 
+                    {{applicationdata.guardian.email}}<br>
                     {{applicationdata.guardian.phone}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Emergency Contact</p>
-                <div class="subdata">
+                <div v-if="isInEditMode" class="subdata form">
+                    <input id="emergencyContact.firstName" v-model="applicationdata.emergencyContact.firstName" />
+                    <input id="emergencyContact.lastName" v-model="applicationdata.emergencyContact.lastName" />
+                    <input id="emergencyContact.email" v-model="applicationdata.emergencyContact.email" />
+                    <input id="emergencyContact.phone" v-model="applicationdata.emergencyContact.phone" />
+                </div>
+                <div v-else class="subdata">
                     {{applicationdata.emergencyContact.firstName}} {{applicationdata.emergencyContact.lastName}}<br> 
+                    {{applicationdata.emergencyContact.email}}<br>
                     {{applicationdata.emergencyContact.phone}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Program</p>
-                <div class="subdata">
+                <div v-if="isInEditMode" class="subdata form">
+                    <input id="program" v-model="applicationdata.program" />
+                </div>
+                <div v-else class="subdata">
                     {{applicationdata.program}}
                 </div>
             </div>
@@ -28,24 +45,31 @@
             </div> -->
             <div class="row">
                 <p class="title">Dorm Assignment</p>
-                <div class="subdata">
+                <div v-if="isInEditMode" class="subdata form">
+                    <input id="dormAssignment" v-model="applicationdata.dormAssignment" />
+                </div>
+                <div v-else class="subdata">
                     {{applicationdata.dormAssignment}}
                 </div>
             </div>
             <div class="row">
                 <p class="title">Meal Plan</p>
-                <div class="subdata">
+                <div v-if="isInEditMode" class="subdata form">
+                    <input id="mealPlan" v-model="applicationdata.mealPlan" />
+                </div>
+                <div v-else class="subdata">
                     {{applicationdata.mealPlan}}
                 </div>
             </div>
         </div>
 </template>
 
-<script>
+<script scoped>
 export default {
     name: 'application-details',
     props: {
-        applicationdata: null
+        applicationdata: null,
+        isInEditMode: false
     }
 }
 </script>

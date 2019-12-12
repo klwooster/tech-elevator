@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
         header {
             flex-basis: 15%;
             flex-grow: 0;

@@ -2,68 +2,89 @@
             <div class="details">
             <div class="details-top">
                 <h1>{{applicationdata.applicant.firstName}} {{applicationdata.applicant.lastName}}</h1>
-                <!-- <div class="control">
-                    <button>Edit</button>
-                    <button>Recent Changes</button>
-                </div> -->
+                <div class="control">
+                    <button v-show="!isInEditMode" v-on:click="$emit('toggle-edit-mode')">Edit</button>
+                    <!-- <button>Recent Changes</button> -->
+                </div>
             </div>
             <h3>Application #{{applicationdata.applicationId}}<br>Account #{{applicationdata.accountId}}</h3>
             <div class="row">
                 <p class="title"><b>Preferred Name</b></p>
                 <hr>
-                <p>{{applicationdata.applicant.preferredName}}</p>
+                <p v-if="isInEditMode" class="form"><input id="preferredName" v-model="applicationdata.applicant.preferredName" /></p>
+                <p v-else>{{applicationdata.applicant.preferredName}}</p>
             </div>
             <div class="row">
                 <p class="title"><b>Date of Birth</b></p>
                 <hr>
-                <p>{{applicationdata.applicant.dateOfBirth}}</p>
+                <p v-if="isInEditMode" class="form"><input id="dateOfBirth" v-model="applicationdata.applicant.dateOfBirth" /></p>
+                <p v-else>{{applicationdata.applicant.dateOfBirth}}</p>
             </div>
             <div class="row">
                 <p class="title">Email</p>
                 <hr>
-                <p>{{applicationdata.applicant.email}}</p>
+                <p v-if="isInEditMode" class="form"><input id="email" v-model="applicationdata.applicant.email" /></p>
+                <p v-else>{{applicationdata.applicant.email}}</p>
             </div>
             <div class="row">
                 <p class="title">Phone Number</p>
                 <hr>
-                <p>{{applicationdata.applicant.phone}}</p>
+                <p v-if="isInEditMode" class="form"><input id="phone" v-model="applicationdata.applicant.phone" /></p>
+                <p v-else>{{applicationdata.applicant.phone}}</p>
             </div>
             <div class="row">
                 <p class="title">T-Shirt Size</p>
                 <hr>
-                <p>{{applicationdata.tshirtSize}}</p>
+                <p v-if="isInEditMode" class="form"><input id="tshirtSize" v-model="applicationdata.tshirtSize" /></p>
+                <p v-else>{{applicationdata.tshirtSize}}</p>
             </div>
             <div class="row">
                 <p class="title">Dietary Preference</p>
                 <hr>
-                <p>{{applicationdata.dietaryPreference}}</p>
+                <p v-if="isInEditMode" class="form"><input id="dietaryPreference" v-model="applicationdata.dietaryPreference" /></p>
+                <p v-else>{{applicationdata.dietaryPreference}}</p>
             </div>
             <div class="row">
                 <p class="title">Dietary Restrictions</p>
                 <hr>
-                <p>{{applicationdata.dietaryRestrictions}}</p>
+                <p v-if="isInEditMode" class="form"><input id="dietaryRestrictions" v-model="applicationdata.dietaryRestrictions" /></p>
+                <p v-else>{{applicationdata.dietaryRestrictions}}</p>
             </div>
             <div class="row">
                 <p class="title">Mobility Issues</p>
                 <hr>
-                <p>{{applicationdata.mobilityIssues}}</p>
+                <p v-if="isInEditMode" class="form"><input id="mobilityIssues" v-model="applicationdata.mobilityIssues" /></p>
+                <p v-else>{{applicationdata.mobilityIssues}}</p>
             </div>
             <div class="row">
                 <p class="title">Medical Concerns</p>
                 <hr>
-                <p>{{applicationdata.medicalConcerns}}</p>
+                <p v-if="isInEditMode" class="form"><input id="medicalConcerns" v-model="applicationdata.medicalConcerns" /></p>
+                <p v-else>{{applicationdata.medicalConcerns}}</p>
+            </div>
+            <div v-show="isInEditMode" class="control">
+                <button v-on:click="$emit('toggle-edit-mode')">Cancel</button> 
+                <button v-on:click="$emit('toggle-edit-mode')">Save Changes</button>
             </div>
         </div>
 </template>
 
 <script>
 export default {
-  name: 'applicant-info',
-    props: [ 'applicationdata' ]
+    name: 'applicant-info',
+    props: {
+        applicationdata: null,
+        isInEditMode: false
+    },
+    data() {
+        return {
+            editButtonText: 'Edit'
+        }
+    }
 };
 </script>
 
-<style>        
+<style scoped>        
         .details-top>h1 {
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -137,5 +158,26 @@ export default {
         
         .subdata {
             padding-left: 15px;
+        }
+
+        .form>textarea,
+        .form>button,
+        .form>input,
+        .subdata>input {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin: 5px;
+            border: 1px solid #792359;
+            width: 98%;
+            font-size: 0.9em;
+        }
+
+        .control>* {
+            border: 1px solid #792359;
+            background-color: #DAC3D1;
+            color: #792359;
+            font-size: 1.1em;
+            margin: 5px;
         }
 </style>
