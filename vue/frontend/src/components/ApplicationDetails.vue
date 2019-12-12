@@ -135,4 +135,26 @@ export default {
         .subdata {
             padding-left: 15px;
         }
+
+        .form>textarea,
+        .form>button,
+        .form>input,
+        .form>select,
+        .subdata>input {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin: 5px;
+            border: 1px solid #792359;
+            width: 95%;
+            font-size: 0.9em;
+        }
+
+        .control>* {
+            border: 1px solid #792359;
+            background-color: #DAC3D1;
+            color: #792359;
+            font-size: 1.1em;
+            margin: 5px;
+        }
 </style>

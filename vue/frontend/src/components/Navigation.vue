@@ -2,27 +2,23 @@
     <header>
         <nav>
             <ul>
-                <li>
-                    <i class="fas fa-campground transparent"></i>
-                    <router-link v-bind:to="{name: 'home'}">Dashboard</router-link>
-                </li>
-                <li>
-                    <i class="fas fa-campground transparent"></i> 
-                    <router-link v-bind:to="{name: 'camphome'}">Home</router-link>
-                </li>
-                <li id="selected">
-                    <i class="fas fa-campground transparent"></i> 
-                    <router-link v-bind:to="{name: 'applicantlist'}">Applicants</router-link>
-                </li>
-                <li>
-                    <i class="fas fa-campground transparent"></i> 
-                    <router-link v-bind:to="{name: 'campregistration'}">Register Now!</router-link>
-                </li>
+                <router-link tag="li" active-class="selected" v-bind:to="{name: 'camphome'}">
+                    <i class="fas fa-campground transparent"></i> Home
+                </router-link>
+                <router-link tag="li" active-class="selected" v-bind:to="{name: 'home'}" exact>
+                    <i class="fas fa-campground transparent"></i> Dashboard
+                </router-link>
+                <router-link tag="li" active-class="selected" v-bind:to="{name: 'campregistration'}">
+                    <i class="fas fa-campground transparent"></i> Register Now!
+                </router-link>
+                <router-link tag="li" active-class="selected" v-bind:to="{name: 'applicantlist'}">
+                    <i class="fas fa-campground transparent"></i> View Applicants
+                </router-link>
                 <!-- <li>
                     <i class="fas fa-campground transparent"></i> 
                     Communication Center
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <i class="fas fa-campground transparent"></i> 
                     Invoicing
                 </li> -->
@@ -88,8 +84,8 @@ export default {
             padding-right: 5px;
         }
         
-        #selected,
-        #selected i,
+        .selected,
+        .selected i,
         li:hover,
         li:hover i {
             background: #792359 !important;

@@ -1,13 +1,13 @@
 <template>
             <div class="details">
             <div class="details-top">
-                <h1>{{applicationdata.applicant.firstName}} {{applicationdata.applicant.lastName}}</h1>
+                <h1 v-if="applicationdata.applicationId > 0">{{applicationdata.applicant.firstName}} {{applicationdata.applicant.lastName}}</h1>
+                <h1 v-else>New Camper Registration</h1>
                 <div class="control">
                     <button v-show="!isInEditMode" v-on:click="$emit('toggle-edit-mode')">Edit</button>
-                    <!-- <button>Recent Changes</button> -->
                 </div>
             </div>
-            <h3>Application #{{applicationdata.applicationId}}<br>Account #{{applicationdata.accountId}}</h3>
+            <h3 v-show="!isInEditMode">Application #{{applicationdata.applicationId}}<br>Account #{{applicationdata.accountId}}</h3>
             <div class="row">
                 <p class="title"><b>First Name</b></p>
                 <hr>
