@@ -1,5 +1,7 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS history_changes;
+DROP TABLE IF EXISTS history;
 DROP TABLE IF EXISTS workshops;
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS application;
@@ -74,5 +76,28 @@ CREATE TABLE workshops (
 	constraint pk_workshops primary key (application_id, workshop),
 	constraint fk_workshops_application foreign key (application_id) references application (application_id)
 );
+
+CREATE TABLE history (
+	history_id serial,
+	date_of_change date,
+	update_made_by_id int,
+	changes_made_to_id int,
+	status VARCHAR(20),
+	
+	constraint pk_history primary key (history_id),
+	constraint fk_history_person_updated_by foreign key (update_made_by_id) references person (person_id)
+);
+
+CREATE TABLE history_changes (
+	history_id int,
+	old_value VARCHAR(300),
+	new_value VARCHAR(300),
+	data_element_changed VARCHAR(100),
+	
+	constraint pk_history_changes primary key (history_id, data_element_changed),
+	constraint fk_history_changes_history foreign key (history_id) references history (history_id)
+);
+
+
 
 COMMIT TRANSACTION;

@@ -7,6 +7,7 @@
 
 <script>
 import APIService from '@/service/APIService';
+import router from '@/router';
 import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
 
@@ -75,6 +76,7 @@ export default {
         .then(result => {
           if(result.ok) {
             console.log('Creation was successful');
+            router.replace();
           }else {
               console.log(result);
           }

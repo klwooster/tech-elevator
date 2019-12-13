@@ -121,8 +121,8 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	}
 	
 	@Override
-	public void updateFullApplication(Application inputApplication) {
-		
+	public String updateFullApplication(Application inputApplication) {
+		try {
 		 int application_id = inputApplication.getApplicationId();
 		 int applicant_id = inputApplication.getApplicantId();
 		 int account_id = inputApplication.getAccountId();
@@ -184,6 +184,11 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 			 String sqlUpdateNotes = "UPDATE notes SET note_body = ?, create_date = ?, application_id = ? WHERE note_id = ?";
 		     jdbcTemplate.update(sqlUpdateNotes, note_note_body, note_create_date, note_application_id, note_note_id);
 	     } 
+		} catch(Exception e) {
+			return "Error Updating Record";
+		}
+		
+		return "Success";
 	}
 	
 	@Override
@@ -207,7 +212,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	}
 	
 	@Override
-	public void createNewFullApplication(Application inputApplication) {
+	public String createNewFullApplication(Application inputApplication) {
 		 Person newApplicant = new Person();
 		 Person newGuardian = new Person();
 		 Person newEmergencyContact = new Person();
@@ -269,7 +274,13 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 newApplication.setDormAssignment(inputApplication.getDormAssignment());
 		 newApplication.setTshirtSize(inputApplication.getTshirtSize());
 		 
-		 createNewApplication(newApplication);
+		 try {
+			 createNewApplication(newApplication);
+		 } catch (Exception e) {
+			 return "Error Creating New Registration";
+		 }
+		 
+		 return "New Application - Success";
 		 
 		 //The Application Id on the Notes Table now has to be updates to sync the Foreign Key
 		 //newNotes.setApplicationId(newApplicationId);
