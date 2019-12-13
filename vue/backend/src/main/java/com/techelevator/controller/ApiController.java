@@ -20,6 +20,7 @@ import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.model.Application;
 import com.techelevator.model.ChangeStatus;
+import com.techelevator.model.History;
 import com.techelevator.model.HistoryLogger;
 import com.techelevator.model.IApplicationDAO;
 import com.techelevator.model.IHistoryChangesDAO;
@@ -104,4 +105,11 @@ public class ApiController {
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
+    
+    @GetMapping(path="/history/{applicationId}")
+    public List<History> getAccountHistory (@PathVariable int applicationId) {
+    	return historyDao.getHistoryByChangedId(applicationId);
+    }
+    
+    
 }

@@ -36,5 +36,12 @@ export default {
             },
             body: JSON.stringify(application)
         });
+    },
+    getHistoryById(applicationId) {
+        console.log('getting account history....');
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/history/${applicationId}`)
+        .then((response) => {
+            return response.json();
+        });
     }
 }
