@@ -105,7 +105,7 @@ public class ApiController {
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
     
-    @GetMapping(path="/history")
+    @GetMapping(path="/history/{applicationId}")
     public List<History> getAccountHistory (@PathVariable int applicationId) {
     	return historyDao.getHistoryByChangedId(applicationId);
     }
