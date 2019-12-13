@@ -9,6 +9,7 @@
 import APIService from '@/service/APIService';
 import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
+import router from '@/router.js'
 
 export default {
   name: 'camp-registration',
@@ -62,19 +63,19 @@ export default {
                 email: "",
                 phone: "",
                 accountId: ""
-            },
-            notes: ""
+            }
         }
 
     }
         
   },
   methods: { 
-    sumbitApplication () {
-        APIService.createApplication(application)
+    submitApplication () {
+        APIService.createApplication(this.application)
         .then(result => {
           if(result.ok) {
             console.log('Creation was successful');
+            router.push({ name: 'camphome'});
           }else {
               console.log(result);
           }
