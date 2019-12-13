@@ -22,9 +22,6 @@
 
 export default {
   name: 'camp-home',
-  components: {
-
-  },
   data() {
     return {
         camps: [
@@ -53,10 +50,7 @@ export default {
                 'image': './Camp-grown-ups-MAIN.jpg'
             }
         ]
-        
-
-    }
-        
+    } 
   }
 };
 </script>
@@ -92,7 +86,7 @@ export default {
         font-size: 20px;
         border-radius: 20px;
         width: 6%;
-        background-color:#792359;
+        background-color:#112F40;
         color: white;
         padding: 3px;
     }
