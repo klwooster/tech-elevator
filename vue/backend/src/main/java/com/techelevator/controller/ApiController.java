@@ -1,14 +1,5 @@
 package com.techelevator.controller;
 
-import com.techelevator.authentication.AuthProvider;
-import com.techelevator.authentication.UnauthorizedException;
-import com.techelevator.model.Application;
-import com.techelevator.model.IApplicationDAO;
-import com.techelevator.model.INotesDAO;
-import com.techelevator.model.IPersonDAO;
-import com.techelevator.model.Notes;
-import com.techelevator.model.Person;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +15,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
+
+import com.techelevator.authentication.AuthProvider;
+import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.Application;
+import com.techelevator.model.HistoryLogger;
+import com.techelevator.model.IApplicationDAO;
+import com.techelevator.model.IHistoryChangesDAO;
+import com.techelevator.model.IHistoryDAO;
+import com.techelevator.model.INotesDAO;
+import com.techelevator.model.IPersonDAO;
+import com.techelevator.model.Person;
 
 /**
  * ApiController
@@ -41,11 +43,17 @@ public class ApiController {
     private IPersonDAO personDao;
     @Autowired
     private INotesDAO notesDao;
+    @Autowired
+    IHistoryDAO historyDao;
+    @Autowired
+    IHistoryChangesDAO historyChangesDao;
     
-    public ApiController(IApplicationDAO applicationDao, IPersonDAO personDao, INotesDAO notesDao) {
+    public ApiController(IApplicationDAO applicationDao, IPersonDAO personDao, INotesDAO notesDao, IHistoryDAO historyDao, IHistoryChangesDAO historyChangesDao) {
     	this.applicationDao = applicationDao;
     	this.personDao = personDao;
     	this.notesDao = notesDao;
+    	this.historyDao = historyDao;
+    	this.historyChangesDao = historyChangesDao;
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
@@ -76,16 +84,22 @@ public class ApiController {
     
     @PutMapping(path = "/applicants/{applicantId}")
     public ResponseEntity<Void> updateApplicant (@RequestBody Application application) {
-    	applicationDao.updateFullApplication(application);
+    	Application oldValues = applicationDao.getFullApplicationByApplicantId(application.getApplicantId());
+    	String status = applicationDao.updateFullApplication(application);
     	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
+    	HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
+    	logger.logChanges(application, oldValues, status);
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
     
     @PostMapping(path="/register")
     public ResponseEntity<Void> createApplicant (@RequestBody Application application) {
-    	applicationDao.createNewFullApplication(application);
+    	Application oldValues = applicationDao.getFullApplicationByApplicantId(application.getApplicantId());
+    	String status = applicationDao.createNewFullApplication(application);
     	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
+    	HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
+    	logger.logChanges(application, oldValues, status);
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
