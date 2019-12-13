@@ -76,8 +76,8 @@
             </div>
             <div v-show="isInEditMode" class="control">
                 <button v-on:click="$emit('discard-changes')">Cancel</button> 
-                <button v-if="applicationdata.applicationId > 0" v-on:click="$emit('save-changes')">Sumbit</button>
-                <button v-else v-on:click="$emit('create-application')">Sumbit</button>
+                <button v-if="applicationdata.applicationId > 0" v-on:click="$emit('save-changes')">Save Changes</button>
+                <button v-else v-on:click="$emit('create-application')">Submit</button>
             </div>
         </div>
 </template>
