@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Account;
 import com.techelevator.model.Application;
+import com.techelevator.model.ChangeStatus;
 import com.techelevator.model.IApplicationDAO;
 import com.techelevator.model.INotesDAO;
 import com.techelevator.model.IPersonDAO;
@@ -121,7 +122,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	}
 	
 	@Override
-	public String updateFullApplication(Application inputApplication) {
+	public ChangeStatus updateFullApplication(Application inputApplication) {
 		try {
 		 int application_id = inputApplication.getApplicationId();
 		 int applicant_id = inputApplication.getApplicantId();
@@ -185,10 +186,10 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		     jdbcTemplate.update(sqlUpdateNotes, note_note_body, note_create_date, note_application_id, note_note_id);
 	     } 
 		} catch(Exception e) {
-			return "Error Updating Record";
+			return  new ChangeStatus("Failed", inputApplication.getApplicationId());
 		}
 		
-		return "Success";
+		return new ChangeStatus("Success", inputApplication.getApplicationId());
 	}
 	
 	@Override
@@ -212,7 +213,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	}
 	
 	@Override
-	public String createNewFullApplication(Application inputApplication) {
+	public ChangeStatus createNewFullApplication(Application inputApplication) {
 		 Person newApplicant = new Person();
 		 Person newGuardian = new Person();
 		 Person newEmergencyContact = new Person();
@@ -258,7 +259,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 //		 newNotes.setApplicationId(1);
 //		 
 //		 notesDAO.createNewNotes(newNotes);
-		// int newApplicationId = getNextApplicationId();
+		int newApplicationId = getNextApplicationId();
 		
 		 //Create the Application data to save
 		 newApplication.setApplicantId(newApplicantId);
@@ -277,10 +278,10 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 try {
 			 createNewApplication(newApplication);
 		 } catch (Exception e) {
-			 return "Error Creating New Registration";
+			 return new ChangeStatus("Error Creating New Registration", 0);
 		 }
 		 
-		 return "New Application - Success";
+		 return new ChangeStatus("New Application - Success", newApplicationId);
 		 
 		 //The Application Id on the Notes Table now has to be updates to sync the Foreign Key
 		 //newNotes.setApplicationId(newApplicationId);

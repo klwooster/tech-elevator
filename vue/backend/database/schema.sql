@@ -82,7 +82,7 @@ CREATE TABLE history (
 	date_of_change date,
 	update_made_by_id int,
 	changes_made_to_id int,
-	status VARCHAR(20),
+	status VARCHAR(50),
 	
 	constraint pk_history primary key (history_id),
 	constraint fk_history_person_updated_by foreign key (update_made_by_id) references person (person_id)

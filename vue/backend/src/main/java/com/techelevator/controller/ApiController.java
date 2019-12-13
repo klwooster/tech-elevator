@@ -19,6 +19,7 @@ import org.springframework.web.util.UriComponents;
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.model.Application;
+import com.techelevator.model.ChangeStatus;
 import com.techelevator.model.HistoryLogger;
 import com.techelevator.model.IApplicationDAO;
 import com.techelevator.model.IHistoryChangesDAO;
@@ -85,21 +86,21 @@ public class ApiController {
     @PutMapping(path = "/applicants/{applicantId}")
     public ResponseEntity<Void> updateApplicant (@RequestBody Application application) {
     	Application oldValues = applicationDao.getFullApplicationByApplicantId(application.getApplicantId());
-    	String status = applicationDao.updateFullApplication(application);
+    	ChangeStatus status = applicationDao.updateFullApplication(application);
     	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
     	HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
-    	logger.logChanges(application, oldValues, status);
+    	logger.logChanges(application, oldValues, status.getStatus());
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
     
     @PostMapping(path="/register")
     public ResponseEntity<Void> createApplicant (@RequestBody Application application) {
-    	Application oldValues = applicationDao.getFullApplicationByApplicantId(application.getApplicantId());
-    	String status = applicationDao.createNewFullApplication(application);
+    	//ChangeStatus status = applicationDao.createNewFullApplication(application);
+    	applicationDao.createNewFullApplication(application);
     	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
-    	HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
-    	logger.logChanges(application, oldValues, status);
+    	//HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
+    	//logger.logChanges(application, status);
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }

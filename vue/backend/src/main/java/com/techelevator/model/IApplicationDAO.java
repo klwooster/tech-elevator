@@ -20,11 +20,11 @@ public interface IApplicationDAO {
 	public void updateApplication(Application application);
 	
 	//Update FullApplication for Application Id
-	public String updateFullApplication(Application application);
+	public ChangeStatus updateFullApplication(Application application);
 	
 	//Create New Application
 	public void createNewApplication(Application application);
 	
 	//Create New FullApplication
-	public String createNewFullApplication(Application application);
+	public ChangeStatus createNewFullApplication(Application application);
 }

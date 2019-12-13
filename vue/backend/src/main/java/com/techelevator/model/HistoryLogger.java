@@ -19,17 +19,36 @@ public class HistoryLogger {
 		int id = historyDao.logHistoryRecord(newHistory);
 		newHistory.setHistoryId(id); 
 		newHistory.setUpdatesMade(parseChanges(requestBody, oldValues, newHistory.getHistoryId()));
-		historyChangesDao.logUpdates(newHistory.getUpdatesMade(), id);
+		
+		if((newHistory.getUpdatesMade() == null) || !newHistory.getUpdatesMade().isEmpty()) {
+			historyChangesDao.logUpdates(newHistory.getUpdatesMade(), id);
+		}
 		
 	}
 	
+	public void logChanges(Application requestBody, ChangeStatus status)  {
+		History newHistory = createHistory(requestBody, status);
+		int id = historyDao.logHistoryRecord(newHistory);
+		newHistory.setHistoryId(id); 
+
+		historyChangesDao.logUpdates(newHistory.getUpdatesMade(), id);	
+	}
+	
 	private History createHistory(Application requestBody, String status) {
+		return createHistory(requestBody, new ChangeStatus(status, 0));
+	}
+	
+	private History createHistory(Application requestBody, ChangeStatus status) {
 		History newHistory = new History();
 		
-		newHistory.setChangesMadeToId(requestBody.getApplicationId());
+		if(requestBody.getApplicationId() > 0) {
+			newHistory.setChangesMadeToId(requestBody.getApplicationId());
+		} else {
+			newHistory.setChangesMadeToId(status.getId());
+		}
 		newHistory.setDateOfChange(LocalDateTime.now());
-		newHistory.setStatus(status);
-		newHistory.setUpdateMadeById(1); //TODO remove hardcoded ID after session functionality is implemented
+		newHistory.setStatus(status.getStatus());
+		newHistory.setUpdateMadeById(1); //TODO remove hard coded ID after session functionality is implemented
 		
 		return newHistory;
 	}
@@ -65,12 +84,18 @@ public class HistoryLogger {
 							if(!requestSubfield.equals(oldValueSubfield)) {
 								updates.add(createNewUpdate(subfield, request, oldValue, historyId));
 							}
+						} else if(requestSubfield instanceof Integer) {
+							if(((Integer) requestSubfield).compareTo((Integer) oldValueSubfield) != 0) {
+								updates.add(createNewUpdate(subfield, request, oldValue, historyId));
+							}
 						} else {
 							if(requestSubfield != oldValueSubfield) {
 								updates.add(createNewUpdate(subfield, request, oldValue, historyId));
 							}
 						}
 					}
+				} else if (field.getName().equals("updatesMade")) { 
+					// do nothing, we do not log changes to notes
 				} else {
 					if(request != oldValue) {
 						updates.add(createNewUpdate(field, requestBody, oldValues, historyId));
