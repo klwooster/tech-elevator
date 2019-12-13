@@ -89,4 +89,11 @@ public class ApiController {
     	
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
+    
+    @GetMapping(path="/history")
+    public History getAccountHistory (@PathVariable int applicationId) {
+    	historyDao.getHistorybyId(applicationId);
+    }
+    
+    
 }
