@@ -2,7 +2,9 @@
   <div id="main">
     <div class="row" v-for="camp in camps" v-bind:key="camp.name">
         <p>{{camp.name}}</p>
-        <img :src="camp.image"/>
+        <div class="camp-img">
+            <img :src="camp.image"/>
+        </div>
         <p>Location: {{camp.location}}</p>
         <p>When: {{camp.date}}</p>
         <p>Ages: {{camp.ageRange}}</p>
@@ -73,4 +75,13 @@ export default {
             flex-wrap: wrap;
             justify-content: space-between;
         }
+    .camp-image {
+        display: block;
+        height: 40%;
+        width: 30%;
+        overflow: hidden;
+    }
+    .camp-image img {
+        object-fit: cover;
+    }
 </style>

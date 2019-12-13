@@ -10,7 +10,6 @@ import APIService from '@/service/APIService';
 import router from '@/router';
 import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
-import router from '@/router.js'
 
 export default {
   name: 'camp-registration',
