@@ -1,44 +1,34 @@
 <template>
   <div id="main">
-    <div v-for="history in historyData" v-bind:key="history.historyId">
+    <div v-for="note in noteData" v-bind:key="note.noteId">
 
-    <history-details v-bind:historyrecord="history"/>
+    <note-details v-bind:noterecord="note"/>
     </div>
   </div>
 </template>
 
 <script>
 
-import HistoryDetails from '@/components/HistoryDetails.vue'
+import NoteDetails from '@/components/NoteDetails.vue'
 
 
 export default {
-name: 'application-history',
+name: 'application-note',
 components: {
-HistoryDetails
+NoteDetails
 },
 data() {
 return {
-historyData: [{
-historyId: "",
-dateOfChange: "",
-updateMadeById: "",
-changesMadeToId: "",
-updatesMade: [
-{
-historyId: "",
-oldValue: "",
-newValue: "",
-dataElementChanged: ""
-}]
+noteData: [{
+noteId: "1",
+noteBody: "asa",
+createDate: "qwq",
+applicationId: "qwqw"
 }]
 }
 },
 methods: { 
-  showHistory(applicantId) {
-    APIService.getHistoryById(applicantId)
-    .then(historyrecord => this.historyrecord = historyrecord); 
-  }
+
 }
 };
 </script>
