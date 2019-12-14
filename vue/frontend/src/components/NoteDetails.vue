@@ -1,39 +1,29 @@
 <template>
-        <div class="historyDetails">
-            <h1>Application History</h1>
-            <div class="row">
-                <p class="title"><b>History Change Id</b></p>
+       <div class="noteDetails">
+            <div>
+                <h2>Notes</h2>
+                <div class="row">
+                <p class="title"><b>Note Change Id</b></p>
                 <hr>
-                <p class="form">{{historyrecord.historyId}}</p>
-                <p class="form">{{historyrecord.dateOfChange}}</p>
-                <p class="form">{{historyrecord.updateMadeById}}</p>
-                <p class="form">{{historyrecord.changesMadeToId}}</p>
+                <p class="form">{{noterecord.noteId}}</p>
+                <p class="form">{{noterecord.noteBody}}</p>
+                <p class="form">{{noterecord.createDate}}</p>
+                <p class="form">{{noterecord.applicationId}}</p>
             </div>
-            <div v-for="update in historyrecord.updatesMade" v-bind:key="update.historyId">
-                <p class="form">{{update.oldValue}}</p>
-                <p class="form">{{update.newValue}}</p>
-                <p class="form">{{update.dataElementChanged}}</p>
             </div>
-
-            
-        </div>
+       </div>
 </template>
 
 <script>
-import APIService from '@/service/APIService';
-
 export default {
-    name: 'history-details',
+    name: 'note-details',
     props: {
-        historyrecord: null
+        noterecord: null
     },
     data() {
         return {
             
         }
-    },
-    methods: {
-        
     }
 };
 </script>
