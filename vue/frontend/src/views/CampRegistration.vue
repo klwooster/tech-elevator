@@ -9,6 +9,7 @@
 import APIService from '@/service/APIService';
 import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
+import router from '@/router';
 
 export default {
   name: 'camp-registration',
@@ -63,22 +64,21 @@ export default {
                 phone: "",
                 accountId: ""
             }
-        }
-
+        },
+      responseObject: ""
     }
         
   },
   methods: { 
     submitApplication () {
         APIService.createApplication(this.application)
+        .then(response => response.json())
         .then(result => {
-          if(result.ok) {
-            console.log('Creation was successful');
+            this.responseObject = result;
+            console.log('Creation was successful' + this.responseObject);
             router.push({ name: 'camphome'});
-          }else {
-              console.log(result);
-          }
-        })
+          })
+        .catch(err => console.error(err))
     }
   }
 };

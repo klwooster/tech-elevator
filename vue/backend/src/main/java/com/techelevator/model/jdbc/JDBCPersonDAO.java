@@ -73,9 +73,9 @@ public class JDBCPersonDAO implements IPersonDAO {
 	public List<Person> getAllPersonsWithApplicantId() {
 		List<Person> personIds = new ArrayList<>();
 
-		String sqlFindAllPersonsWithApplicantId = "SELECT p.person_id, p.first_name, p.last_name, p.preferred_name, p.date_of_birth, p.email, p.phone, a.account_id \n" + 
-				"FROM person p, account a, application app\n" + 
-				"WHERE p.person_id = a.person_id\n" + 
+		String sqlFindAllPersonsWithApplicantId = "SELECT p.person_id, p.first_name, p.last_name, p.preferred_name, p.date_of_birth, p.email, p.phone, a.account_id " + 
+				"FROM person p, account a, application app " + 
+				"WHERE p.person_id = a.person_id " + 
 				"AND p.person_id = app.applicant_id";
 
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindAllPersonsWithApplicantId);
@@ -106,18 +106,18 @@ public class JDBCPersonDAO implements IPersonDAO {
 	
 	@Override
 	public void createNewPerson(Person inputPerson) {
-		
-//		 int person_id = inputPerson.getPersonId();
 		 String first_name = inputPerson.getFirstName();
 		 String last_name = inputPerson.getLastName();
 		 String preferred_name = inputPerson.getPreferredName();
 		 String date_of_birth = inputPerson.getDateOfBirth();
 		 String email = inputPerson.getEmail();
 		 String phone = inputPerson.getPhone();
-	     
+
 		 String sqlCreatePerson = "INSERT INTO person (first_name, last_name, preferred_name, date_of_birth, email, phone) VALUES (?,?,?,?,?,?)";
 	     jdbcTemplate.update(sqlCreatePerson, first_name, last_name, preferred_name, date_of_birth, email, phone);
-		
+	     
+		 String sqlCreateAccountRelationship = "INSERT INTO account (account_id, person_id) VALUES (?, ?)";
+	     jdbcTemplate.update(sqlCreateAccountRelationship, 2, getCurrentPersonId());
 	}
 
 	private Person mapRowToPerson(SqlRowSet results) {
@@ -147,6 +147,19 @@ public class JDBCPersonDAO implements IPersonDAO {
 		thePerson.setAccountId(results.getInt("account_id"));
 		
 		return thePerson;
+	}
+	
+	private int getCurrentPersonId() {
+		String sqlSelectNextId = "SELECT CURRVAL('person_person_id_seq')";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
+		int id = 0;
+		if (results.next()) {
+			id = results.getInt(1);
+		} else {
+			throw new RuntimeException("Something strange happened, unable to select next person id from sequence");
+		}
+		return id;
 	}
 
 }
