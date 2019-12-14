@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import APIService from '@/service/APIService';
+
 export default {
     name: 'history-details',
     props: {
@@ -29,6 +31,9 @@ export default {
         return {
             
         }
+    },
+    methods: {
+        
     }
 };
 </script>

@@ -35,7 +35,10 @@ dataElementChanged: "qwqw"
 }
 },
 methods: { 
-
+  showHistory(applicantId) {
+    APIService.getHistoryById(applicantId)
+    .then(historyrecord => this.historyrecord = historyrecord); 
+  }
 }
 };
 </script>
