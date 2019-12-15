@@ -101,7 +101,7 @@ const router = new Router({
             }
         },
         {
-            path: "/camp-details",
+            path: "/camp-details/:campName",
             name: "campdetails",
             component: CampDetails,
             meta: {

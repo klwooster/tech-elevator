@@ -1,14 +1,16 @@
 <template>
   <div id="main">
     <div class="row" v-for="camp in camps" v-bind:key="camp.name">
-        <p><router-link :to="{name:'campdetails', params:{campName: camp.name}}">{{camp.name}}</router-link></p>
-        <div class="camp-img">
+        <p><router-link v-bind:to="{name:'campdetails', params:{campName: camp.name, location: camp.location, date: camp.date, ageRange: camp.ageRange, description: camp.description, image: camp.image}}">
+            {{camp.name}}</router-link></p>
+        <div class="camp-img" >
             <img :src="camp.image"/>
         </div>
         <p>Location: {{camp.location}}</p>
         <p>When: {{camp.date}}</p>
         <p>Ages: {{camp.ageRange}}</p>
         <p>{{camp.description}}</p>
+        
         <div class="button">
             <router-link v-bind:to="{name: 'campregistration'}">
                 <button>Enroll</button>

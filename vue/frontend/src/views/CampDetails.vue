@@ -1,18 +1,13 @@
 <template>
   <div id="main">
     <div class="row">
-        <p>{{camp.name}}</p>
+        <p>{{name}}</p>
+        <p>{{location}}</p>
+        <p>{{date}}</p>
+        <p>{{ageRange}}</p>
+        <p>{{description}}</p>
         <div class="camp-img">
-            <img :src="camp.image"/>
-        </div>
-        <p>Location: {{camp.location}}</p>
-        <p>When: {{camp.date}}</p>
-        <p>Ages: {{camp.ageRange}}</p>
-        <p>{{camp.description}}</p>
-        <div class="button">
-            <router-link v-bind:to="{name: 'campregistration'}">
-                <button>Enroll</button>
-            </router-link>
+            <img :src="image"/>
         </div>
     </div>
   </div>
@@ -24,14 +19,24 @@ export default {
   name: 'camp-details',
   data() {
     return {
-        camp: null
+        name: '',
+        image: '',
+        location: '',
+        date: '',
+        ageRange: '',
+        description: ''
     } 
   },
   methods: {
       
   },
   created() {
-      this.$route.params.campName;
+      this.name = this.$route.params.campName;
+      this.image = this.$route.params.image;
+      this.location = this.$route.params.location;
+      this.date = this.$route.params.date;
+      this.ageRange = this.$route.params.ageRange;
+      this.description = this.$route.params.description;
   }
 };
 </script>
