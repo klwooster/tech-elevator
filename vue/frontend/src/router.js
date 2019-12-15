@@ -85,7 +85,7 @@ const router = new Router({
         },
         {
             path: "/application-history",
-            name: "applicanthistory",
+            name: "applicationhistory",
             component: ApplicationHistory,
             meta: {
                 requiresAuth: false

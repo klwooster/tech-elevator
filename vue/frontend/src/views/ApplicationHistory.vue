@@ -39,6 +39,9 @@ methods: {
     APIService.getHistoryById(applicantId)
     .then(historyrecord => this.historyrecord = historyrecord); 
   }
+},
+created() {
+  this.showHistory(this.$route.params.applicantId);
 }
 };
 </script>

@@ -2,7 +2,13 @@
   <div id="main">
     <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
     <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" v-on:save-changes="updateApplication" v-on:discard-changes="edit"/>
+    <div>
+      <router-link v-bind:to="{name: 'applicationhistory'}">
+        <button v-on:click="viewHistory(application.applicantId)">View History</button>
+      </router-link>
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -38,6 +44,9 @@ export default {
             this.edit();
           }
         })
+      },
+      viewHistory(applicantId) {
+        router.push({ name: 'applicationhistory', params: { applicantId: applicantId } });
       }
   },
   created() {
