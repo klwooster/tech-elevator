@@ -10,6 +10,7 @@ import CampRegistration from './views/CampRegistration.vue'
 import CampHome from './views/CampHome.vue'
 import ApplicationHistory from './views/ApplicationHistory.vue'
 import ApplicationNotes from './views/ApplicationNotes.vue'
+import CampDetails from './views/CampDetails.vue'
 
 Vue.use(Router)
 
@@ -95,6 +96,14 @@ const router = new Router({
             path: "/application-notes",
             name: "applicantnotes",
             component: ApplicationNotes,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/camp-details",
+            name: "campdetails",
+            component: CampDetails,
             meta: {
                 requiresAuth: false
             }

@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <div class="row" v-for="camp in camps" v-bind:key="camp.name">
-        <p><router-link :to="{name:'campdetails', params:{campName: camp.name}}">{{camp.name}}</router-link></p>
+    <div class="row">
+        <p>{{camp.name}}</p>
         <div class="camp-img">
             <img :src="camp.image"/>
         </div>
@@ -21,36 +21,17 @@
 <script>
 
 export default {
-  name: 'camp-home',
+  name: 'camp-details',
   data() {
     return {
-        camps: [
-            {
-                'name': 'Camp Wanankeekee',
-                'location': 'Seattle, WA',
-                'date': 'June 7th - July 2nd',
-                'ageRange': '7-12',
-                'description': 'A fun getaway for your kids to get out of your hair',
-                'image': './best-family-summer-camp-canoeing.jpg'
-            },
-            {
-                'name': 'Camp Wannahockaloogi',
-                'location': 'Bend, OR',
-                'date': 'July 10th - July 31st',
-                'ageRange': '13-20',
-                'description': 'A fun getaway for your teen/ young adult to buzz off to',
-                'image': './webcover.jpg'
-            },
-            {
-                'name': 'Camp Wanadrinkaton',
-                'location': 'Portland, OR',
-                'date': 'July 10th - July 31st',
-                'ageRange': '21+',
-                'description': 'A fun getaway for the grownups to have grownup time',
-                'image': './Camp-grown-ups-MAIN.jpg'
-            }
-        ]
+        camp: null
     } 
+  },
+  methods: {
+      
+  },
+  created() {
+      this.$route.params.campName;
   }
 };
 </script>
@@ -90,4 +71,3 @@ export default {
         color: white;
         padding: 3px;
     }
-</style>
