@@ -9,14 +9,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.Account;
 import com.techelevator.model.Application;
 import com.techelevator.model.ChangeStatus;
 import com.techelevator.model.IApplicationDAO;
 import com.techelevator.model.INotesDAO;
 import com.techelevator.model.IPersonDAO;
 import com.techelevator.model.Notes;
-import com.techelevator.model.Person;
 
 @Component
 public class JDBCApplicationDAO implements IApplicationDAO {
@@ -76,27 +74,30 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	
 	@Override
 	public Application getFullApplicationByApplicantId(int id) {
+		String sqlFindApplicationByApplicantId = "SELECT application_id, applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, "
+												 + "mobility_issues, medical_concerns, meal_plan, program, dorm_assignment, tshirt_size FROM application "
+												 + "WHERE applicant_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindApplicationByApplicantId, id);
 		
-		Application theApplication = null;
-		String sqlFindApplicationByApplicationId = "SELECT application_id, applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size FROM application WHERE application_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindApplicationByApplicationId, id);
-		if (results.next()) {
-			theApplication = mapRowToApplication(results);
+		Application newApplication = new Application();
+		
+		if(results.next()) {
+			newApplication = mapRowToApplication(results);
 		}
 		
 		//Get the Person Data for the Applicant
-		theApplication.setApplicant(personDAO.getPersonByPersonId(id));
+		newApplication.setApplicant(personDAO.getPersonByPersonId(id));
 		
 		//Get the Person Data for the Guardian
-		theApplication.setGuardian(personDAO.getPersonByPersonId(theApplication.getGuardianId()));
+		newApplication.setGuardian(personDAO.getPersonByPersonId(newApplication.getGuardianId()));
 		
 		//Get the Person Data for the Emergency Contact
-		theApplication.setEmergencyContact(personDAO.getPersonByPersonId(theApplication.getEmergencyContactId()));
+		newApplication.setEmergencyContact(personDAO.getPersonByPersonId(newApplication.getEmergencyContactId()));
 		
 		//Get the Notes for the Applicant Id
-		theApplication.setNotes(notesDAO.getNotesByApplicationId(id));
+		//newApplication.setNotes(notesDAO.getNotesByApplicationId(id));
 		
-		return theApplication;
+		return newApplication;
 	}
 	
 	@Override
@@ -194,7 +195,6 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	
 	@Override
 	public void createNewApplication(Application inputApplication) {
-		int application_id = inputApplication.getApplicationId();
 		 int applicant_id = inputApplication.getApplicantId();
 		 int account_id = inputApplication.getAccountId();
 		 int guardian_id = inputApplication.getGuardianId();
@@ -214,84 +214,48 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	
 	@Override
 	public ChangeStatus createNewFullApplication(Application inputApplication) {
-		 Person newApplicant = new Person();
-		 Person newGuardian = new Person();
-		 Person newEmergencyContact = new Person();
-		 Application newApplication = new Application();
-		 Notes newNotes = new Notes();
-			
-		 //First Create Applicant Data to save to the Person Table
-		 newApplicant.setFirstName(inputApplication.getApplicant().getFirstName());
-		 newApplicant.setLastName(inputApplication.getApplicant().getLastName());
-		 newApplicant.setPreferredName(inputApplication.getApplicant().getPreferredName());
-		 newApplicant.setDateOfBirth(inputApplication.getApplicant().getDateOfBirth());
-		 newApplicant.setEmail(inputApplication.getApplicant().getEmail());
-		 newApplicant.setPhone(inputApplication.getApplicant().getPhone());
-		 
-		 personDAO.createNewPerson(newApplicant);
-		 int newApplicantId = getNextPersonId();
-		 
-		 //Next Create Guardian Data to save to the Person Table
-		 newGuardian.setFirstName(inputApplication.getGuardian().getFirstName());
-		 newGuardian.setLastName(inputApplication.getGuardian().getLastName());
-		 newGuardian.setPreferredName(inputApplication.getGuardian().getPreferredName());
-		 newGuardian.setDateOfBirth(inputApplication.getGuardian().getDateOfBirth());
-		 newGuardian.setEmail(inputApplication.getGuardian().getEmail());
-		 newGuardian.setPhone(inputApplication.getGuardian().getPhone());
+		 // TODO Hard coding account_id for now until we implement session functionality - need to refactor this!
+		 inputApplication.setAccountId(2);
+		 inputApplication.getApplicant().setAccountId(2);
+		 inputApplication.getGuardian().setAccountId(2);
+		 inputApplication.getEmergencyContact().setAccountId(2);
 		
-		 personDAO.createNewPerson(newGuardian);
-		 int newGuardianId = getNextPersonId();
+		 // Pass Applicant (person object) from inputApplication to the person DAO and insert new person record into DB
+		 personDAO.createNewPerson(inputApplication.getApplicant());
+		 inputApplication.getApplicant().setPersonId(getCurrentPersonId());
+		 inputApplication.setApplicantId(inputApplication.getApplicant().getPersonId());
+
+		 // Pass Guardian (person object) from inputApplication to the person DAO and insert new person record into DB
+		 personDAO.createNewPerson(inputApplication.getGuardian());
+		 inputApplication.getGuardian().setPersonId(getCurrentPersonId());
+		 inputApplication.setGuardianId(inputApplication.getGuardian().getPersonId());
+
+		 // Pass Emergency Contact (person object) from inputApplication to the person DAO and insert new person record into DB
+		 personDAO.createNewPerson(inputApplication.getEmergencyContact());
+		 inputApplication.getEmergencyContact().setPersonId(getCurrentPersonId());
+		 inputApplication.setEmergencyContactId(inputApplication.getEmergencyContact().getPersonId());
 		 
-		 //Next Create Emergency Contact Data to save to the Person Table
-		 newEmergencyContact.setFirstName(inputApplication.getEmergencyContact().getFirstName());
-		 newEmergencyContact.setLastName(inputApplication.getEmergencyContact().getLastName());
-		 newEmergencyContact.setPreferredName(inputApplication.getEmergencyContact().getPreferredName());
-		 newEmergencyContact.setDateOfBirth(inputApplication.getEmergencyContact().getDateOfBirth());
-		 newEmergencyContact.setEmail(inputApplication.getEmergencyContact().getEmail());
-		 newEmergencyContact.setPhone(inputApplication.getEmergencyContact().getPhone());
-		
-		 personDAO.createNewPerson(newEmergencyContact);
-		 int newEmergencyContactId = getNextPersonId();
-		 
-//		 //Next Create Notes Data to save to the Notes Table
-//		 newNotes.setNoteBody(inputApplication.getNotes().get(0).getNoteBody());
-//		 newNotes.setCreateDate(inputApplication.getNotes().get(0).getCreateDate());
-//		 newNotes.setApplicationId(1);
-//		 
-//		 notesDAO.createNewNotes(newNotes);
-		int newApplicationId = getNextApplicationId();
-		
-		 //Create the Application data to save
-		 newApplication.setApplicantId(newApplicantId);
-		 newApplication.setAccountId(1);
-		 newApplication.setGuardianId(newGuardianId);
-		 newApplication.setEmergencyContactId(newEmergencyContactId);
-		 newApplication.setDietaryPreference(inputApplication.getDietaryPreference());
-		 newApplication.setDietaryRestrictions(inputApplication.getDietaryRestrictions());
-		 newApplication.setMobilityIssues(inputApplication.getMobilityIssues());
-		 newApplication.setMedicalConcerns(inputApplication.getMedicalConcerns());
-		 newApplication.setMealPlan(inputApplication.getMealPlan());
-		 newApplication.setProgram(inputApplication.getProgram());
-		 newApplication.setDormAssignment(inputApplication.getDormAssignment());
-		 newApplication.setTshirtSize(inputApplication.getTshirtSize());
+		 inputApplication.setApplicationId(getNextApplicationId());
 		 
 		 try {
-			 createNewApplication(newApplication);
+			 createNewApplication(inputApplication);
+			 
+			 //Next Create Notes Data to save to the Notes Table
+//			 for(Notes note : inputApplication.getNotes()) {
+//				 note.setApplicationId(inputApplication.getApplicationId());
+//				 notesDAO.createNewNotes(note);
+//			 }
+
 		 } catch (Exception e) {
 			 return new ChangeStatus("Error Creating New Registration", 0);
 		 }
-		 
-		 return new ChangeStatus("New Application - Success", newApplicationId);
-		 
-		 //The Application Id on the Notes Table now has to be updates to sync the Foreign Key
-		 //newNotes.setApplicationId(newApplicationId);
-		 //notesDAO.updateNotes(newNotes);
-		 
+
+		 return new ChangeStatus("New Application - Success", inputApplication.getApplicationId());
 	}
 	
 	private Application mapRowToApplication(SqlRowSet results) {
-		Application theApplication;
-		theApplication = new Application();
+		Application theApplication = new Application();
+		
 		theApplication.setApplicationId(results.getInt("application_id"));
 		theApplication.setApplicantId(results.getInt("applicant_id"));
 		theApplication.setAccountId(results.getInt("account_id"));
@@ -310,7 +274,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 
 	}
 
-	private int getNextPersonId() {
+	private int getCurrentPersonId() {
 		String sqlSelectNextId = "SELECT CURRVAL('person_person_id_seq')";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);

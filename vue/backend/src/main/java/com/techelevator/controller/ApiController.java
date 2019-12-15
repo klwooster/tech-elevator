@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,16 +40,21 @@ public class ApiController {
 
     @Autowired
     private AuthProvider authProvider;
+    
     @Autowired
     private IApplicationDAO applicationDao;
+    
     @Autowired
     private IPersonDAO personDao;
+    
     @Autowired
     private INotesDAO notesDao;
+    
     @Autowired
-    IHistoryDAO historyDao;
+    private IHistoryDAO historyDao;
+    
     @Autowired
-    IHistoryChangesDAO historyChangesDao;
+    private IHistoryChangesDAO historyChangesDao;
     
     public ApiController(IApplicationDAO applicationDao, IPersonDAO personDao, INotesDAO notesDao, IHistoryDAO historyDao, IHistoryChangesDAO historyChangesDao) {
     	this.applicationDao = applicationDao;
@@ -96,14 +102,18 @@ public class ApiController {
     }
     
     @PostMapping(path="/register")
-    public ResponseEntity<Void> createApplicant (@RequestBody Application application) {
-    	//ChangeStatus status = applicationDao.createNewFullApplication(application);
-    	applicationDao.createNewFullApplication(application);
-    	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
+    public ResponseEntity<String> createApplicant (@RequestBody Application application) {
+    	ChangeStatus status = applicationDao.createNewFullApplication(application);
+    	//applicationDao.createNewFullApplication(application);
+    	//UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
     	//HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
     	//logger.logChanges(application, status);
     	
-    	return ResponseEntity.created(applicationUri.toUri()).build();
+    	if(status.getStatus().equals("New Application - Success")) {
+    		return new ResponseEntity<String>(String.valueOf(status.getId()), HttpStatus.CREATED);
+    	} else {
+    		return new ResponseEntity<String>("New application could not be created, please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
     }
     
     @GetMapping(path="/history/{applicationId}")
