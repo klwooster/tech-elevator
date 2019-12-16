@@ -28,7 +28,9 @@ applicationId: "qwqw"
 }
 },
 methods: { 
-
+  getNotes(id) {
+    
+  }
 }
 };
 </script>

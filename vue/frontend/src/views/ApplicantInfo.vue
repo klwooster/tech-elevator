@@ -2,6 +2,7 @@
   <div id="main">
     <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
     <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" v-on:save-changes="updateApplication" v-on:discard-changes="edit"/>
+    <application-notes v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode"/>
     <div>
       <router-link v-bind:to="{name: 'applicationhistory', params: {id: application.applicationId}}">
         <button>View History</button> 
@@ -15,12 +16,14 @@
 import APIService from '@/service/APIService';
 import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
+import ApplicationNotes from '@/views/ApplicationNotes.vue'
 
 export default {
   name: 'applicant-info',
   components: {
     ApplicationDetails,
-    ApplicantDetails
+    ApplicantDetails,
+    ApplicationNotes
   },
   data() {
     return {
