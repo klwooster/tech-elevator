@@ -253,6 +253,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		 return new ChangeStatus("New Application - Success", inputApplication.getApplicationId());
 	}
 	
+	
 	private Application mapRowToApplication(SqlRowSet results) {
 		Application theApplication = new Application();
 		

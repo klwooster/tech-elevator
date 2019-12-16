@@ -89,6 +89,23 @@ public class JDBCPersonDAO implements IPersonDAO {
 	}
 	
 	@Override
+	public List<Person> getPersonsByProgram(String programName) {
+		List<Person> people = new ArrayList<>();
+		
+		String sqlFindPeopleByProgram = "SELECT p.first_name, p.last_name" + 
+										"FROM person p" + 
+										"JOIN account ac ON p.person_id = ac.person_id" + 
+										"JOIN application a on a.account_id = ac.account_id" + 
+										"WHERE a.program like '%'?'%'";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindPeopleByProgram, programName);
+		while(results.next()) {
+			Person thePerson = mapRowToPersonAndAccountId(results);
+			people.add(thePerson);
+		}
+		return people;
+	}
+	
+	@Override
 	public void updatePerson(Person inputPerson) {
 		
 		 int person_id = inputPerson.getPersonId();

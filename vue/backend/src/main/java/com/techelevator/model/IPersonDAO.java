@@ -22,4 +22,6 @@ public interface IPersonDAO {
 	//Create Person
 	public void createNewPerson(Person person);
 	
+	public List<Person> getPersonsByProgram(String programName);
+	
 }

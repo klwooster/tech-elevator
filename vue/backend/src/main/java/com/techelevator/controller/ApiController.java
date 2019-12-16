@@ -135,5 +135,8 @@ public class ApiController {
     	return historyDao.getHistoryByChangedId(applicationId);
     }
     
-    
+    @GetMapping(path="/attendees{programName}")
+    public List<Person> getPersonsByProgram(@PathVariable String programName) {
+    	return personDao.getPersonsByProgram(programName);
+    }
 }
