@@ -85,8 +85,9 @@ const router = new Router({
             }
         },
         {
-            path: "/application-history",
+            path: "/application-history/:applicationId",
             name: "applicationhistory",
+            params: true,
             component: ApplicationHistory,
             meta: {
                 requiresAuth: false
@@ -103,6 +104,7 @@ const router = new Router({
         {
             path: "/camp-details/:campName",
             name: "campdetails",
+            params: true,
             component: CampDetails,
             meta: {
                 requiresAuth: false
