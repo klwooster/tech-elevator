@@ -3,7 +3,7 @@
     <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
     <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" v-on:save-changes="updateApplication" v-on:discard-changes="edit"/>
     <div>
-      <router-link v-bind:to="{name: 'applicationhistory', params: {id: application.applicantId}}">
+      <router-link v-bind:to="{name: 'applicationhistory', params: {id: application.applicationId}}">
         <button>View History</button> 
       </router-link>
     </div>
