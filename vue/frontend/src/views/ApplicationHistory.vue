@@ -1,8 +1,7 @@
 <template>
   <div id="main">
     <div v-for="history in historyData" v-bind:key="history.historyId">
-
-    <history-details v-bind:historyrecord="history"/>
+      <history-details v-bind:historyrecord="history"/>
     </div>
   </div>
 </template>
@@ -42,7 +41,7 @@ methods: {
   }
 },
 created() {
-  this.showHistory(this.$route.params.applicantId);
+  this.showHistory(this.$route.params.applicationId);
 }
 };
 </script>
