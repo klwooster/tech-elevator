@@ -102,18 +102,18 @@ public class ApiController {
     	return ResponseEntity.created(applicationUri.toUri()).build();
     }
     
-//    @GetMapping(path = "/applicants/{applicantId}")
-//    public List<Notes> getNotesByApplicationId(@PathVariable String applicationId) {
-//    	return notesDao.getNotesByApplicationId(Integer.parseInt(applicationId));
-//    }
-//    
-//    @PostMapping(path = "/applicants/{applicantId}")
-//    public ResponseEntity<Void> updateNotes (@RequestBody Notes notes) {
-//    	notesDao.createNewNotes(notes);
-//    	
-//    	UriComponents uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(notes.getApplicationId())).build();
-//    	return ResponseEntity.created(uri.toUri()).build();
-//    }
+    @GetMapping(path = "/notes/{applicationId}")
+    public List<Notes> getNotesByApplicationId(@PathVariable String applicationId) {
+    	return notesDao.getNotesByApplicationId(Integer.parseInt(applicationId));
+    }
+    
+    @PostMapping(path = "/notes/{applicationId}")
+    public ResponseEntity<Void> updateNotes (@RequestBody Notes notes) {
+    	notesDao.createNewNotes(notes);
+    	
+    	UriComponents uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(notes.getApplicationId())).build();
+    	return ResponseEntity.created(uri.toUri()).build();
+    }
     
     @PostMapping(path="/register")
     public ResponseEntity<String> createApplicant (@RequestBody Application application) {

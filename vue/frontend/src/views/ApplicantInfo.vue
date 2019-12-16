@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-        application: null,
+        application: {},
         isEditMode: false
     }
         
