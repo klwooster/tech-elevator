@@ -11,7 +11,6 @@
 
 <script>
 import router from '@/router';
-import { filter } from 'minimatch';
 import { isNullOrUndefined } from 'util';
 
 export default {

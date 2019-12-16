@@ -16,7 +16,7 @@
 import APIService from '@/service/APIService';
 import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
-import ApplicationNotes from '@/views/ApplicationNotes.vue'
+import ApplicationNotes from '@/components/ApplicationNotes.vue'
 
 export default {
   name: 'applicant-info',
