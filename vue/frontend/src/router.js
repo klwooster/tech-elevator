@@ -85,7 +85,7 @@ const router = new Router({
             }
         },
         {
-            path: "/application-history/:applicationId",
+            path: "/application-history/:id",
             name: "applicationhistory",
             params: true,
             component: ApplicationHistory,

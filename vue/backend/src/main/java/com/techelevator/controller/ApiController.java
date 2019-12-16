@@ -118,10 +118,9 @@ public class ApiController {
     @PostMapping(path="/register")
     public ResponseEntity<String> createApplicant (@RequestBody Application application) {
     	ChangeStatus status = applicationDao.createNewFullApplication(application);
-    	//applicationDao.createNewFullApplication(application);
-    	//UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
-    	//HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
-    	//logger.logChanges(application, status);
+    	
+    	HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
+    	logger.logChanges(application, status);
     	
     	if(status.getStatus().equals("New Application - Success")) {
     		return new ResponseEntity<String>(String.valueOf(status.getId()), HttpStatus.CREATED);

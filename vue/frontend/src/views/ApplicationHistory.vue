@@ -35,13 +35,13 @@ dataElementChanged: ""
 }
 },
 methods: { 
-  showHistory(applicantId) {
-    APIService.getHistoryById(applicantId)
-    .then(historyrecord => this.historyrecord = historyrecord); 
+  showHistory(id) {
+    APIService.getHistoryById(id)
+    .then(historyrecord => this.historyData = historyrecord); 
   }
 },
 created() {
-  this.showHistory(this.$route.params.applicationId);
+  this.showHistory(this.$route.params.id);
 }
 };
 </script>

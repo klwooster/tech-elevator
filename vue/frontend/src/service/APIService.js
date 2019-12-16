@@ -37,11 +37,11 @@ export default {
             body: JSON.stringify(application)
         });
     },
-    getHistoryById(applicationId) {
+    getHistoryById(id) {
         console.log('getting account history....');
-        return fetch(`http://localhost:8080/AuthenticationApplication/api/history/${applicationId}`)
-        .then((response) => {
-            return response.json();
-        });
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/history/${id}`)
+            .then((response) => {
+                return response.json();
+            });
     }
 }
