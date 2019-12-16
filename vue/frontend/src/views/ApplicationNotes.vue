@@ -13,35 +13,30 @@ import APIService from '@/service/APIService';
 
 
 export default {
-name: 'application-note',
-components: {
-  NoteDetails
-},
-props: {
-  id: {},
-  isInEditMode: false
-},
-data() {
-return {
-  noteData: [{
-    noteId: "",
-    noteBody: "",
-    createDate: "",
-    applicationId: ""
-  }]
-}
-},
-methods: { 
-  getNotes(id) {
-    APIService.getNotesByApplication(id)
-    .then((noteData) => {
-      this.noteData = noteData
-    });
+  name: 'application-note',
+  components: {
+    NoteDetails
+  },
+  props: {
+    'id': Number,
+    'isInEditMode': false
+  },
+  data() {
+    return {
+      noteData: [{}]
+    }
+  },
+  methods: { 
+    getNotes() {
+      APIService.getNotesByApplication(this.id)
+      .then((noteData) => {
+        this.noteData = noteData
+      });
+    }
+  },
+  created() {
+    getNotes();
   }
-},
-created() {
-  getNotes(this.id);
-}
 };
 </script>
 

@@ -2,7 +2,7 @@
   <div id="main">
     <div class="row" v-for="camp in camps" v-bind:key="camp.name">
          <p> <router-link v-bind:to="{name: 'campdetails', params:{camp:camps[0]}} ">
-            {{camp.name}}</router-link></p>
+            {{camp.displayname}}</router-link></p>
         <div class="camp-img" >
             <img :src="camp.image"/>
         </div>
@@ -28,7 +28,8 @@ export default {
     return {
         camps: [
             {
-                'name': 'Camp Wanankeekee',
+                'displayname': 'Camp North Star',
+                'name': 'northstar',
                 'location': 'Seattle, WA',
                 'date': 'June 7th - July 2nd',
                 'ageRange': '7-12',
@@ -36,7 +37,8 @@ export default {
                 'image': '../best-family-summer-camp-canoeing.jpg'
             },
             {
-                'name': 'Camp Wannahockaloogi',
+                'displayname': 'Camp Wannahockaloogi',
+                'name' : 'wannahockaloogi',
                 'location': 'Bend, OR',
                 'date': 'July 10th - July 31st',
                 'ageRange': '13-20',
@@ -44,7 +46,8 @@ export default {
                 'image': '../webcover.jpg'
             },
             {
-                'name': 'Camp Wanadrinkaton',
+                'displayname': 'Camp Anawanna',
+                'name': 'anawanna',
                 'location': 'Portland, OR',
                 'date': 'July 10th - July 31st',
                 'ageRange': '21+',

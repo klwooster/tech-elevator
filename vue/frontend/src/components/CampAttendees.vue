@@ -31,7 +31,7 @@ export default {
         }
     },
     created() {
-        this.getAttendees('camp1');
+        this.getAttendees(this.campname);
     }
 }
 </script>

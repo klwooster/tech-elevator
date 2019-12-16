@@ -46,11 +46,8 @@ export default {
             console.log('Save was successful');
             this.edit();
         })
-        .catch(err => console.error(err))
-      },
-      // viewHistory(id) {
-      //   router.push({ name: 'applicationhistory', params: { id: applicantId } });
-      // }
+        .catch(err => console.error(err));
+      }
   },
   created() {
       this.showApplicant(this.$route.params.applicantId);
