@@ -14,28 +14,20 @@ public class HistoryLogger {
 		this.historyChangesDao = historyChangesDao;
 	}
 	
-	public void logChanges(Application requestBody, Application oldValues, String status)  {
+	public void logChanges(Application requestBody, Application oldValues, ChangeStatus status)  {
 		History newHistory = createHistory(requestBody, status);
-		int id = historyDao.logHistoryRecord(newHistory);
-		newHistory.setHistoryId(id); 
 		newHistory.setUpdatesMade(parseChanges(requestBody, oldValues, newHistory.getHistoryId()));
 		
-		if((newHistory.getUpdatesMade() == null) || !newHistory.getUpdatesMade().isEmpty()) {
-			historyChangesDao.logUpdates(newHistory.getUpdatesMade(), id);
+		if(!(newHistory.getUpdatesMade() == null) || !newHistory.getUpdatesMade().isEmpty()) {
+			historyChangesDao.logUpdates(newHistory.getUpdatesMade(), newHistory.getHistoryId());
 		}
 		
 	}
 	
 	public void logChanges(Application requestBody, ChangeStatus status)  {
 		History newHistory = createHistory(requestBody, status);
-		int id = historyDao.logHistoryRecord(newHistory);
-		newHistory.setHistoryId(id); 
-
-		historyChangesDao.logUpdates(newHistory.getUpdatesMade(), id);	
-	}
-	
-	private History createHistory(Application requestBody, String status) {
-		return createHistory(requestBody, new ChangeStatus(status, 0));
+		 
+		historyChangesDao.logUpdates(newHistory.getUpdatesMade(), newHistory.getHistoryId());	
 	}
 	
 	private History createHistory(Application requestBody, ChangeStatus status) {
@@ -48,7 +40,10 @@ public class HistoryLogger {
 		}
 		newHistory.setDateOfChange(LocalDateTime.now());
 		newHistory.setStatus(status.getStatus());
-		newHistory.setUpdateMadeById(1); //TODO remove hard coded ID after session functionality is implemented
+		newHistory.setUpdateMadeById(requestBody.getApplicantId()); //TODO remove hard coded ID after session functionality is implemented
+		
+		int id = historyDao.logHistoryRecord(newHistory);
+		newHistory.setHistoryId(id);
 		
 		return newHistory;
 	}

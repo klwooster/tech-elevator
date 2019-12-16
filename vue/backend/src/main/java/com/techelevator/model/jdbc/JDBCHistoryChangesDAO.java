@@ -37,11 +37,11 @@ public class JDBCHistoryChangesDAO implements IHistoryChangesDAO {
 	public void logUpdates(List<Update> updates, int id) {
 		String sqlLogUpdates = "INSERT INTO history_changes (history_id, old_value, new_value, data_element_changed) "
 							 + "VALUES (?, ?, ?, ?)";
-		
-		for(Update update : updates) {
-			jdbcTemplate.update(sqlLogUpdates, id, update.getOldValue(), update.getNewValue(), update.getDataElementChanged());
+		if(!(updates == null || updates.isEmpty())) {
+			for(Update update : updates) {
+				jdbcTemplate.update(sqlLogUpdates, id, update.getOldValue(), update.getNewValue(), update.getDataElementChanged());
+			}
 		}
-
 	}
 
 	private Update mapRowToUpdate(SqlRowSet results) {

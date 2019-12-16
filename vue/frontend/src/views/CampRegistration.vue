@@ -29,7 +29,7 @@ export default {
             dietaryPreference: "",
             dietaryRestrictions: "",
             mobilityIssues: "",
-            medicalConcers: "",
+            medicalConcerns: "",
             mealPlan: "",
             program: "",
             dormAssignment: "",

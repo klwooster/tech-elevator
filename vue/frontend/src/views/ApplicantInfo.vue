@@ -38,12 +38,12 @@ export default {
       },
       updateApplication() {
         APIService.updateApplication(this.application, this.application.applicant.applicantId)
+        .then(response => response.json())
         .then(result => {
-          if(result.ok) {
             console.log('Save was successful');
             this.edit();
-          }
         })
+        .catch(err => console.error(err))
       },
       // viewHistory(id) {
       //   router.push({ name: 'applicationhistory', params: { id: applicantId } });
