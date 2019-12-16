@@ -19,6 +19,9 @@ import CampAttendees from '@/components/CampAttendees.vue'
 
 export default {
   name: 'camp-details',
+  components: {
+      CampAttendees
+  },
   data() {
     return {
         name: '',
