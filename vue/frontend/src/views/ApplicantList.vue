@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-      <applicant-filters v-bind:filterProperties="filters" v-on:sort-applicants="sort($event)"/>
-      <applicant-table v-bind:applicants="applicantList" v-bind:filterProperties="filters"/>
+      <applicant-filters v-bind:currentfilter="filters" />
+      <applicant-table v-bind:applicants="applicantList" v-bind:currentfilter="filters"/>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
               filterType: '',
               filterData: '',
               sortAsc: true,
-              sortTarget: 'a'
+              sortTarget: ''
           }
       }
   },

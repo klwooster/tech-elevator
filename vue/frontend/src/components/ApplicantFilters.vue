@@ -4,8 +4,8 @@
         <hr>
         <div class="sidebar">
             <p class="title">Search: </p>
-                <input type="text" v-model="filterProperties.filterData">
-                <select v-model="filterProperties.filterType">
+                <input type="text" v-model="currentfilter.filterData">
+                <select v-model="currentfilter.filterType">
                     <option disabled value="">Select...</option>
                     <option value="applicantId">Applicant ID</option> 
                     <option value="firstName">First Name</option>
@@ -15,10 +15,10 @@
         </div>
         <hr>
         <div class="row">
-            <span class="title">Applicant ID <i class="fas fa-sort" id="applicantId" v-on:click="$emit('sort-applicants', 'applicantId')"></i></span>
-            <span class="title">First Name <i class="fas fa-sort" id="firstName" v-on:click="$emit('sort-applicants', 'firstName')"></i></span>
-            <span class="title">Last Name <i class="fas fa-sort" id="lastName" v-on:click="$emit('sort-applicants', 'lastName')"></i></span>
-            <span class="title">Account # <i class="fas fa-sort" id="accountId" v-on:click="$emit('sort-applicants', 'accountId')"></i></span>
+            <span class="title">Applicant ID <i class="fas fa-sort" v-on:click.stop="sort('applicantId')"></i></span>
+            <span class="title">First Name <i class="fas fa-sort" v-on:click="sort('firstName')"></i></span>
+            <span class="title">Last Name <i class="fas fa-sort" v-on:click="sort('lastName')"></i></span>
+            <span class="title">Account # <i class="fas fa-sort" v-on:click="sort('accountId')"></i></span>
         </div>
     </div>
 </template>
@@ -26,7 +26,13 @@
 <script>
 export default {
     name: 'applicant-filters',
-    props: [ 'filterProperties' ]
+    props: [ 'currentfilter' ],
+    methods: {
+        sort(column) {
+            this.currentfilter.sortTarget = column;
+            this.currentfilter.sortAsc = !this.currentfilter.sortAsc;
+        }
+    }
   };
 </script>
 

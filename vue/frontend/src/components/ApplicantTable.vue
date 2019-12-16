@@ -11,29 +11,30 @@
 
 <script>
 import router from '@/router';
+import { filter } from 'minimatch';
+import { isNullOrUndefined } from 'util';
 
 export default {
   name: 'applicant-table',
-  props: [ 'applicants', 'filterProperties' ],
-
+  props: [ 'applicants', 'currentfilter' ],
   methods: { 
       viewApplicantDetails(id) {
           router.push({ name: 'applicantinfo', params: { applicantId: id } })
       },
       sortList() {
-          if(this.filterProperties.sortTarget == 'applicantId') {
+          if(this.currentfilter.sortTarget == 'applicantId') {
               this.applicants = this.sortByApplicantId();
-          } else if(this.filterProperties.sortTarget == 'firstName') {
+          } else if(this.currentfilter.sortTarget == 'firstName') {
               this.applicants = this.sortByFirstName();
-          } else if(this.filterProperties.sortTarget == 'lastName') {
+          } else if(this.currentfilter.sortTarget == 'lastName') {
               this.applicants = this.sortByLastName();
-          } else if(this.filterProperties.sortTarget == 'accountId') {
+          } else if(this.currentfilter.sortTarget == 'accountId') {
               this.applicants = this.sortByAccountId();
           } else {
-              this.applicants = this.applicants;
+              return;
           }
 
-          if(!this.filterProperties.sortAsc) {
+          if(!this.currentfilter.sortAsc) {
               this.applicants.reverse();
           }
       },
@@ -85,20 +86,20 @@ export default {
    computed: {
       applicantsFiltered() {
           this.sortList();
-          if (this.filterProperties.filterData == '') {
+          if (this.currentfilter.filterData == isNullOrUndefined || this.currentfilter.filterData == '' ) {
                 return this.applicants;
-          } else if (this.filterProperties.filterType == 'applicantId') {
+          } else if (this.currentfilter.filterType === 'applicantId') {
                 return this.applicants.filter(applicant => 
-                    String(applicant.personId).toLowerCase().startsWith(this.filterProperties.filterData.toLowerCase))
-          } else if (this.filterProperties.filterType == 'firstName') {
+                    String(applicant.personId).toLowerCase().startsWith(this.currentfilter.filterData.toLowerCase()))
+          } else if (this.currentfilter.filterType === 'firstName') {
                 return this.applicants.filter(applicant => 
-                    String(applicant.firstName).toLowerCase().startsWith(this.filterProperties.filterData.toLowerCase()))
-          } else if (this.filterProperties.filterType == 'lastName') {
+                    String(applicant.firstName).toLowerCase().startsWith(this.currentfilter.filterData.toLowerCase()))
+          } else if (this.currentfilter.filterType === 'lastName') {
                 return this.applicants.filter(applicant => 
-                    String(applicant.lastName).toLowerCase().startsWith(this.filterProperties.filterData.toLowerCase))
-          } else if (this.filterProperties.filterType == 'accountId') {
+                    String(applicant.lastName).toLowerCase().startsWith(this.currentfilter.filterData.toLowerCase()))
+          } else if (this.currentfilter.filterType === 'accountId') {
                 return this.applicants.filter(applicant => 
-                    String(applicant.accountId).toLowerCase().startsWith(this.filterProperties.filterData.toLowerCase))
+                    String(applicant.accountId).toLowerCase().startsWith(this.currentfilter.filterData.toLowerCase()))
           } else {
               return this.applicants;
           }
