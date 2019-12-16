@@ -13,14 +13,11 @@ import APIService from '@/service/APIService';
 
 
 export default {
-  name: 'application-note',
+  name: 'application-notes',
   components: {
     NoteDetails
   },
-  props: {
-    'id': Number,
-    'isInEditMode': false
-  },
+  props: ['id'] ,
   data() {
     return {
       noteData: [{}]
@@ -35,7 +32,9 @@ export default {
     }
   },
   created() {
-    this.getNotes();
+    this.$watch(this.id, id => {
+       this.getNotes();
+    })
   }
 };
 </script>

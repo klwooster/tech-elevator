@@ -42,14 +42,17 @@ export default {
         return fetch(`http://localhost:8080/AuthenticationApplication/api/history/${id}`)
             .then((response) => {
                 return response.json();
+            })
+            .then((response) => {
+                console.log(response);
             });
     },
     getNotesByApplication(id) {
         console.log('getting notes...');
         return fetch(`http://localhost:8080/AuthenticationApplication/api/notes/${id}`)
-        .then((response) => {
-            return response.json();
-        });
+            .then((response) => {
+                return response.json();
+            });
     },
     createNotes(id, newNote) {
         console.log('creating your note...');
@@ -65,8 +68,8 @@ export default {
     getAttendeesByCamp(campname) {
         console.log('getting camp attendees....');
         return fetch(`http://localhost:8080/AuthenticationApplication/api/attendees/${campname}`)
-        .then((response) => {
-            return response.json();
-        });
+            .then((response) => {
+                return response.json();
+            });
     }
 }
