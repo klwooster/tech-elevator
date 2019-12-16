@@ -9,11 +9,13 @@
         <div class="camp-img">
             <img :src="image"/>
         </div>
+        <camp-attendees v-bind:campName="name" />
     </div>
   </div>
 </template>
 
 <script>
+import CampAttendees from '@/components/CampAttendees.vue'
 
 export default {
   name: 'camp-details',

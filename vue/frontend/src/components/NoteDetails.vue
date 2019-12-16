@@ -18,7 +18,7 @@
 export default {
     name: 'note-details',
     props: {
-        noterecord: null
+        noterecord: {}
     },
     data() {
         return {
