@@ -2,7 +2,7 @@
     <div>
         <div v-for="attendee in attendees" :key="attendee.personId">
             <p>{{attendee.firstName}}</p>
-        
+            <p>{{attendee.lastName}}</p>
         </div>
         <p>hello</p>
     </div>    

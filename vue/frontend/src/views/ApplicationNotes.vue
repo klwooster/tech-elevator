@@ -33,8 +33,10 @@ return {
 },
 methods: { 
   getNotes(id) {
-    APIService.getNotesByApplication(id);
-    // .then(applicationdata => this.applicationdata = applicationdata);
+    APIService.getNotesByApplication(id)
+    .then((noteData) => {
+      this.noteData = noteData
+    });
   }
 },
 created() {
