@@ -43,5 +43,22 @@ export default {
             .then((response) => {
                 return response.json();
             });
+    },
+    getNotesByApplication(id) {
+        console.log('getting notes...');
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/notes/${id}`)
+        .then((response) => {
+            return response.json();
+        });
+    },
+    createNotes(id, newNote) {
+        console.log('creating your note...');
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/notes/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newNote)
+        });
     }
 }

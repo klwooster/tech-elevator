@@ -11,7 +11,6 @@
 import HistoryDetails from '@/components/HistoryDetails.vue'
 import APIService from '@/service/APIService';
 
-
 export default {
 name: 'application-history',
 components: {

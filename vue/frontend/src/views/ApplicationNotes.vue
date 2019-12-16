@@ -20,15 +20,17 @@ NoteDetails
 data() {
 return {
 noteData: [{
-noteId: "1",
-noteBody: "asa",
-createDate: "qwq",
-applicationId: "qwqw"
+noteId: "",
+noteBody: "",
+createDate: "",
+applicationId: ""
 }]
 }
 },
 methods: { 
-
+  getNotes(id) {
+    
+  }
 }
 };
 </script>
