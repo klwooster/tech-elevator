@@ -102,7 +102,7 @@ const router = new Router({
             }
         },
         {
-            path: "/camp-details/:campName",
+            path: "/camp-details/:campname",
             name: "campdetails",
             params: true,
             component: CampDetails,

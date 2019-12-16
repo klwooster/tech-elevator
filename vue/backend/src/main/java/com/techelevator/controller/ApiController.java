@@ -141,6 +141,7 @@ public class ApiController {
     
     @GetMapping(path="/attendees/{programName}")
     public List<Person> getPersonsByProgram(@PathVariable String programName) {
+    	System.out.println("We are here");
     	return personDao.getPersonsByProgram(programName);
     }
 }

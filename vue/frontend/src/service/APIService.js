@@ -62,9 +62,9 @@ export default {
         });
     },
 
-    getAttendeesByCamp(campName) {
+    getAttendeesByCamp(campname) {
         console.log('getting camp attendees....');
-        return fetch(`http://localhost:8080/AuthenticationApplication/api/attendees/${campName}`)
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/attendees/${campname}`)
         .then((response) => {
             return response.json();
         });

@@ -2,7 +2,9 @@
     <div>
         <div v-for="attendee in attendees" :key="attendee.personId">
             <p>{{attendee.firstName}}</p>
+        
         </div>
+        <p>hello</p>
     </div>    
 </template>
 
@@ -12,19 +14,24 @@ import APIService from '@/service/APIService';
 export default {
     name: 'camp-attendees',
     props: {
-        campName
+        'campname': String
+
     },
     data() {
-        attendees: []
+        return {
+            attendees: {}
+        }
     },
     methods: {
-        getAttendees(campName){
-            APIService.getAttendeesByCamp(campName)
-            .then(data = this.attendees = attendees);
+        getAttendees(campname){
+            APIService.getAttendeesByCamp(campname)
+            .then((attendees) => {
+                this.attendees = attendees
+            });
         }
     },
     created() {
-        getAttendees();
+        this.getAttendees('camp1');
     }
 }
 </script>

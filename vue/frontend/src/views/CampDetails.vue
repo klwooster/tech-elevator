@@ -1,15 +1,15 @@
 <template>
   <div id="main">
     <div class="row">
-        <p>{{name}}</p>
-        <p>{{location}}</p>
-        <p>{{date}}</p>
-        <p>{{ageRange}}</p>
-        <p>{{description}}</p>
+        <p>{{camp.name}}</p>
+        <p>{{camp.location}}</p>
+        <p>{{camp.date}}</p>
+        <p>{{camp.ageRange}}</p>
+        <p>{{camp.description}}</p>
         <div class="camp-img">
-            <img :src="image"/>
+            <img :src="camp.image"/>
         </div>
-        <camp-attendees v-bind:campName="name" />
+        <camp-attendees campname="camp.name" />
     </div>
   </div>
 </template>
@@ -24,24 +24,25 @@ export default {
   },
   data() {
     return {
-        name: '',
-        image: '',
-        location: '',
-        date: '',
-        ageRange: '',
-        description: ''
+        // name: '',
+        // image: '',
+        // location: '',
+        // date: '',
+        // ageRange: '',
+        // description: ''
+        camp:{}
     } 
   },
   methods: {
       
   },
   created() {
-      this.name = this.$route.params.campName;
-      this.image = this.$route.params.image;
-      this.location = this.$route.params.location;
-      this.date = this.$route.params.date;
-      this.ageRange = this.$route.params.ageRange;
-      this.description = this.$route.params.description;
+      this.camp = this.$route.params.camp;
+    //   this.image = this.$route.params.image;
+    //   this.location = this.$route.params.location;
+    //   this.date = this.$route.params.date;
+    //   this.ageRange = this.$route.params.ageRange;
+    //   this.description = this.$route.params.description;
   }
 };
 </script>
