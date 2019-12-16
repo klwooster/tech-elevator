@@ -23,7 +23,7 @@ public class JDBCHistoryChangesDAO implements IHistoryChangesDAO {
 	@Override
 	public List<Update> getUpdatesByHistoryId(int id) {
 		List<Update> updates = new ArrayList<Update>();
-		String sqlGetUpdatesByHistoryId = "SELECT * FROM history_changes WHERE history_id = ?";
+		String sqlGetUpdatesByHistoryId = "SELECT history_id, old_value, new_value, data_element_changed FROM history_changes WHERE history_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetUpdatesByHistoryId, id);
 		
 		while(results.next()) {
