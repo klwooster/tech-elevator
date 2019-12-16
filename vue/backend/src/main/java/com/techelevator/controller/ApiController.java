@@ -135,7 +135,7 @@ public class ApiController {
     }
     
     @GetMapping(path="/history/{applicationId}")
-    public List<History> getAccountHistory (@PathVariable int applicationId) {
+    public List<History> getApplicationHistory (@PathVariable int applicationId) {
     	return historyDao.getHistoryByChangedId(applicationId);
     }
     
