@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import com.techelevator.model.History;
 import com.techelevator.model.IHistoryChangesDAO;
 import com.techelevator.model.IHistoryDAO;
-import com.techelevator.model.Update;
 
 @Component
 public class JDBCHistoryDAO implements IHistoryDAO {
@@ -29,8 +28,8 @@ public class JDBCHistoryDAO implements IHistoryDAO {
 	@Override
 	public List<History> getHistoryByChangedId(int id) {
 		List<History> history = new ArrayList<History>();
-		String sqlGetHistoryByChangedId = "SELECT history_id, " + "date_of_change, " + "update_made_by_id, "
-				+ "changes_made_to_id, " + "status FROM history WHERE history_id = ?";
+		String sqlGetHistoryByChangedId = "SELECT history_id, date_of_change, update_made_by_id, "
+				+ "changes_made_to_id, status FROM history WHERE changes_made_to_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetHistoryByChangedId, id);
 
 		while (results.next()) {
@@ -68,8 +67,7 @@ public class JDBCHistoryDAO implements IHistoryDAO {
 
 	private History mapRowToHistory(SqlRowSet results) {
 		History history = new History();
-		Instant instant = results.getDate("date_of_change").toInstant();
-
+		Instant instant = results.getTimestamp("date_of_change").toInstant();
 		history.setDateOfChange(instant.atZone(ZoneId.systemDefault()).toLocalDateTime());
 		history.setHistoryId(results.getInt("history_id"));
 		history.setUpdateMadeById(results.getInt("update_made_by_id"));

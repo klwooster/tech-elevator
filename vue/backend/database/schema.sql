@@ -79,7 +79,7 @@ CREATE TABLE workshops (
 
 CREATE TABLE history (
 	history_id serial,
-	date_of_change date,
+	date_of_change timestamp,
 	update_made_by_id int,
 	changes_made_to_id int,
 	status VARCHAR(50),
