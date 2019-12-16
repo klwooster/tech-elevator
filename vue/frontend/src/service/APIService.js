@@ -60,5 +60,13 @@ export default {
             },
             body: JSON.stringify(newNote)
         });
+    },
+
+    getAttendeesByCamp(campName) {
+        console.log('getting camp attendees....');
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/attendees/${campName}`)
+        .then((response) => {
+            return response.json();
+        });
     }
 }

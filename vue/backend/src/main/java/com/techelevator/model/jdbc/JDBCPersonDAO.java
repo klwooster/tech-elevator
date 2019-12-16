@@ -92,11 +92,11 @@ public class JDBCPersonDAO implements IPersonDAO {
 	public List<Person> getPersonsByProgram(String programName) {
 		List<Person> people = new ArrayList<>();
 		
-		String sqlFindPeopleByProgram = "SELECT p.first_name, p.last_name" + 
-										"FROM person p" + 
-										"JOIN account ac ON p.person_id = ac.person_id" + 
-										"JOIN application a on a.account_id = ac.account_id" + 
-										"WHERE a.program like '%'?'%'";
+		String sqlFindPeopleByProgram = "SELECT p.person_id, p.first_name, p.last_name, p.preferred_name, p.date_of_birth, p.email, p.phone, a.account_id " + 
+										"FROM person p, account a, application app  " + 
+										"WHERE p.person_id = a.person_id " + 
+										"AND p.person_id = app.applicant_id " + 
+										"AND app.program = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindPeopleByProgram, programName);
 		while(results.next()) {
 			Person thePerson = mapRowToPersonAndAccountId(results);
