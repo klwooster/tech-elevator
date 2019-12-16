@@ -49,7 +49,7 @@ const router = new Router({
             component: Register,
             meta: {
                 requiresAuth: false
-            }
+            },
         },
         {
             path: "/applicant-list",
