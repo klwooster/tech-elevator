@@ -134,7 +134,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 	     jdbcTemplate.update(sqlCreatePerson, first_name, last_name, preferred_name, date_of_birth, email, phone);
 	     
 		 String sqlCreateAccountRelationship = "INSERT INTO account (account_id, person_id) VALUES (?, ?)";
-	     jdbcTemplate.update(sqlCreateAccountRelationship, 2, getCurrentPersonId());
+	     jdbcTemplate.update(sqlCreateAccountRelationship, inputPerson.getAccountId(), getCurrentPersonId());
 	}
 
 	private Person mapRowToPerson(SqlRowSet results) {

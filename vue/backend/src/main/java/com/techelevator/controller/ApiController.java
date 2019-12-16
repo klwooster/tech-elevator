@@ -92,14 +92,18 @@ public class ApiController {
     }
     
     @PutMapping(path = "/applicants/{applicantId}")
-    public ResponseEntity<Void> updateApplicant (@RequestBody Application application) {
+    public ResponseEntity<String> updateApplicant (@RequestBody Application application) {
     	Application oldValues = applicationDao.getFullApplicationByApplicantId(application.getApplicantId());
     	ChangeStatus status = applicationDao.updateFullApplication(application);
-    	UriComponents applicationUri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/" + Integer.toString(application.getApplicationId())).build();
     	HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
-    	logger.logChanges(application, oldValues, status.getStatus());
     	
-    	return ResponseEntity.created(applicationUri.toUri()).build();
+    	logger.logChanges(application, oldValues, status);
+    	
+    	if(status.getStatus().equals("Success")) {
+    		return new ResponseEntity<String>(String.valueOf(status.getId()), HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity<String>("New application could not be created, please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
     }
     
     @GetMapping(path = "/notes/{applicationId}")
@@ -118,6 +122,7 @@ public class ApiController {
     @PostMapping(path="/register")
     public ResponseEntity<String> createApplicant (@RequestBody Application application) {
     	ChangeStatus status = applicationDao.createNewFullApplication(application);
+    	application.setApplicationId(status.getId());
     	
     	HistoryLogger logger = new HistoryLogger(historyDao, historyChangesDao);
     	logger.logChanges(application, status);

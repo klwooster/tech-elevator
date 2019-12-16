@@ -15,6 +15,7 @@ import com.techelevator.model.IApplicationDAO;
 import com.techelevator.model.INotesDAO;
 import com.techelevator.model.IPersonDAO;
 import com.techelevator.model.Notes;
+import com.techelevator.model.Person;
 
 @Component
 public class JDBCApplicationDAO implements IApplicationDAO {
@@ -28,7 +29,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		this.personDAO = personDAO;
 		this.notesDAO = notesDAO;
 	}
-	
+
 	@Override
 	public Application getApplicationByApplicationId(int id) {
 		Application theApplication = null;
@@ -71,192 +72,171 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 
 		return applications;
 	}
-	
+
 	@Override
 	public Application getFullApplicationByApplicantId(int id) {
 		String sqlFindApplicationByApplicantId = "SELECT application_id, applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, "
-												 + "mobility_issues, medical_concerns, meal_plan, program, dorm_assignment, tshirt_size FROM application "
-												 + "WHERE applicant_id = ?";
+				+ "mobility_issues, medical_concerns, meal_plan, program, dorm_assignment, tshirt_size FROM application "
+				+ "WHERE applicant_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindApplicationByApplicantId, id);
-		
+
 		Application newApplication = new Application();
-		
-		if(results.next()) {
+
+		if (results.next()) {
 			newApplication = mapRowToApplication(results);
 		}
-		
-		//Get the Person Data for the Applicant
+
+		// Get the Person Data for the Applicant
 		newApplication.setApplicant(personDAO.getPersonByPersonId(id));
-		
-		//Get the Person Data for the Guardian
+
+		// Get the Person Data for the Guardian
 		newApplication.setGuardian(personDAO.getPersonByPersonId(newApplication.getGuardianId()));
-		
-		//Get the Person Data for the Emergency Contact
+
+		// Get the Person Data for the Emergency Contact
 		newApplication.setEmergencyContact(personDAO.getPersonByPersonId(newApplication.getEmergencyContactId()));
-		
-		//Get the Notes for the Applicant Id
-		//newApplication.setNotes(notesDAO.getNotesByApplicationId(id));
-		
+
+		// Get the Notes for the Applicant Id
+		// newApplication.setNotes(notesDAO.getNotesByApplicationId(id));
+
 		return newApplication;
 	}
-	
+
 	@Override
 	public void updateApplication(Application inputApplication) {
-		
-		 int application_id = inputApplication.getApplicationId();
-		 int applicant_id = inputApplication.getApplicantId();
-		 int account_id = inputApplication.getAccountId();
-		 int guardian_id = inputApplication.getGuardianId();
-		 int emergency_contact_id = inputApplication.getEmergencyContactId();
-		 String dietary_preference = inputApplication.getDietaryPreference();
-		 String dietary_restrictions = inputApplication.getDietaryRestrictions();
-		 String mobility_issues = inputApplication.getMobilityIssues();
-		 String medical_concerns = inputApplication.getMedicalConcerns();
-		 String meal_plan = inputApplication.getMealPlan();
-		 String program = inputApplication.getProgram();
-		 String dorm_assignment = inputApplication.getDormAssignment();
-		 String tshirt_size = inputApplication.getTshirtSize();
-	     
-		 String sqlUpdateApplicationBApplicationId = "UPDATE application SET applicant_id = ?, account_id = ?, guardian_id = ?, emergency_contact_id = ?, dietary_preference = ?, dietary_restrictions = ? , mobility_issues = ?,  medical_concerns = ?, meal_plan = ?, program = ?, dorm_assignment = ?, tshirt_size = ? WHERE application_id = ?";
-	     jdbcTemplate.update(sqlUpdateApplicationBApplicationId, applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues, medical_concerns, meal_plan, program, dorm_assignment, tshirt_size, application_id);
-		
+
+		int application_id = inputApplication.getApplicationId();
+		int applicant_id = inputApplication.getApplicantId();
+		int account_id = inputApplication.getAccountId();
+		int guardian_id = inputApplication.getGuardianId();
+		int emergency_contact_id = inputApplication.getEmergencyContactId();
+		String dietary_preference = inputApplication.getDietaryPreference();
+		String dietary_restrictions = inputApplication.getDietaryRestrictions();
+		String mobility_issues = inputApplication.getMobilityIssues();
+		String medical_concerns = inputApplication.getMedicalConcerns();
+		String meal_plan = inputApplication.getMealPlan();
+		String program = inputApplication.getProgram();
+		String dorm_assignment = inputApplication.getDormAssignment();
+		String tshirt_size = inputApplication.getTshirtSize();
+
+		String sqlUpdateApplicationBApplicationId = "UPDATE application SET applicant_id = ?, account_id = ?, guardian_id = ?, emergency_contact_id = ?, dietary_preference = ?, dietary_restrictions = ? , mobility_issues = ?,  medical_concerns = ?, meal_plan = ?, program = ?, dorm_assignment = ?, tshirt_size = ? WHERE application_id = ?";
+		jdbcTemplate.update(sqlUpdateApplicationBApplicationId, applicant_id, account_id, guardian_id,
+				emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues, medical_concerns,
+				meal_plan, program, dorm_assignment, tshirt_size, application_id);
+
 	}
-	
+
 	@Override
 	public ChangeStatus updateFullApplication(Application inputApplication) {
 		try {
-		 int application_id = inputApplication.getApplicationId();
-		 int applicant_id = inputApplication.getApplicantId();
-		 int account_id = inputApplication.getAccountId();
-		 int guardian_id = inputApplication.getGuardianId();
-		 int emergency_contact_id = inputApplication.getEmergencyContactId();
-		 String dietary_preference = inputApplication.getDietaryPreference();
-		 String dietary_restrictions = inputApplication.getDietaryRestrictions();
-		 String mobility_issues = inputApplication.getMobilityIssues();
-		 String medical_concerns = inputApplication.getMedicalConcerns();
-		 String meal_plan = inputApplication.getMealPlan();
-		 String program = inputApplication.getProgram();
-		 String dorm_assignment = inputApplication.getDormAssignment();
-		 String tshirt_size = inputApplication.getTshirtSize();
-	     
-		 String sqlUpdateApplicationBApplicationId = "UPDATE application SET applicant_id = ?, account_id = ?, guardian_id = ?, emergency_contact_id = ?, dietary_preference = ?, dietary_restrictions = ? , mobility_issues = ?,  medical_concerns = ?, meal_plan = ?, program = ?, dorm_assignment = ?, tshirt_size = ? WHERE application_id = ?";
-	     jdbcTemplate.update(sqlUpdateApplicationBApplicationId, applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues, medical_concerns, meal_plan, program, dorm_assignment, tshirt_size, application_id);
-		
-	     int person_id = inputApplication.getApplicant().getPersonId();
-		 String first_name = inputApplication.getApplicant().getFirstName();
-		 String last_name = inputApplication.getApplicant().getLastName();
-		 String preferred_name = inputApplication.getApplicant().getPreferredName();
-		 String date_of_birth = inputApplication.getApplicant().getDateOfBirth();
-		 String email = inputApplication.getApplicant().getEmail();
-		 String phone = inputApplication.getApplicant().getPhone();
-	     
-		 String sqlUpdateApplicant = "UPDATE person SET first_name = ?, last_name = ?, preferred_name = ?, date_of_birth = ?, email = ?, phone = ? WHERE person_id = ?";
-	     jdbcTemplate.update(sqlUpdateApplicant, first_name, last_name, preferred_name, date_of_birth, email, phone, person_id);
-	     
-	     int guardian_person_id = inputApplication.getGuardian().getPersonId();
-		 String guardian_first_name = inputApplication.getGuardian().getFirstName();
-		 String guardian_last_name = inputApplication.getGuardian().getLastName();
-		 String guardian_preferred_name = inputApplication.getGuardian().getPreferredName();
-		 String guardian_date_of_birth = inputApplication.getGuardian().getDateOfBirth();
-		 String guardian_email = inputApplication.getGuardian().getEmail();
-		 String guardian_phone = inputApplication.getGuardian().getPhone();
-	     
-		 String sqlUpdateGuardian = "UPDATE person SET first_name = ?, last_name = ?, preferred_name = ?, date_of_birth = ?, email = ?, phone = ? WHERE person_id = ?";
-	     jdbcTemplate.update(sqlUpdateGuardian, guardian_first_name, guardian_last_name, guardian_preferred_name, guardian_date_of_birth, guardian_email, guardian_phone, guardian_person_id);
-	     
-	     int emergencycontact_person_id = inputApplication.getEmergencyContact().getPersonId();
-		 String emergencycontact_first_name = inputApplication.getEmergencyContact().getFirstName();
-		 String emergencycontact_last_name = inputApplication.getEmergencyContact().getLastName();
-		 String emergencycontact_preferred_name = inputApplication.getEmergencyContact().getPreferredName();
-		 String emergencycontact_date_of_birth = inputApplication.getEmergencyContact().getDateOfBirth();
-		 String emergencycontact_email = inputApplication.getEmergencyContact().getEmail();
-		 String emergencycontact_phone = inputApplication.getEmergencyContact().getPhone();
-	     
-		 String sqlUpdatePerson = "UPDATE person SET first_name = ?, last_name = ?, preferred_name = ?, date_of_birth = ?, email = ?, phone = ? WHERE person_id = ?";
-	     jdbcTemplate.update(sqlUpdatePerson, emergencycontact_first_name, emergencycontact_last_name, emergencycontact_preferred_name, emergencycontact_date_of_birth, emergencycontact_email, emergencycontact_phone, emergencycontact_person_id);
-	     
-	     List<Notes> inputNotes = inputApplication.getNotes();
-	     
-	     for (Notes note: inputNotes) {
-		     int note_note_id = note.getNoteId();
-			 String note_note_body = note.getNoteBody();
-			 String note_create_date = note.getCreateDate();
-			 int note_application_id = note.getApplicationId();
-		     
-			 String sqlUpdateNotes = "UPDATE notes SET note_body = ?, create_date = ?, application_id = ? WHERE note_id = ?";
-		     jdbcTemplate.update(sqlUpdateNotes, note_note_body, note_create_date, note_application_id, note_note_id);
-	     } 
-		} catch(Exception e) {
-			return  new ChangeStatus("Failed", inputApplication.getApplicationId());
+			String sqlUpdateApplicationBApplicationId = "UPDATE application " + "SET applicant_id = ?, "
+					+ "account_id = ?, " + "guardian_id = ?, " + "emergency_contact_id = ?, "
+					+ "dietary_preference = ?, " + "dietary_restrictions = ?, " + "mobility_issues = ?,  "
+					+ "medical_concerns = ?, " + "meal_plan = ?, " + "program = ?, " + "dorm_assignment = ?, "
+					+ "tshirt_size = ? " + "WHERE application_id = ?";
+
+			jdbcTemplate.update(sqlUpdateApplicationBApplicationId, inputApplication.getApplicantId(),
+					inputApplication.getAccountId(), inputApplication.getGuardianId(),
+					inputApplication.getEmergencyContactId(), inputApplication.getDietaryPreference(),
+					inputApplication.getDietaryRestrictions(), inputApplication.getMobilityIssues(),
+					inputApplication.getMedicalConcerns(), inputApplication.getMealPlan(),
+					inputApplication.getProgram(), inputApplication.getDormAssignment(),
+					inputApplication.getTshirtSize(), inputApplication.getApplicationId());
+
+			updatePerson(inputApplication.getApplicant());
+			updatePerson(inputApplication.getGuardian());
+			updatePerson(inputApplication.getEmergencyContact());
+
+//			List<Notes> inputNotes = inputApplication.getNotes();
+//
+//			for (Notes note : inputNotes) {
+//				int note_note_id = note.getNoteId();
+//				String note_note_body = note.getNoteBody();
+//				String note_create_date = note.getCreateDate();
+//				int note_application_id = note.getApplicationId();
+//
+//				String sqlUpdateNotes = "UPDATE notes SET note_body = ?, create_date = ?, application_id = ? WHERE note_id = ?";
+//				jdbcTemplate.update(sqlUpdateNotes, note_note_body, note_create_date, note_application_id,
+//						note_note_id);
+//			}
+		} catch (Exception e) {
+			return new ChangeStatus("Failed", inputApplication.getApplicationId());
 		}
-		
+
 		return new ChangeStatus("Success", inputApplication.getApplicationId());
 	}
-	
+
 	@Override
 	public void createNewApplication(Application inputApplication) {
-		 int applicant_id = inputApplication.getApplicantId();
-		 int account_id = inputApplication.getAccountId();
-		 int guardian_id = inputApplication.getGuardianId();
-		 int emergency_contact_id = inputApplication.getEmergencyContactId();
-		 String dietary_preference = inputApplication.getDietaryPreference();
-		 String dietary_restrictions = inputApplication.getDietaryRestrictions();
-		 String mobility_issues = inputApplication.getMobilityIssues();
-		 String medical_concerns = inputApplication.getMedicalConcerns();
-		 String meal_plan = inputApplication.getMealPlan();
-		 String program = inputApplication.getProgram();
-		 String dorm_assignment = inputApplication.getDormAssignment();
-		 String tshirt_size = inputApplication.getTshirtSize();
-	     
-		 String sqlCreateNewApplication = "INSERT INTO application  (applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues,  medical_concerns, meal_plan, program, dorm_assignment, tshirt_size) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-	     jdbcTemplate.update(sqlCreateNewApplication, applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues, medical_concerns, meal_plan, program, dorm_assignment, tshirt_size);
+		int applicant_id = inputApplication.getApplicantId();
+		int account_id = inputApplication.getAccountId();
+		int guardian_id = inputApplication.getGuardianId();
+		int emergency_contact_id = inputApplication.getEmergencyContactId();
+		String dietary_preference = inputApplication.getDietaryPreference();
+		String dietary_restrictions = inputApplication.getDietaryRestrictions();
+		String mobility_issues = inputApplication.getMobilityIssues();
+		String medical_concerns = inputApplication.getMedicalConcerns();
+		String meal_plan = inputApplication.getMealPlan();
+		String program = inputApplication.getProgram();
+		String dorm_assignment = inputApplication.getDormAssignment();
+		String tshirt_size = inputApplication.getTshirtSize();
+
+		String sqlCreateNewApplication = "INSERT INTO application  (applicant_id, account_id, guardian_id, emergency_contact_id, dietary_preference, dietary_restrictions, mobility_issues,  medical_concerns, meal_plan, program, dorm_assignment, tshirt_size) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		jdbcTemplate.update(sqlCreateNewApplication, applicant_id, account_id, guardian_id, emergency_contact_id,
+				dietary_preference, dietary_restrictions, mobility_issues, medical_concerns, meal_plan, program,
+				dorm_assignment, tshirt_size);
 	}
-	
+
 	@Override
 	public ChangeStatus createNewFullApplication(Application inputApplication) {
-		 // TODO Hard coding account_id for now until we implement session functionality - need to refactor this!
-		 inputApplication.setAccountId(2);
-		 inputApplication.getApplicant().setAccountId(2);
-		 inputApplication.getGuardian().setAccountId(2);
-		 inputApplication.getEmergencyContact().setAccountId(2);
+		// TODO Hard coding account_id for now until we implement session functionality
+		// - need to refactor this!
 		
-		 // Pass Applicant (person object) from inputApplication to the person DAO and insert new person record into DB
-		 personDAO.createNewPerson(inputApplication.getApplicant());
-		 inputApplication.getApplicant().setPersonId(getCurrentPersonId());
-		 inputApplication.setApplicantId(inputApplication.getApplicant().getPersonId());
+		if(inputApplication.getAccountId() == 0) {
+			inputApplication.setAccountId(1);
+			inputApplication.getApplicant().setAccountId(1);
+			inputApplication.getGuardian().setAccountId(1);
+			inputApplication.getEmergencyContact().setAccountId(1);
+		}
 
-		 // Pass Guardian (person object) from inputApplication to the person DAO and insert new person record into DB
-		 personDAO.createNewPerson(inputApplication.getGuardian());
-		 inputApplication.getGuardian().setPersonId(getCurrentPersonId());
-		 inputApplication.setGuardianId(inputApplication.getGuardian().getPersonId());
+		// Pass Applicant (person object) from inputApplication to the person DAO and
+		// insert new person record into DB
+		personDAO.createNewPerson(inputApplication.getApplicant());
+		inputApplication.getApplicant().setPersonId(getCurrentPersonId());
+		inputApplication.setApplicantId(inputApplication.getApplicant().getPersonId());
 
-		 // Pass Emergency Contact (person object) from inputApplication to the person DAO and insert new person record into DB
-		 personDAO.createNewPerson(inputApplication.getEmergencyContact());
-		 inputApplication.getEmergencyContact().setPersonId(getCurrentPersonId());
-		 inputApplication.setEmergencyContactId(inputApplication.getEmergencyContact().getPersonId());
-		 
-		 inputApplication.setApplicationId(getNextApplicationId());
-		 
-		 try {
-			 createNewApplication(inputApplication);
-			 
-			 //Next Create Notes Data to save to the Notes Table
-//			 for(Notes note : inputApplication.getNotes()) {
-//				 note.setApplicationId(inputApplication.getApplicationId());
-//				 notesDAO.createNewNotes(note);
-//			 }
+		// Pass Guardian (person object) from inputApplication to the person DAO and
+		// insert new person record into DB
+		personDAO.createNewPerson(inputApplication.getGuardian());
+		inputApplication.getGuardian().setPersonId(getCurrentPersonId());
+		inputApplication.setGuardianId(inputApplication.getGuardian().getPersonId());
 
-		 } catch (Exception e) {
-			 return new ChangeStatus("Error Creating New Registration", 0);
-		 }
+		// Pass Emergency Contact (person object) from inputApplication to the person
+		// DAO and insert new person record into DB
+		personDAO.createNewPerson(inputApplication.getEmergencyContact());
+		inputApplication.getEmergencyContact().setPersonId(getCurrentPersonId());
+		inputApplication.setEmergencyContactId(inputApplication.getEmergencyContact().getPersonId());
 
-		 return new ChangeStatus("New Application - Success", inputApplication.getApplicationId());
+//		inputApplication.setApplicationId(getNextApplicationId());
+
+		try {
+			createNewApplication(inputApplication);
+
+			// Next Create Notes Data to save to the Notes Table
+			// for(Notes note : inputApplication.getNotes()) {
+			// note.setApplicationId(inputApplication.getApplicationId());
+			// notesDAO.createNewNotes(note);
+			// }
+
+		} catch (Exception e) {
+			return new ChangeStatus("Error Creating New Registration", 0);
+		}
+
+		return new ChangeStatus("New Application - Success", getCurrentApplicationId());
 	}
-	
-	
+
 	private Application mapRowToApplication(SqlRowSet results) {
 		Application theApplication = new Application();
-		
+
 		theApplication.setApplicationId(results.getInt("application_id"));
 		theApplication.setApplicantId(results.getInt("applicant_id"));
 		theApplication.setAccountId(results.getInt("account_id"));
@@ -270,14 +250,14 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		theApplication.setProgram(results.getString("program"));
 		theApplication.setDormAssignment(results.getString("dorm_assignment"));
 		theApplication.setTshirtSize(results.getString("tshirt_size"));
-		
+
 		return theApplication;
 
 	}
 
 	private int getCurrentPersonId() {
 		String sqlSelectNextId = "SELECT CURRVAL('person_person_id_seq')";
-		
+
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		int id = 0;
 		if (results.next()) {
@@ -287,23 +267,24 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		}
 		return id;
 	}
-	
-	private int getNextApplicationId() {
-		String sqlSelectNextId = "SELECT NEXTVAL('application_application_id_seq')";
-		
+
+	private int getCurrentApplicationId() {
+		String sqlSelectNextId = "SELECT CURRVAL('application_application_id_seq')";
+
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		int id = 0;
 		if (results.next()) {
 			id = results.getInt(1);
 		} else {
-			throw new RuntimeException("Something strange happened, unable to select next application id from sequence");
+			throw new RuntimeException(
+					"Something strange happened, unable to select next application id from sequence");
 		}
 		return id;
 	}
-	
+
 	private int getNextNotesId() {
 		String sqlSelectNextId = "SELECT NEXTVAL('notes_note_id_seq')";
-		
+
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectNextId);
 		int id = 0;
 		if (results.next()) {
@@ -312,6 +293,14 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 			throw new RuntimeException("Something strange happened, unable to select next survey id from sequence");
 		}
 		return id;
+	}
+
+	private void updatePerson(Person person) {
+		String sqlUpdateApplicant = "UPDATE person " + "SET first_name = ?, " + "last_name = ?, "
+				+ "preferred_name = ?, " + "date_of_birth = ?, " + "email = ?, " + "phone = ? " + "WHERE person_id = ?";
+
+		jdbcTemplate.update(sqlUpdateApplicant, person.getFirstName(), person.getLastName(), person.getPreferredName(),
+				person.getDateOfBirth(), person.getEmail(), person.getPhone(), person.getPersonId());
 	}
 
 }
