@@ -15,10 +15,10 @@ import com.techelevator.model.ICampDAO;
 import com.techelevator.model.Person;
 
 @Component
-public class JDBCCampDao implements ICampDAO {
+public class JDBCCampDAO implements ICampDAO {
 	private final JdbcTemplate jdbcTemplate;
 	
-	public JDBCCampDao(DataSource dataSource) {
+	public JDBCCampDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
@@ -57,7 +57,7 @@ public class JDBCCampDao implements ICampDAO {
 		attendee.setFirstName(result.getString("first_name"));
 		attendee.setLastName(result.getString("last_name"));
 		attendee.setPreferredName(result.getString("preferred_name"));
-		attendee.setDateOfBirth(result.getDate("date_of_birth").toLocalDate());
+		attendee.setDateOfBirth(result.getDate("date_of_birth").toLocalDate().toString());
 		attendee.setEmail(result.getString("email"));
 		attendee.setPhone(result.getString("phone"));
 		attendee.setPersonId(result.getInt("person_id"));
@@ -85,6 +85,9 @@ public class JDBCCampDao implements ICampDAO {
 	}
 	
 	private String getDateRange(Camp camp) {
-		return camp.getStartDate().toString() + " through " + camp.getEndDate().toString();
+		return camp.getStartDate().getMonth() + " " + camp.getStartDate().getDayOfMonth() + ", " 
+						+ camp.getStartDate().getYear() + " through " + camp.getEndDate().getMonth() + " " 
+						+ camp.getEndDate().getDayOfMonth() + ", " + camp.getEndDate().getYear();
+		
 	}
 }

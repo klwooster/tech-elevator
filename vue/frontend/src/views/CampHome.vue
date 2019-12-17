@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div class="row" v-for="camp in camps" v-bind:key="camp.campId">
-         <p> <router-link v-bind:to="{name: 'campdetails', params:{camp:camp.campId}} ">
+         <p> <router-link v-bind:to="{name: 'campdetails', params:{campdata: camp}} ">
             {{camp.name}}</router-link></p>
         <div class="camp-img" >
             <img :src="camp.image"/>

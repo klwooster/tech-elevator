@@ -1,13 +1,11 @@
 package com.techelevator.model;
 
-import java.time.LocalDate;
-
 public class Person {
 	private int personId;
 	private String firstName;
 	private String lastName;
 	private String preferredName;
-	private LocalDate dateOfBirth;
+	private String dateOfBirth;
 	private String email;
 	private String phone;
 	private int accountId;
@@ -36,10 +34,10 @@ public class Person {
 	public void setPreferredName(String preferredName) {
 		this.preferredName = preferredName;
 	}
-	public LocalDate getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	public String getEmail() {

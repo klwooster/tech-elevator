@@ -29,7 +29,7 @@
             <div class="row">
                 <p class="title"><b>Date of Birth</b></p>
                 <hr>
-                <p v-if="isInEditMode" class="form"><input id="dateOfBirth" v-model="applicationdata.applicant.dateOfBirth" /></p>
+                <p v-if="isInEditMode" class="form"><input id="dateOfBirth" v-model="applicationdata.applicant.dateOfBirth" placeholder="YYYY-MM-DD"></p>
                 <p v-else>{{applicationdata.applicant.dateOfBirth}}</p>
             </div>
             <div class="row">
@@ -83,10 +83,11 @@
 </template>
 
 <script>
+
 export default {
     name: 'applicant-info',
     props: {
-        applicationdata: null,
+        applicationdata: {},
         isInEditMode: false
     },
     data() {
@@ -176,7 +177,8 @@ export default {
         .form>textarea,
         .form>button,
         .form>input,
-        .subdata>input {
+        .subdata>input,
+        .my-date-picker {
             margin-left: auto;
             margin-right: auto;
             display: block;
@@ -184,6 +186,16 @@ export default {
             border: 1px solid #792359;
             width: 98%;
             font-size: 0.9em;
+        }
+
+        .vdp-datepicker > div > input {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            display: block !important;
+            margin: 5px !important;
+            border: 1px solid #792359 !important;
+            width: 98% !important;
+            font-size: 0.9em !important;
         }
 
         .control>* {

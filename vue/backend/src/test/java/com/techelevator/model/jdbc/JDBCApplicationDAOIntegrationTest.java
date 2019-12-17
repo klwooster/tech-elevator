@@ -172,7 +172,7 @@ public class JDBCApplicationDAOIntegrationTest {
 		theApplication.getApplicant().setFirstName("Me");
 		theApplication.getApplicant().setLastName("You");
 		theApplication.getApplicant().setPreferredName("Jim");
-		theApplication.getApplicant().setDateOfBirth(LocalDate.of(1980, 01, 30));
+		theApplication.getApplicant().setDateOfBirth("1980-01-30");
 		theApplication.getApplicant().setEmail("fake@yahoo.com");
 		theApplication.getApplicant().setPhone("12345");
 		
@@ -180,7 +180,7 @@ public class JDBCApplicationDAOIntegrationTest {
 		theApplication.getGuardian().setFirstName("Me");
 		theApplication.getGuardian().setLastName("You");
 		theApplication.getGuardian().setPreferredName("Jim");
-		theApplication.getGuardian().setDateOfBirth(LocalDate.of(1980, 01, 30));
+		theApplication.getGuardian().setDateOfBirth("1980-01-30");
 		theApplication.getGuardian().setEmail("fake@yahoo.com");
 		theApplication.getGuardian().setPhone("12345");
 		
@@ -188,7 +188,7 @@ public class JDBCApplicationDAOIntegrationTest {
 		theApplication.getEmergencyContact().setFirstName("Me");
 		theApplication.getEmergencyContact().setLastName("You");
 		theApplication.getEmergencyContact().setPreferredName("Jim");
-		theApplication.getEmergencyContact().setDateOfBirth(LocalDate.of(1980, 01, 30));
+		theApplication.getEmergencyContact().setDateOfBirth("1980-01-30");
 		theApplication.getEmergencyContact().setEmail("fake@yahoo.com");
 		theApplication.getEmergencyContact().setPhone("12345");
 		

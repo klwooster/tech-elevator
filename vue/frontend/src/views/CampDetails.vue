@@ -1,15 +1,16 @@
 <template>
   <div id="main">
     <div class="row">
-        <p>{{camp.displayname}}</p>
+        <p>{{camp.name}}</p>
         <p>{{camp.location}}</p>
-        <p>{{camp.date}}</p>
-        <p>{{camp.ageRange}}</p>
         <p>{{camp.description}}</p>
+        <p>Next Session: {{camp.dateRange}}</p>
+        <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
+        <p>Total Capacity: {{camp.capacity}}</p>
         <div class="camp-img">
             <img :src="camp.image"/>
         </div>
-        <camp-attendees v-bind:campname="camp.name" />
+        <camp-attendees v-bind:attendees="camp.attendees" />
     </div>
   </div>
 </template>
@@ -31,7 +32,7 @@ export default {
       
   },
   created() {
-      this.camp = this.$route.params.camp;
+      this.camp = this.$route.params.campdata;
   }
 };
 </script>

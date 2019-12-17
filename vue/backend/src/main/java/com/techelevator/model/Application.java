@@ -16,7 +16,7 @@ public class Application {
 	private String program;
 	private String dormAssignment;
 	private String tshirtSize;
-	
+	private Camp campProgram;
 	private Person applicant;
 	private Person guardian;
 	private Person emergencyContact;
@@ -125,6 +125,10 @@ public class Application {
 	public void setNotes(List<Notes> notes) {
 		this.notes = notes;
 	}
-	
-	
+	public Camp getCampProgram() {
+		return campProgram;
+	}
+	public void setCampProgram(Camp campProgram) {
+		this.campProgram = campProgram;
+	}
 }
