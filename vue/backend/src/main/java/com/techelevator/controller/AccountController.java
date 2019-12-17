@@ -6,6 +6,7 @@ import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.JwtTokenHandler;
 import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.authentication.UserCreationException;
+import com.techelevator.model.Person;
 import com.techelevator.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class AccountController {
     }
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public String register(@Valid @RequestBody User user, BindingResult result) throws UserCreationException {
+    public String register(@Valid @RequestBody User user, @RequestBody Person person, BindingResult result) throws UserCreationException {
         if (result.hasErrors()) {
             String errorMessages = "";
             for (ObjectError error : result.getAllErrors()) {
@@ -44,7 +45,7 @@ public class AccountController {
             }
             throw new UserCreationException(errorMessages);
         }
-        auth.register(user.getUsername(), user.getPassword(), user.getRole());
+        auth.register(user.getUsername(), user.getPassword(), user.getRole(), person);
         return "{\"success\":true}";
     }
 

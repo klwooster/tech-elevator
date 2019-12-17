@@ -1,5 +1,6 @@
 package com.techelevator.authentication;
 
+import com.techelevator.model.Person;
 import com.techelevator.model.User;
 
 public interface AuthProvider {
@@ -42,7 +43,7 @@ public interface AuthProvider {
      * @param password the new user's password
      * @param role the new user's role
      */
-    void register(String username, String password, String role);
+    void register(String username, String password, String role, Person person);
 
     /**
      * Checks to see if the current user has one of the given roles
