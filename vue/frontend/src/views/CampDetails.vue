@@ -10,6 +10,7 @@
         <div class="camp-img">
             <img :src="camp.image"/>
         </div>
+        <registration-metrics v-bind:campers="camp"/>
         <camp-attendees v-bind:attendees="camp.attendees" />
     </div>
   </div>
@@ -17,11 +18,13 @@
 
 <script>
 import CampAttendees from '@/components/CampAttendees.vue'
+import RegistrationMetrics from '@/components/RegistrationMetrics.vue'
 
 export default {
   name: 'camp-details',
   components: {
-      CampAttendees
+      CampAttendees,
+      RegistrationMetrics
   },
   data() {
     return {
