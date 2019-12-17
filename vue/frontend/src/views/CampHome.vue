@@ -1,14 +1,15 @@
 <template>
   <div id="main">
-    <div class="row" v-for="camp in camps" v-bind:key="camp.name">
-         <p> <router-link v-bind:to="{name: 'campdetails', params:{camp:camps[0]}} ">
-            {{camp.displayname}}</router-link></p>
+    <div class="row" v-for="camp in camps" v-bind:key="camp.campId">
+         <p> <router-link v-bind:to="{name: 'campdetails', params:{camp:camp.campId}} ">
+            {{camp.name}}</router-link></p>
         <div class="camp-img" >
             <img :src="camp.image"/>
         </div>
         <p>Location: {{camp.location}}</p>
-        <p>When: {{camp.date}}</p>
-        <p>Ages: {{camp.ageRange}}</p>
+        <p>When: {{camp.dateRange}}</p>
+        <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
+        <p>Capacity: {{camp.capacity}}</p>
         <p>{{camp.description}}</p>
         
         <div class="button">
@@ -21,41 +22,22 @@
 </template>
 
 <script>
+import APIService from '@/service/APIService';
 
 export default {
   name: 'camp-home',
   data() {
     return {
-        camps: [
-            {
-                'displayname': 'Camp North Star',
-                'name': 'northstar',
-                'location': 'Seattle, WA',
-                'date': 'June 7th - July 2nd',
-                'ageRange': '7-12',
-                'description': 'A fun getaway for your kids to get out of your hair',
-                'image': '../best-family-summer-camp-canoeing.jpg'
-            },
-            {
-                'displayname': 'Camp Wannahockaloogi',
-                'name' : 'wannahockaloogi',
-                'location': 'Bend, OR',
-                'date': 'July 10th - July 31st',
-                'ageRange': '13-20',
-                'description': 'A fun getaway for your teen/ young adult to buzz off to',
-                'image': '../webcover.jpg'
-            },
-            {
-                'displayname': 'Camp Anawanna',
-                'name': 'anawanna',
-                'location': 'Portland, OR',
-                'date': 'July 10th - July 31st',
-                'ageRange': '21+',
-                'description': 'A fun getaway for the grownups to have grownup time',
-                'image': '../Camp-grown-ups-MAIN.jpg'
-            }
-        ]
+        camps: [ ]
     } 
+  },
+  methods: {
+      getAllCamps() {
+          APIService.getCamps().then(campData => this.camps = campData);
+      }
+  },
+  created() {
+      this.getAllCamps();
   }
 };
 </script>

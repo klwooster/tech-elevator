@@ -18,6 +18,7 @@ public class Camp {
 	private List<Person> attendees;
 	private Map<String, Integer> ageDistribution;
 	private String image;
+	private String dateRange;
 	
 	public int getCampId() {
 		return campId;
@@ -96,5 +97,11 @@ public class Camp {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public String getDateRange() {
+		return dateRange;
+	}
+	public void setDateRange(String dateRange) {
+		this.dateRange = dateRange;
 	}
 }

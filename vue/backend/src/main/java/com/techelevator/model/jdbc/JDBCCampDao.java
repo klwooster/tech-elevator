@@ -1,5 +1,6 @@
 package com.techelevator.model.jdbc;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class JDBCCampDao implements ICampDAO {
 			camps.add(mapRowToCamp(result));
 		}
 		
-		return null;
+		return camps;
 	}
 
 	@Override
@@ -78,7 +79,12 @@ public class JDBCCampDao implements ICampDAO {
 		camp.setEndDate(result.getDate("end_date").toLocalDate());
 		camp.setImage(result.getString("image"));
 		camp.setAttendees(getAllAttendeesByCampId(camp.getCampId()));
+		camp.setDateRange(getDateRange(camp));
 		
 		return camp;
+	}
+	
+	private String getDateRange(Camp camp) {
+		return camp.getStartDate().toString() + " through " + camp.getEndDate().toString();
 	}
 }
