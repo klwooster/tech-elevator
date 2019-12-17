@@ -92,14 +92,6 @@ const router = new Router({
                 requiresAuth: false
             }
         },
-        // {
-        //     path: "/application-notes",
-        //     name: "applicantnotes",
-        //     component: ApplicationNotes,
-        //     meta: {
-        //         requiresAuth: false
-        //     }
-        // },
         {
             path: "/camp-details/:campdata",
             name: "campdetails",

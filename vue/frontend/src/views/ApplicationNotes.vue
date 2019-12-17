@@ -1,24 +1,26 @@
 <template>
   <div id="main">
     <div v-for="note in noteData" v-bind:key="note.noteId">
-      <p class="title"><b>Note Change Id</b></p>
-        <hr>
-          <p class="form">{{note.noteId}}</p>
-          <p class="form">{{note.noteBody}}</p>
-          <p class="form">{{note.createDate}}</p>
-          <p class="form">{{note.applicationId}}</p>
+      <note-details v-bind:noterecord="note"/>
     </div>
   </div>
 </template>
 
 <script>
 
+import NoteDetails from '@/components/NoteDetails.vue';
 import APIService from '@/service/APIService';
 
 
 export default {
-  name: 'application-notes',
-  props: ['id'] ,
+  name: 'application-note',
+  components: {
+    NoteDetails
+  },
+  props: {
+    'id': Number,
+    'isInEditMode': false
+  },
   data() {
     return {
       noteData: [{}]
@@ -29,12 +31,11 @@ export default {
       APIService.getNotesByApplication(this.id)
       .then((noteData) => {
         this.noteData = noteData
-      })
-      .catch(err => console.error(err));
+      });
     }
   },
   created() {
-       this.getNotes();
+    getNotes();
   }
 };
 </script>
