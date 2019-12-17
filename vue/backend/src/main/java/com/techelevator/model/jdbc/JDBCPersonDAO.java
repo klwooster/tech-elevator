@@ -1,5 +1,6 @@
 package com.techelevator.model.jdbc;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.Account;
-import com.techelevator.model.Application;
 import com.techelevator.model.IPersonDAO;
 import com.techelevator.model.Person;
 
@@ -112,7 +111,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		 String first_name = inputPerson.getFirstName();
 		 String last_name = inputPerson.getLastName();
 		 String preferred_name = inputPerson.getPreferredName();
-		 String date_of_birth = inputPerson.getDateOfBirth();
+		 LocalDate date_of_birth = inputPerson.getDateOfBirth();
 		 String email = inputPerson.getEmail();
 		 String phone = inputPerson.getPhone();
 	     
@@ -126,7 +125,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		 String first_name = inputPerson.getFirstName();
 		 String last_name = inputPerson.getLastName();
 		 String preferred_name = inputPerson.getPreferredName();
-		 String date_of_birth = inputPerson.getDateOfBirth();
+		 LocalDate date_of_birth = inputPerson.getDateOfBirth();
 		 String email = inputPerson.getEmail();
 		 String phone = inputPerson.getPhone();
 
@@ -144,7 +143,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		thePerson.setFirstName(results.getString("first_name"));
 		thePerson.setLastName(results.getString("last_name"));
 		thePerson.setPreferredName(results.getString("preferred_name"));
-		thePerson.setDateOfBirth(results.getString("date_of_birth"));
+		thePerson.setDateOfBirth(results.getDate("date_of_birth").toLocalDate());
 		thePerson.setEmail(results.getString("email"));
 		thePerson.setPhone(results.getString("phone"));
 		
@@ -158,7 +157,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		thePerson.setFirstName(results.getString("first_name"));
 		thePerson.setLastName(results.getString("last_name"));
 		thePerson.setPreferredName(results.getString("preferred_name"));
-		thePerson.setDateOfBirth(results.getString("date_of_birth"));
+		thePerson.setDateOfBirth(results.getDate("date_of_birth").toLocalDate());
 		thePerson.setEmail(results.getString("email"));
 		thePerson.setPhone(results.getString("phone"));
 		thePerson.setAccountId(results.getInt("account_id"));

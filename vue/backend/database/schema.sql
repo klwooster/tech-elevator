@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS history;
 DROP TABLE IF EXISTS workshops;
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS application;
+DROP TABLE IF EXISTS camp;
 DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS users;
@@ -19,11 +20,11 @@ CREATE TABLE users (
 
 CREATE TABLE person (
     person_id serial,
-    first_name VARCHAR(20) NOT NULL,
-    last_name VARCHAR(25) NOT NULL,
-    preferred_name VARCHAR(25),
-    date_of_birth VARCHAR(20),
-    email VARCHAR(40),
+    first_name VARCHAR(75) NOT NULL,
+    last_name VARCHAR(75) NOT NULL,
+    preferred_name VARCHAR(50),
+    date_of_birth date,
+    email VARCHAR(100),
     phone VARCHAR(13),
 
     constraint pk_person primary key (person_id)
@@ -34,7 +35,22 @@ CREATE TABLE account (
     person_id int,
 
     constraint pk_account primary key (account_id, person_id),
-	constraint fk_account_person foreign key (person_id) references person (person_id)
+        constraint fk_account_person foreign key (person_id) references person (person_id)
+);
+
+CREATE TABLE camp (
+        camp_id serial,
+        name VARCHAR(50),
+        description VARCHAR(300),
+        location VARCHAR(50),
+        capacity int,
+        min_age int,
+        max_age int,
+        start_date date,
+        end_date date,
+        image VARCHAR(100),
+        
+        constraint pk_camp primary key (camp_id)
 );
 
 CREATE TABLE application ( 
@@ -49,19 +65,21 @@ CREATE TABLE application (
 	medical_concerns VARCHAR(200),
 	meal_plan VARCHAR(100),
 	program VARCHAR(50),
+	program_id int,
 	dorm_assignment VARCHAR(50),
 	tshirt_size VARCHAR(5),
 	
 	constraint pk_application primary key (application_id),
 	constraint fk_application_person_applicant foreign key (applicant_id) references person (person_id),
-    constraint fk_application_person_guardian foreign key (guardian_id) references person (person_id),
-    constraint fk_application_person_emergency_contact foreign key (emergency_contact_id) references person (person_id)
+        constraint fk_application_person_guardian foreign key (guardian_id) references person (person_id),
+        constraint fk_application_person_emergency_contact foreign key (emergency_contact_id) references person (person_id),
+        constraint fk_application_camp foreign key (program_id) references camp (camp_id)
 );
 
 CREATE TABLE notes (
 	note_id serial,
 	note_body VARCHAR(250),
-	create_date date,
+	create_date timestamp,
 	application_id int,
 	
 	constraint pk_notes primary key (note_id),

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -113,7 +114,7 @@ public class JDBCPersonDAOIntegrationTest {
 	    thePerson.setFirstName("Wayne");
 	    thePerson.setLastName("Wayne Jr");
 	    thePerson.setPreferredName("Jill");
-	    thePerson.setDateOfBirth("11/22/63");
+	    thePerson.setDateOfBirth(LocalDate.of(1963, 11, 22));
 	    thePerson.setEmail("jill@fake.com");
 	    thePerson.setPhone("8675309");
 		

@@ -64,7 +64,13 @@ export default {
             body: JSON.stringify(newNote)
         });
     },
-
+    getCamps() {
+        console.log('getting all camp info....');
+        return fetch(`http://localhost:8080/AuthenticationApplication/api/camps/`)
+            .then(response => {
+                return response.json();
+            });
+    },
     getAttendeesByCamp(campname) {
         console.log('getting camp attendees....');
         return fetch(`http://localhost:8080/AuthenticationApplication/api/attendees/${campname}`)
