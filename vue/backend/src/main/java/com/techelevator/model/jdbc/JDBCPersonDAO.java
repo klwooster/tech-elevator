@@ -111,7 +111,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		 String first_name = inputPerson.getFirstName();
 		 String last_name = inputPerson.getLastName();
 		 String preferred_name = inputPerson.getPreferredName();
-		 LocalDate date_of_birth = inputPerson.getDateOfBirth();
+		 LocalDate date_of_birth = convertDate(inputPerson.getDateOfBirth());
 		 String email = inputPerson.getEmail();
 		 String phone = inputPerson.getPhone();
 	     
@@ -125,7 +125,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		 String first_name = inputPerson.getFirstName();
 		 String last_name = inputPerson.getLastName();
 		 String preferred_name = inputPerson.getPreferredName();
-		 LocalDate date_of_birth = inputPerson.getDateOfBirth();
+		 LocalDate date_of_birth = convertDate(inputPerson.getDateOfBirth());
 		 String email = inputPerson.getEmail();
 		 String phone = inputPerson.getPhone();
 
@@ -143,7 +143,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		thePerson.setFirstName(results.getString("first_name"));
 		thePerson.setLastName(results.getString("last_name"));
 		thePerson.setPreferredName(results.getString("preferred_name"));
-		thePerson.setDateOfBirth(results.getDate("date_of_birth").toLocalDate());
+		thePerson.setDateOfBirth(convertDate(results.getDate("date_of_birth").toLocalDate()));
 		thePerson.setEmail(results.getString("email"));
 		thePerson.setPhone(results.getString("phone"));
 		
@@ -157,7 +157,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 		thePerson.setFirstName(results.getString("first_name"));
 		thePerson.setLastName(results.getString("last_name"));
 		thePerson.setPreferredName(results.getString("preferred_name"));
-		thePerson.setDateOfBirth(results.getDate("date_of_birth").toLocalDate());
+		thePerson.setDateOfBirth(convertDate(results.getDate("date_of_birth").toLocalDate()));
 		thePerson.setEmail(results.getString("email"));
 		thePerson.setPhone(results.getString("phone"));
 		thePerson.setAccountId(results.getInt("account_id"));
@@ -177,5 +177,32 @@ public class JDBCPersonDAO implements IPersonDAO {
 		}
 		return id;
 	}
-
+	
+	private LocalDate convertDate(String dateText) {
+		int year = 2020;
+		int month = 01;
+		int day = 01;
+		
+		try {
+		year = Integer.parseInt(dateText.substring(0, dateText.indexOf('-')));
+		dateText = dateText.substring(dateText.indexOf('-') + 1);
+		
+		month = Integer.parseInt(dateText.substring(0, dateText.indexOf('-')));
+		dateText = dateText.substring(dateText.indexOf('-') + 1);
+		
+		day = Integer.parseInt(dateText.substring(0, dateText.indexOf('-')));
+		
+			return LocalDate.of(year, month, day);
+		} catch (Exception e) {
+			return LocalDate.of(year, month, day);
+		}
+	}
+	
+	private String convertDate(LocalDate date) {
+		try {
+			return date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth();
+		} catch (Exception e) {
+			return "2020-01-01";
+		}
+	}
 }

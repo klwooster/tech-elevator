@@ -114,7 +114,7 @@ public class JDBCPersonDAOIntegrationTest {
 	    thePerson.setFirstName("Wayne");
 	    thePerson.setLastName("Wayne Jr");
 	    thePerson.setPreferredName("Jill");
-	    thePerson.setDateOfBirth(LocalDate.of(1963, 11, 22));
+	    thePerson.setDateOfBirth("11-22-63");
 	    thePerson.setEmail("jill@fake.com");
 	    thePerson.setPhone("8675309");
 		
