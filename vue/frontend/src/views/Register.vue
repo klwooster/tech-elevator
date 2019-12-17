@@ -82,7 +82,7 @@
         type="phone"
         id="phone"
         class="form-control"
-        placeholder="Email"
+        placeholder="Phone"
         v-model="person.phone"
         required
       />
@@ -106,14 +106,14 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
-      person : {
+      },
+      person: {
             firstName: '',
             lastName: '',
             preferredName: '',
             dateOfBirth: '',
             email: '',
             phone: ''
-        }
       },
       registrationErrors: false,
     };
