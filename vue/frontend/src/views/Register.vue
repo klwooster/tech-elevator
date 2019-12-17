@@ -11,7 +11,7 @@
         id="username"
         class="form-control"
         placeholder="Username"
-        v-model="user.username"
+        v-model="registration.user.username"
         required
         autofocus
       />
@@ -21,7 +21,7 @@
         id="password"
         class="form-control"
         placeholder="Password"
-        v-model="user.password"
+        v-model="registration.user.password"
         required
       />
       <input
@@ -29,7 +29,7 @@
         id="confirmPassword"
         class="form-control"
         placeholder="Confirm Password"
-        v-model="user.confirmPassword"
+        v-model="registration.user.confirmPassword"
         required
       />
       <label for="firstName" class="sr-only">First Name</label>
@@ -38,7 +38,7 @@
         id="firstName"
         class="form-control"
         placeholder="First Name"
-        v-model="person.firstName"
+        v-model="registration.person.firstName"
         required
       />
       <label for="lastName" class="sr-only">Last Name</label>
@@ -47,7 +47,7 @@
         id="lastName"
         class="form-control"
         placeholder="Last Name"
-        v-model="person.lastName"
+        v-model="registration.person.lastName"
         required
       />
       <label for="preferredName" class="sr-only">Preferred Name</label>
@@ -56,7 +56,7 @@
         id="preferredName"
         class="form-control"
         placeholder="Preferred Name"
-        v-model="person.preferredName"
+        v-model="registration.person.preferredName"
         required
       />
       <label for="dateOfBirth" class="sr-only">Date Of Birth</label>
@@ -65,7 +65,7 @@
         id="dateOfBirth"
         class="form-control"
         placeholder="Date Of Birth"
-        v-model="person.dateOfBirth"
+        v-model="registration.person.dateOfBirth"
         required
       />
       <label for="email" class="sr-only">Email</label>
@@ -74,7 +74,7 @@
         id="email"
         class="form-control"
         placeholder="Email"
-        v-model="person.email"
+        v-model="registration.person.email"
         required
       />
       <label for="phone" class="sr-only">Phone</label>
@@ -83,7 +83,7 @@
         id="phone"
         class="form-control"
         placeholder="Phone"
-        v-model="person.phone"
+        v-model="registration.person.phone"
         required
       />
       <router-link :to="{ name: 'login' }">
@@ -101,6 +101,7 @@ export default {
   name: 'register',
   data() {
     return {
+      registration: {
       user: {
         username: '',
         password: '',
@@ -114,7 +115,7 @@ export default {
             dateOfBirth: '',
             email: '',
             phone: ''
-      },
+      }},
       registrationErrors: false,
     };
   },
@@ -126,7 +127,7 @@ export default {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.user, this.person),
+        body: JSON.stringify(this.registration),
       })
         .then((response) => {
           if (response.ok) {
