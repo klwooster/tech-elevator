@@ -13,15 +13,11 @@
 
 <script>
 
-// import NoteDetails from '@/components/NoteDetails.vue'
 import APIService from '@/service/APIService';
 
 
 export default {
   name: 'application-notes',
-  // components: {
-  //   NoteDetails
-  // },
   props: ['id'] ,
   data() {
     return {
@@ -33,13 +29,12 @@ export default {
       APIService.getNotesByApplication(this.id)
       .then((noteData) => {
         this.noteData = noteData
-      });
+      })
+      .catch(err => console.error(err));
     }
   },
   created() {
-    // this.$watch(this.id, id => {
        this.getNotes();
-    // })
   }
 };
 </script>
