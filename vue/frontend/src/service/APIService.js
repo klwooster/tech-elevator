@@ -42,9 +42,6 @@ export default {
         return fetch(`http://localhost:8080/AuthenticationApplication/api/history/${id}`)
             .then((response) => {
                 return response.json();
-            })
-            .then((response) => {
-                console.log(response);
             });
     },
     getNotesByApplication(id) {

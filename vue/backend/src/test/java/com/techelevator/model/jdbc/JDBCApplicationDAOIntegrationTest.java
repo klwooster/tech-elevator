@@ -56,7 +56,8 @@ public class JDBCApplicationDAOIntegrationTest {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		JDBCPersonDAO personDAO = new JDBCPersonDAO(dataSource);
 		JDBCNotesDAO notesDAO = new JDBCNotesDAO(dataSource);
-		dao = new JDBCApplicationDAO(dataSource,personDAO,notesDAO);
+		JDBCCampDAO campDAO = new JDBCCampDAO(dataSource);
+		dao = new JDBCApplicationDAO(dataSource,personDAO,notesDAO,campDAO);
 	}
 
 	/*

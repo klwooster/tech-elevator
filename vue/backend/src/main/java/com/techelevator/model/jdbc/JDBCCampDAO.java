@@ -90,4 +90,17 @@ public class JDBCCampDAO implements ICampDAO {
 						+ camp.getEndDate().getDayOfMonth() + ", " + camp.getEndDate().getYear();
 		
 	}
+
+	@Override
+	public Camp getCampByName(String name) {
+		String sqlGetCampById = "SELECT camp_id, name, description, location, capacity, min_age, max_age, start_date, end_date, image FROM camp WHERE name LIKE ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetCampById, ("%" + name + "%"));
+		Camp camp = new Camp();
+		
+		while(result.next()) {
+			camp = mapRowToCamp(result);
+		}
+		
+		return camp;
+	}
 }

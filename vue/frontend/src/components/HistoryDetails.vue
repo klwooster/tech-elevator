@@ -1,40 +1,26 @@
 <template>
         <div class="historyDetails">
-            <h1>Application History</h1>
+            <h1><b>{{source}} History</b></h1>
             <div class="row">
-                <p class="title"><b>History Change Id</b></p>
+                <p class="title"><b>Record #{{historyrecord.historyId}}</b></p>
                 <hr>
-                <p class="form">{{historyrecord.historyId}}</p>
-                <p class="form">{{historyrecord.dateOfChange}}</p>
-                <p class="form">{{historyrecord.updateMadeById}}</p>
-                <p class="form">{{historyrecord.changesMadeToId}}</p>
+                <p class="form"><b>Change made on</b> {{historyrecord.dateOfChange.monthValue}}/{{historyrecord.dateOfChange.dayOfMonth}}/{{historyrecord.dateOfChange.year}} at {{historyrecord.dateOfChange.hour}}:{{historyrecord.dateOfChange.minute}}:{{historyrecord.dateOfChange.second}}</p>
+                <p class="form"><b>Change made by user ID</b> #{{historyrecord.updateMadeById}}</p>
+                <p class="form"><b>Change made to</b> {{source}} #{{historyrecord.changesMadeToId}}</p>
             </div>
-            <div v-for="update in historyrecord.updatesMade" v-bind:key="update.historyId">
-                <p class="form">{{update.oldValue}}</p>
-                <p class="form">{{update.newValue}}</p>
-                <p class="form">{{update.dataElementChanged}}</p>
-            </div>
-
-            
+                <div v-for="update in historyrecord.updatesMade" v-bind:key="update.historyId">
+                    <p class="form">Changes made to {{update.dataElementChanged}}</p>
+                    <hr>
+                    <p class="form">Old Value: {{update.oldValue}}</p>
+                    <p class="form">New Value: {{update.newValue}}</p>
+                </div>
         </div>
 </template>
 
 <script>
-import APIService from '@/service/APIService';
-
 export default {
     name: 'history-details',
-    props: {
-        historyrecord: null
-    },
-    data() {
-        return {
-            
-        }
-    },
-    methods: {
-        
-    }
+    props: [ 'historyrecord', 'source' ]
 };
 </script>
 

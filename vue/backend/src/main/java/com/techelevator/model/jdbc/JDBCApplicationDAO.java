@@ -10,11 +10,12 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Application;
+import com.techelevator.model.Camp;
 import com.techelevator.model.ChangeStatus;
 import com.techelevator.model.IApplicationDAO;
+import com.techelevator.model.ICampDAO;
 import com.techelevator.model.INotesDAO;
 import com.techelevator.model.IPersonDAO;
-import com.techelevator.model.Notes;
 import com.techelevator.model.Person;
 
 @Component
@@ -23,11 +24,13 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 	private final JdbcTemplate jdbcTemplate;
 	private final IPersonDAO personDAO;
 	private final INotesDAO notesDAO;
+	private final ICampDAO campDAO;
 
-	public JDBCApplicationDAO(DataSource dataSource, IPersonDAO personDAO, INotesDAO notesDAO) {
+	public JDBCApplicationDAO(DataSource dataSource, IPersonDAO personDAO, INotesDAO notesDAO, ICampDAO campDAO) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.personDAO = personDAO;
 		this.notesDAO = notesDAO;
+		this.campDAO = campDAO;
 	}
 
 	@Override
@@ -138,8 +141,8 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 					inputApplication.getAccountId(), inputApplication.getGuardianId(),
 					inputApplication.getEmergencyContactId(), inputApplication.getDietaryPreference(),
 					inputApplication.getDietaryRestrictions(), inputApplication.getMobilityIssues(),
-					inputApplication.getMedicalConcerns(), inputApplication.getMealPlan(),
-					inputApplication.getProgram(), inputApplication.getDormAssignment(),
+					inputApplication.getMedicalConcerns(), inputApplication.getMealPlan(), 
+					campDAO.getCampByName(inputApplication.getProgram()).getCampId(), inputApplication.getDormAssignment(),
 					inputApplication.getTshirtSize(), inputApplication.getApplicationId());
 
 			updatePerson(inputApplication.getApplicant());
@@ -176,7 +179,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		String mobility_issues = inputApplication.getMobilityIssues();
 		String medical_concerns = inputApplication.getMedicalConcerns();
 		String meal_plan = inputApplication.getMealPlan();
-		String program = inputApplication.getProgram();
+		int program = campDAO.getCampByName(inputApplication.getProgram()).getCampId();
 		String dorm_assignment = inputApplication.getDormAssignment();
 		String tshirt_size = inputApplication.getTshirtSize();
 
@@ -250,6 +253,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		theApplication.setProgram(results.getString("program"));
 		theApplication.setDormAssignment(results.getString("dorm_assignment"));
 		theApplication.setTshirtSize(results.getString("tshirt_size"));
+		theApplication.setCampProgram(campDAO.getCampByName(theApplication.getProgram()));
 
 		return theApplication;
 

@@ -1,48 +1,42 @@
 <template>
   <div id="main">
-    <div v-for="history in historyData" v-bind:key="history.historyId">
-      <history-details v-bind:historyrecord="history"/>
+    <div v-for="historyRec in historyData" v-bind:key="historyRec.historyId">
+      <history-details v-bind:historyrecord="historyRec" source="Application"/>
     </div>
   </div>
 </template>
 
 <script>
+  import HistoryDetails from '@/components/HistoryDetails.vue'
+  import APIService from '@/service/APIService';
 
-import HistoryDetails from '@/components/HistoryDetails.vue'
-import APIService from '@/service/APIService';
+  export default {
+      name: 'application-history',
+      components: {
+        HistoryDetails
+      },
+      data() {
+        return {
+          historyData: []
+        }
+      },
+      methods: {
+        showHistory(id) {
+          console.log("Before Fetch");
+          APIService.getHistoryById(id)
+            .then(history => {
+              this.historyData = history
+              console.log("HISTORY: " + history);
+              console.log("HISTORYDATA: " + this.historyData);
+            });
 
-export default {
-name: 'application-history',
-components: {
-HistoryDetails
-},
-data() {
-return {
-historyData: [{
-historyId: "",
-dateOfChange: "",
-updateMadeById: "",
-changesMadeToId: "",
-updatesMade: [
-{
-historyId: "",
-oldValue: "",
-newValue: "",
-dataElementChanged: ""
-}]
-}]
-}
-},
-methods: { 
-  showHistory(id) {
-    APIService.getHistoryById(id)
-    .then(historyrecord => this.historyData = historyrecord); 
+          
+        }
+      },
+      created() {
+        this.showHistory(this.$route.params.id);
+      }
   }
-},
-created() {
-  this.showHistory(this.$route.params.id);
-}
-};
 </script>
 
 <style scoped>

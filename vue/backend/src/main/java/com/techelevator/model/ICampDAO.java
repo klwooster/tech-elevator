@@ -5,4 +5,5 @@ import java.util.List;
 public interface ICampDAO {
 	List<Camp> getAllCampDetails();
 	List<Person> getAllAttendeesByCampId(int id);
+	Camp getCampByName(String name);
 }

@@ -33,9 +33,9 @@
                 <div v-if="isInEditMode" class="subdata form">
                     <!-- <input id="program" v-model="applicationdata.program" /> -->
                     <select id ="program" v-model="applicationdata.program">
-                        <option value="northstar">Camp North Star</option>
-                        <option value="wanahockaloogi">Camp Wanahockaloogi</option>
-                        <option value="anawanna">Camp Anawanna</option>
+                        <option value="North">Camp North Star</option>
+                        <option value="Wanahockaloogi">Camp Wanahockaloogi</option>
+                        <option value="Anawanna">Camp Anawanna</option>
                     </select>
                 </div>
                 <div v-else class="subdata">
