@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.techelevator.model.IPersonDAO;
+import com.techelevator.model.Person;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDao;
 
@@ -18,12 +20,14 @@ public class RequestAuthProvider implements AuthProvider {
 
     private HttpServletRequest request;
     private UserDao dao;
+    private IPersonDAO personDAO;
     public final static String USER_KEY = "appCurrentUser";
 
     @Autowired
-    public RequestAuthProvider(HttpServletRequest request, UserDao dao) {
+    public RequestAuthProvider(HttpServletRequest request, UserDao dao, IPersonDAO personDAO) {
         this.request = request;
         this.dao = dao;
+        this.personDAO = personDAO;
     }
 
     @Override
@@ -68,8 +72,9 @@ public class RequestAuthProvider implements AuthProvider {
     }
 
     @Override
-    public void register(String username, String password, String role) {
+    public void register(String username, String password, String role, Person person) {
         dao.saveUser(username, password, role);
+        personDAO.createNewPerson(person);
     }
 
     @Override

@@ -32,6 +32,60 @@
         v-model="user.confirmPassword"
         required
       />
+      <label for="firstName" class="sr-only">First Name</label>
+      <input
+        type="first_name"
+        id="firstName"
+        class="form-control"
+        placeholder="First Name"
+        v-model="person.firstName"
+        required
+      />
+      <label for="lastName" class="sr-only">Last Name</label>
+      <input
+        type="last_name"
+        id="lastName"
+        class="form-control"
+        placeholder="Last Name"
+        v-model="person.lastName"
+        required
+      />
+      <label for="preferredName" class="sr-only">Preferred Name</label>
+      <input
+        type="preferred_name"
+        id="preferredName"
+        class="form-control"
+        placeholder="Preferred Name"
+        v-model="person.preferredName"
+        required
+      />
+      <label for="dateOfBirth" class="sr-only">Date Of Birth</label>
+      <input
+        type="date_of_birth"
+        id="dateOfBirth"
+        class="form-control"
+        placeholder="Date Of Birth"
+        v-model="person.dateOfBirth"
+        required
+      />
+      <label for="email" class="sr-only">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        placeholder="Email"
+        v-model="person.email"
+        required
+      />
+      <label for="phone" class="sr-only">Phone</label>
+      <input
+        type="phone"
+        id="phone"
+        class="form-control"
+        placeholder="Phone"
+        v-model="person.phone"
+        required
+      />
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
@@ -53,6 +107,14 @@ export default {
         confirmPassword: '',
         role: 'user',
       },
+      person: {
+            firstName: '',
+            lastName: '',
+            preferredName: '',
+            dateOfBirth: '',
+            email: '',
+            phone: ''
+      },
       registrationErrors: false,
     };
   },
@@ -64,7 +126,7 @@ export default {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(this.user, this.person),
       })
         .then((response) => {
           if (response.ok) {

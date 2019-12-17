@@ -10,14 +10,6 @@ DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE users (
-  id serial PRIMARY KEY,
-  username varchar(255) NOT NULL UNIQUE,     -- Username
-  password varchar(32) NOT NULL,      -- Password
-  salt varchar(256) NOT NULL,          -- Password Salt
-  role varchar(255) NOT NULL default('user')
-);
-
 CREATE TABLE person (
     person_id serial,
     first_name VARCHAR(75) NOT NULL,
@@ -28,6 +20,17 @@ CREATE TABLE person (
     phone VARCHAR(13),
 
     constraint pk_person primary key (person_id)
+);
+
+CREATE TABLE users (
+  id serial PRIMARY KEY,
+  person_id int,
+  username varchar(255) NOT NULL UNIQUE,     -- Username
+  password varchar(32) NOT NULL,      -- Password
+  salt varchar(256) NOT NULL,          -- Password Salt
+  role varchar(255) NOT NULL default('user'),
+  
+  constraint fk_users_person foreign key (person_id) references person (person_id)
 );
 
 CREATE TABLE account (
