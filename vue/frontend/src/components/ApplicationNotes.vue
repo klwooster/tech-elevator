@@ -1,56 +1,97 @@
 <template>
-  <div id="main">
-    <div v-for="note in noteData" v-bind:key="note.noteId">
-      <p class="title"><b>Note Change Id</b></p>
-        <hr>
-          <p class="form">{{note.noteId}}</p>
-          <p class="form">{{note.noteBody}}</p>
-          <p class="form">{{note.createDate}}</p>
-          <p class="form">{{note.applicationId}}</p>
+    <div class="notes">
+        <div>
+            <h2>Notes</h2>
+            <div class="form">
+                <label for="new-note">Add a new note:</label>
+                <textarea id="new-note"></textarea>
+                <button>Submit</button>
+            </div>
+            <div v-for="note in allnotes.notes" v-bind:key="note.noteId" class="row">
+                <h3>{{note.createDate}}</h3>
+                <p>{{note.noteBody}}</p>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-
-import APIService from '@/service/APIService';
-
-
 export default {
   name: 'application-notes',
-  props: ['id'] ,
-  data() {
-    return {
-      noteData: [{}]
-    }
-  },
-  methods: { 
-    getNotes() {
-      APIService.getNotesByApplication(this.id)
-      .then((noteData) => {
-        this.noteData = noteData
-      })
-      .catch(err => console.error(err));
-    }
-  },
-  created() {
-       this.getNotes();
-  }
+  props: ['allnotes'],
+  computed: {
+        title(noterecord) {
+            return noterecord.createDate.substr(0, 10) + ', by ' + '[NAME PLACEHOLDER]';
+        }
+    } 
 };
 </script>
 
 <style scoped>
-   #main {
-            flex-basis: 85%;
-            width: 85%;
-            flex-shrink: 0;
+        .notes {
+            flex-basis: 90%;
             flex-grow: 0;
-            padding: 20px 0px 20px 0px;
+            flex-shrink: 0;
+        }
+        
+        .notes>div {
+            background-color: #F7F0C2;
+            margin: 20px 0x 20px 0px;
+            padding: 0px 20px 20px 20px;
+        }
+        
+        .notes h2 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8em;
+            padding: 10px 0px 10px 0px;
+            color: #792359;
+        }
+        
+        .form {
+            border-bottom: 1px solid #792359;
+            padding: 0px 0px 15px 0px;
+            margin-top: -15px;
+        }
+        
+        .form>textarea,
+        .form>button,
+        .form>label {
+            width: 98%;
             margin-left: auto;
             margin-right: auto;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: block;
+            margin: 5px;
+        }
+        
+        .form>textarea,
+        .form>button {
+            border: 1px solid #792359;
+        }
+
+        .row>h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1em;
+        }
+        
+        .row>p {
+            font-size: 1.2em;
+            margin: auto;
+            padding: 4px;
+        }
+        
+        .row .title {
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+        
+        .row hr {
+            border-top: 1px solid #792359;
+            margin: 0px 0px 0px 0px;
+        }
+        
+        .row>h3 {
+            margin-bottom: -4px;
         }
 </style>
