@@ -121,7 +121,7 @@ public class JDBCPersonDAO implements IPersonDAO {
 	}
 	
 	@Override
-	public void createNewPerson(Person inputPerson) {
+	public int createNewPerson(Person inputPerson) {
 		 String first_name = inputPerson.getFirstName();
 		 String last_name = inputPerson.getLastName();
 		 String preferred_name = inputPerson.getPreferredName();
@@ -134,6 +134,8 @@ public class JDBCPersonDAO implements IPersonDAO {
 	     
 		 String sqlCreateAccountRelationship = "INSERT INTO account (account_id, person_id) VALUES (?, ?)";
 	     jdbcTemplate.update(sqlCreateAccountRelationship, inputPerson.getAccountId(), getCurrentPersonId());
+	     
+	     return getCurrentPersonId();
 	}
 
 	private Person mapRowToPerson(SqlRowSet results) {
