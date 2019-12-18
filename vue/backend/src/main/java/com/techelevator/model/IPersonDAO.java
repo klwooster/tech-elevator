@@ -20,7 +20,7 @@ public interface IPersonDAO {
 	public void updatePerson(Person person);
 	
 	//Create Person
-	public void createNewPerson(Person person);
+	public int createNewPerson(Person person);
 	
 	public List<Person> getPersonsByProgram(String programName);
 	
