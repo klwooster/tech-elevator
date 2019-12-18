@@ -5,29 +5,32 @@
             <h1 v-else>New Camper Registration</h1>
             <div class="control">
                 <button v-show="!isInEditMode" v-on:click="$emit('toggle-edit-mode')">Edit</button>
+                <router-link v-bind:to="{name: 'applicationhistory', params: {id: applicationdata.applicationId, fname: applicationdata.applicant.firstName, lname: applicationdata.applicant.lastName}}">
+                    <button>View History</button> 
+                </router-link>
             </div>
         </div>
         <h3 v-show="!isInEditMode">Application #{{applicationdata.applicationId}}<br>Account #{{applicationdata.accountId}}</h3>
         <div class="row">
-            <p class="title"><b>First Name</b></p>
+            <p class="title">First Name</p>
             <hr>
             <p v-if="isInEditMode" class="form"><input id="firstName" v-model="applicationdata.applicant.firstName" /></p>
             <p v-else>{{applicationdata.applicant.firstName}}</p>
         </div>
         <div class="row">
-            <p class="title"><b>Last Name</b></p>
+            <p class="title">Last Name</p>
             <hr>
             <p v-if="isInEditMode" class="form"><input id="lastName" v-model="applicationdata.applicant.lastName" /></p>
             <p v-else>{{applicationdata.applicant.lastName}}</p>
         </div>
         <div class="row">
-            <p class="title"><b>Preferred Name</b></p>
+            <p class="title">Preferred Name</p>
             <hr>
             <p v-if="isInEditMode" class="form"><input id="preferredName" v-model="applicationdata.applicant.preferredName" /></p>
             <p v-else>{{applicationdata.applicant.preferredName}}</p>
         </div>
         <div class="row">
-            <p class="title"><b>Date of Birth</b></p>
+            <p class="title">Date of Birth</p>
             <hr>
             <p v-if="isInEditMode" class="form"><input id="dateOfBirth" v-model="applicationdata.applicant.dateOfBirth" placeholder="YYYY-MM-DD"></p>
             <p v-else>{{applicationdata.applicant.dateOfBirth}}</p>
@@ -111,7 +114,7 @@ export default {
 <style scoped>        
         .details-top>h1 {
             font-family: 'Playfair Display', serif;
-            font-style: italic;
+            font-weight: bold;
             font-size: 2.3em;
             margin: 5px 0px 20px -15px;
         }
@@ -132,10 +135,10 @@ export default {
         }
         
         .details>h3 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
+            font-family: 'Open Sans Condensed', sans-serif;
             font-size: 1em;
             margin-top: -10px;
+            text-transform: uppercase;
         }
         
         .details .row {
@@ -155,9 +158,8 @@ export default {
         
         .details>h3,
         .row>h3 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
             font-size: 1em;
+            font-family: 'Open Sans Condensed', sans-serif;
         }
         
         .row>p {
@@ -168,7 +170,8 @@ export default {
         
         .row .title {
             font-size: 1.2em;
-            text-transform: uppercase;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
         }
         
         .row hr {
@@ -208,11 +211,13 @@ export default {
             font-size: 0.9em !important;
         }
 
-        .control>* {
+        .control>button,
+        .control>a>button {
             border: 1px solid #792359;
             background-color: #DAC3D1;
             color: #792359;
             font-size: 1.1em;
             margin: 5px;
+            border-radius: 4px;
         }
 </style>

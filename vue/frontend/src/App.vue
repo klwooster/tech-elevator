@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <navigation/>
+    <div id="test">
+      <navigation/>
+    </div>
     <router-view/>
   </div>
 </template>
@@ -32,5 +34,9 @@ export default {
             align-items: stretch;
             justify-content: stretch;
             font-size: 16px;
+        }
+        #test {
+          position: fixed;
+          width: 100%;
         }
 </style>

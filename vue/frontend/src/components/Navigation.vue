@@ -5,12 +5,6 @@
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'camphome'}" exact>
                     <i class="fas fa-campground transparent"></i> Home
                 </router-link>
-<<<<<<< HEAD
-=======
-                <!-- <router-link tag="li" active-class="selected" v-bind:to="{name: 'home'}" exact>
-                    <i class="fas fa-campground transparent"></i> Dashboard
-                </router-link> -->
->>>>>>> 67f55d50bf1dc9ba5cae515ea4255107428187fd
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'campregistration'}">
                     <i class="fas fa-campground transparent"></i> Register Now!
                 </router-link>
@@ -51,6 +45,7 @@ export default {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            position: static;
         }
 
         nav {

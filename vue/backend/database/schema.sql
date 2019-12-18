@@ -53,6 +53,7 @@ CREATE TABLE camp (
         start_date date,
         end_date date,
         image VARCHAR(100),
+        about VARCHAR(500),
         
         constraint pk_camp primary key (camp_id)
 );

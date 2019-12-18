@@ -60,9 +60,9 @@ export default {
         object-fit: cover;
     }
     .camp-name {
-        font-size: 2.5em;
+        font-size: 2em;
         font-family: 'Playfair Display', serif;
-        font-style: italic;
+        /* font-style: italic; */
     }
     .button button{
         font-size: 20px;

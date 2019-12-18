@@ -3,11 +3,6 @@
     <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
     <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" v-on:save-changes="updateApplication" v-on:discard-changes="edit"/>
     <application-notes v-bind:allnotes="application" v-show="isAdmin()"/>
-    <div>
-      <router-link v-bind:to="{name: 'applicationhistory', params: {id: application.applicationId}}">
-        <button>View History</button> 
-      </router-link>
-    </div>
   </div>
   
 </template>
@@ -74,10 +69,9 @@ export default {
 <style scoped>
    #main {
             flex-basis: 85%;
-            width: 85%;
             flex-shrink: 0;
             flex-grow: 0;
-            padding: 20px 0px 20px 0px;
+            padding: 5% 0px 20px 0px;
             margin-left: auto;
             margin-right: auto;
             display: flex;

@@ -19,12 +19,8 @@ public class Camp {
 	private Map<String, Integer> ageDistribution;
 	private String image;
 	private String dateRange;
-<<<<<<< HEAD
 	private String splashClass;
-=======
 	private String about;
->>>>>>> 67f55d50bf1dc9ba5cae515ea4255107428187fd
-	
 	
 	public String getAbout() {
 		return about;
@@ -52,6 +48,9 @@ public class Camp {
 		} else {
 			this.splashClass = "splash-anawanna";
 		}
+	}
+	public String getSplashClass() {
+		return this.splashClass;
 	}
 	public String getDescription() {
 		return description;

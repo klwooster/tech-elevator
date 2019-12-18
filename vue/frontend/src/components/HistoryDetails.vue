@@ -1,19 +1,24 @@
 <template>
         <div class="historyDetails">
-            <div class="row">
-                <p class="title"><b>Record #{{historyrecord.historyId}}</b></p>
-                <hr>
-                <p class="form"><b>STATUS:</b> {{historyrecord.status}}</p>
-                <p class="form"><b>Change made on</b> {{historyrecord.dateOfChange.monthValue}}/{{historyrecord.dateOfChange.dayOfMonth}}/{{historyrecord.dateOfChange.year}} at {{historyrecord.dateOfChange.hour}}:{{historyrecord.dateOfChange.minute}}:{{historyrecord.dateOfChange.second}}</p>
-                <p class="form"><b>Change made by user ID</b> #{{historyrecord.updateMadeById}}</p>
-                <p class="form"><b>Change made to</b> {{source}} #{{historyrecord.changesMadeToId}}</p>
-            </div>
-                <div v-for="update in historyrecord.updatesMade" v-bind:key="update.historyId">
-                    <p class="form">Changes made to {{update.dataElementChanged}}</p>
-                    <hr>
-                    <p class="form">Old Value: {{update.oldValue}}</p>
-                    <p class="form">New Value: {{update.newValue}}</p>
-                </div>
+                <table>
+                    <tr class="top-row">
+                        <td colspan="3">
+                            <b>Record #{{historyrecord.historyId}}</b><br>
+                            <b>{{historyrecord.dateOfChange.monthValue}}/{{historyrecord.dateOfChange.dayOfMonth}}/{{historyrecord.dateOfChange.year}}</b> by User ID {{historyrecord.updateMadeById}}<br>
+                            <b>STATUS:</b> {{historyrecord.status}}
+                        </td>
+                    </tr>
+                    <tr class="header-row">
+                        <td>Data Changed</td>
+                        <td>Old Value</td>
+                        <td>New Value</td>
+                    </tr>
+                    <tr v-for="update in historyrecord.updatesMade" v-bind:key="update.historyId" class="update-row">
+                        <td>{{update.dataElementChanged}}</td>
+                        <td>{{update.oldValue}}</td>
+                        <td>{{update.newValue}}</td>
+                    </tr>
+                </table>
         </div>
 </template>
 
@@ -25,99 +30,28 @@ export default {
 </script>
 
 <style scoped>        
-        .details-top>h1 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 2.3em;
-            margin: 5px 0px 20px -15px;
-        }
-        
-        .details {
-            flex-basis: 70%;
-        }
-        
-        .details-top>h1 {
-            display: inline-block;
-            width: 65%;
-        }
-        
-        .details-top .control {
-            display: inline-block;
-            width: auto;
-            margin-right: 20px;
-        }
-        
-        .details>h3 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1em;
-            margin-top: -10px;
-        }
-        
-        .details .row {
-            display: inline-block;
-            width: 40%;
-            margin: 0px 10px 15px 0px;
-        }
-        
-        .details .row>p {
-            display: block;
-        }
-        
-        .details hr {
-            border-top: 1px solid #792359;
-            margin: 10px 0px 15px 0px;
-        }
-        
-        .details>h3,
-        .row>h3 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1em;
-        }
-        
-        .row>p {
-            font-size: 1.2em;
-            margin: auto;
-            padding: 4px;
-        }
-        
-        .row .title {
-            font-size: 1.2em;
-            text-transform: uppercase;
-        }
-        
-        .row hr {
-            border-top: 1px solid #792359;
-            margin: 0px 0px 0px 0px;
-        }
-        
-        .row>h3 {
-            margin-bottom: -4px;
-        }
-        
-        .subdata {
-            padding-left: 15px;
-        }
-
-        .form>textarea,
-        .form>button,
-        .form>input,
-        .subdata>input {
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-            margin: 5px;
-            border: 1px solid #792359;
-            width: 98%;
-            font-size: 0.9em;
-        }
-
-        .control>* {
-            border: 1px solid #792359;
-            background-color: #DAC3D1;
-            color: #792359;
-            font-size: 1.1em;
-            margin: 5px;
-        }
+    table {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        /* border: 1px solid #fb8124; */
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 15px;
+        margin-top: 5px;
+    }
+    .top-row > td {
+        font-size: 25px;
+        padding-bottom: 15px;
+        /* border-bottom: 1px solid red; */
+    }
+    .header-row > td {
+        font-size: 24px;
+        text-transform: uppercase;
+        background-color: #792359;
+        color: white;
+    }
+    .update-row > td {
+        border: 1px solid #792359;
+    }
 </style>

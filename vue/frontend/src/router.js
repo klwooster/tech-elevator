@@ -84,6 +84,13 @@ const router = new Router({
             }
         },
         {
+            path: "#summer-camp-overview",
+            name: "camphomeoverview",
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
             path: "/application-history/:id",
             name: "applicationhistory",
             params: true,

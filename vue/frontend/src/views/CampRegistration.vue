@@ -90,7 +90,7 @@ export default {
             width: 85%;
             flex-shrink: 0;
             flex-grow: 0;
-            padding: 20px 0px 20px 0px;
+            padding: 5% 0px 20px 0px;
             margin-left: auto;
             margin-right: auto;
             display: flex;
