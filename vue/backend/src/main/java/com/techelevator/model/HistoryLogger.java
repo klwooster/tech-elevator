@@ -56,6 +56,7 @@ public class HistoryLogger {
 		for(Field field : appFields) {
 			try {
 				field.setAccessible(true);
+				if(!field.getName().equalsIgnoreCase("Notes")) {
 				Object request = field.get(requestBody);
 				Object oldValue = field.get(oldValues);
 				
@@ -95,7 +96,7 @@ public class HistoryLogger {
 					if(request != oldValue) {
 						updates.add(createNewUpdate(field, requestBody, oldValues, historyId));
 					}
-				}
+				}}
 				
 			} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block

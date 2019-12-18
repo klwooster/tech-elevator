@@ -18,14 +18,19 @@
             </router-link>
         </div>
     </div>
+    <total-registration-metrics v-bind:allcamps="camps"/>
   </div>
 </template>
 
 <script>
 import APIService from '@/service/APIService';
+import TotalRegistrationMetrics from '@/components/TotalRegistrationMetrics.vue'
 
 export default {
   name: 'camp-home',
+  components: {
+      TotalRegistrationMetrics
+  },
   data() {
     return {
         camps: [ ]

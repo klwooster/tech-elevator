@@ -1,9 +1,9 @@
 <template>
         <div class="historyDetails">
-            <h1><b>{{source}} History</b></h1>
             <div class="row">
                 <p class="title"><b>Record #{{historyrecord.historyId}}</b></p>
                 <hr>
+                <p class="form"><b>STATUS:</b> {{historyrecord.status}}</p>
                 <p class="form"><b>Change made on</b> {{historyrecord.dateOfChange.monthValue}}/{{historyrecord.dateOfChange.dayOfMonth}}/{{historyrecord.dateOfChange.year}} at {{historyrecord.dateOfChange.hour}}:{{historyrecord.dateOfChange.minute}}:{{historyrecord.dateOfChange.second}}</p>
                 <p class="form"><b>Change made by user ID</b> #{{historyrecord.updateMadeById}}</p>
                 <p class="form"><b>Change made to</b> {{source}} #{{historyrecord.changesMadeToId}}</p>

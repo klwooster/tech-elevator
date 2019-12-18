@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { Pie, mixins } from "vue-chartjs";
 export default {
     extends: Pie,

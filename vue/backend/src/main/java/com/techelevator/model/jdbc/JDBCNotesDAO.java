@@ -79,7 +79,7 @@ public class JDBCNotesDAO implements INotesDAO {
 		theNotes = new Notes();
 		theNotes.setNoteId(results.getInt("note_id"));
 		theNotes.setNoteBody(results.getString("note_body"));
-		theNotes.setCreateDate(results.getString("create_date"));
+		theNotes.setCreateDate(results.getDate("create_date").toString());
 		theNotes.setApplicationId(results.getInt("application_id"));
 		
 		return theNotes;

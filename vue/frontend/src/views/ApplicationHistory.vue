@@ -1,5 +1,6 @@
 <template>
   <div id="main">
+    <h1><b>Application History</b></h1><br>
     <div v-for="historyRec in historyData" v-bind:key="historyRec.historyId">
       <history-details v-bind:historyrecord="historyRec" source="Application"/>
     </div>

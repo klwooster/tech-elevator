@@ -1,5 +1,6 @@
 package com.techelevator.model.jdbc;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,7 +100,7 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 		newApplication.setEmergencyContact(personDAO.getPersonByPersonId(newApplication.getEmergencyContactId()));
 
 		// Get the Notes for the Applicant Id
-		// newApplication.setNotes(notesDAO.getNotesByApplicationId(id));
+		 newApplication.setNotes(notesDAO.getNotesByApplicationId(id));
 
 		return newApplication;
 	}
@@ -304,7 +305,34 @@ public class JDBCApplicationDAO implements IApplicationDAO {
 				+ "preferred_name = ?, " + "date_of_birth = ?, " + "email = ?, " + "phone = ? " + "WHERE person_id = ?";
 
 		jdbcTemplate.update(sqlUpdateApplicant, person.getFirstName(), person.getLastName(), person.getPreferredName(),
-				person.getDateOfBirth(), person.getEmail(), person.getPhone(), person.getPersonId());
+				convertDate(person.getDateOfBirth()), person.getEmail(), person.getPhone(), person.getPersonId());
 	}
-
+	
+	private LocalDate convertDate(String dateText) {
+		int year = 2020;
+		int month = 01;
+		int day = 01;
+		
+		try {
+		year = Integer.parseInt(dateText.substring(0, dateText.indexOf('-')));
+		dateText = dateText.substring(dateText.indexOf('-') + 1);
+		
+		month = Integer.parseInt(dateText.substring(0, dateText.indexOf('-')));
+		dateText = dateText.substring(dateText.indexOf('-') + 1);
+		
+		day = Integer.parseInt(dateText.substring(0, dateText.indexOf('-')));
+		
+			return LocalDate.of(year, month, day);
+		} catch (Exception e) {
+			return LocalDate.of(year, month, day);
+		}
+	}
+	
+	private String convertDate(LocalDate date) {
+		try {
+			return date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth();
+		} catch (Exception e) {
+			return "2020-01-01";
+		}
+	}
 }
