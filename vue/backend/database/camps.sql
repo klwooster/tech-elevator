@@ -1,8 +1,8 @@
 INSERT INTO camp (name, description, location, capacity, min_age, max_age, start_date, end_date, image, about)
 VALUES ('Camp North Star',
         'A fun way to get your kids out of your hair!',
-        'Seattle, WA',
-        '50',
+        'Bend, OR',
+        '100',
         '7',
         '12',
         '2020-06-07',
@@ -25,4 +25,4 @@ VALUES ('Camp North Star',
         '100',
         '2020-07-10',
         '2020-07-31',
-        '../Camp-grown-ups-MAIN.jpg', 'Forget what you know about summer camp, this one is for the grown-ups! Leave your kids at home and come and join us for awesome hikes, relaxing spas, luxurious lodging, gorgeous landscapes, and a very well-equipped kaeside bar. Sign up for Camp Anawanna with a friend for a discount or come solo and meet new people! We are excited to have you!');
+        '../Camp-grown-ups-MAIN.jpg', 'Forget what you know about summer camp, this one is for the grown-ups! Leave your kids at home and come and join us for awesome hikes, relaxing spas, luxurious lodging, gorgeous landscapes, super fun activities, and a very well-equipped lakeside bar. Sign up for Camp Anawanna with a friend for a discount or come solo and meet new people! We are excited to have you!');
