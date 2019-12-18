@@ -55,7 +55,7 @@ const router = new Router({
             name: "applicantlist",
             component: ApplicantList,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {
@@ -64,7 +64,7 @@ const router = new Router({
             component: ApplicantInfo,
             params: true,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {
@@ -72,7 +72,7 @@ const router = new Router({
             name: "campregistration",
             component: CampRegistration,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {
@@ -89,7 +89,7 @@ const router = new Router({
             params: true,
             component: ApplicationHistory,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {

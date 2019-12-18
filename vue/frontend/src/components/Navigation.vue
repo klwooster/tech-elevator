@@ -14,14 +14,9 @@
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'applicantlist'}">
                     <i class="fas fa-campground transparent"></i> View Applicants
                 </router-link>
-                <!-- <li>
-                    <i class="fas fa-campground transparent"></i> 
-                    Communication Center
-                </li> -->
-                <!-- <li>
-                    <i class="fas fa-campground transparent"></i> 
-                    Invoicing
-                </li> -->
+                <router-link tag="li" active-class="selected" v-bind:to="{name: 'login'}">
+                    <i class="fas fa-campground transparent"></i> Log In
+                </router-link>
             </ul>
         </nav>
     </header>
