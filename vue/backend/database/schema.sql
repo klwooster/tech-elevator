@@ -7,8 +7,9 @@ DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS application;
 DROP TABLE IF EXISTS camp;
 DROP TABLE IF EXISTS account;
-DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS person;
+
 
 CREATE TABLE person (
     person_id serial,

@@ -80,22 +80,22 @@ INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_
 VALUES (10,10,2,3,'omnivore','none','none','none','Standard','northstar','One','XS');
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('So excited to get started!',null,1);
+VALUES ('So excited to get started!','2019-08-12',1);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('Oh, I forgot to tell you I can not eat bananas.',null,1);
+VALUES ('Oh, I forgot to tell you I can not eat bananas.','2019-08-14',1);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('My son Jim is so excited, we love this camp!',null,3);
+VALUES ('My son Jim is so excited, we love this camp!','2019-09-15',3);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('None',null,5);
+VALUES ('This will be the highlight of my year','2019-09-02',5);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('Little Johnny is not the best swimmer, please keep a close watch on him.',null,6);
+VALUES ('Little Johnny is not the best swimmer, please keep a close watch on him.','2019-08-22',6);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('I would like to volunteer to chaperone for the kids this year.',null,10);
+VALUES ('I would like to volunteer to chaperone for the kids this year.','2019-07-29',10);
 
 INSERT INTO workshops (application_id,workshop,rank)
 VALUES (1,'Workshop stuff',1);
