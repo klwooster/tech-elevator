@@ -79,6 +79,7 @@ public class JDBCCampDAO implements ICampDAO {
 		camp.setEndDate(result.getDate("end_date").toLocalDate());
 		camp.setImage(result.getString("image"));
 		camp.setAttendees(getAllAttendeesByCampId(camp.getCampId()));
+		camp.setRemainingSpaces(camp.getTotalCapacity() - camp.getAttendees().size());
 		camp.setDateRange(getDateRange(camp));
 		
 		return camp;
