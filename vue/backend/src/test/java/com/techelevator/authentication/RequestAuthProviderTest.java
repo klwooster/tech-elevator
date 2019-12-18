@@ -1,3 +1,32 @@
+
+package com.techelevator.authentication;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.techelevator.model.User;
+import com.techelevator.model.UserDao;
+
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * RequestAuthProviderTest
+ */
+public class RequestAuthProviderTest {
+//    private RequestAuthProvider sut;
+//    private HttpServletRequest mockedRequest;
+//    private UserDao mockedDao;
+
+
 //package com.techelevator.authentication;
 //
 //import static org.junit.Assert.assertEquals;
@@ -24,7 +53,7 @@
 //    private RequestAuthProvider sut;
 //    private HttpServletRequest mockedRequest;
 //    private UserDao mockedDao;
-//
+
 //    @Before
 //    public void before() {
 //        mockedRequest = mock(HttpServletRequest.class);
@@ -211,4 +240,6 @@
 //
 //        assertFalse(sut.userHasRole(new String[] {}));
 //    }
-//}
+
+}
+
