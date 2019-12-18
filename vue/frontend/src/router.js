@@ -27,8 +27,8 @@ const router = new Router({
     base: process.env.BASE_URL,
     linkActiveClass: "selected",
     routes: [{
-            path: '/',
-            name: 'home',
+            path: '/dashboard',
+            name: 'dashboard',
             component: Home,
             meta: {
                 requiresAuth: false
@@ -76,7 +76,7 @@ const router = new Router({
             }
         },
         {
-            path: "/camp-home",
+            path: "/",
             name: "camphome",
             component: CampHome,
             meta: {
