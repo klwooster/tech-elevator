@@ -5,9 +5,9 @@
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'camphome'}">
                     <i class="fas fa-campground transparent"></i> Home
                 </router-link>
-                <router-link tag="li" active-class="selected" v-bind:to="{name: 'home'}" exact>
+                <!-- <router-link tag="li" active-class="selected" v-bind:to="{name: 'home'}" exact>
                     <i class="fas fa-campground transparent"></i> Dashboard
-                </router-link>
+                </router-link> -->
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'campregistration'}">
                     <i class="fas fa-campground transparent"></i> Register Now!
                 </router-link>

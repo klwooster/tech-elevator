@@ -83,7 +83,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
         .sidebar {
             flex-basis: 25%;
             flex-grow: 0;

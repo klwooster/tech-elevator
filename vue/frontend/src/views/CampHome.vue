@@ -3,8 +3,8 @@
     <div class="row" v-for="camp in camps" v-bind:key="camp.campId">
          <p> <router-link v-bind:to="{name: 'campdetails', params:{campdata: camp}} ">
             {{camp.name}}</router-link></p>
-        <div class="camp-img" >
-            <img :src="camp.image"/>
+        <div class="camp-img-div" >
+            <img class="camp-img" :src="camp.image"/>
         </div>
         <p>Location: {{camp.location}}</p>
         <p>When: {{camp.dateRange}}</p>
@@ -111,22 +111,24 @@ export default {
     .row{
         justify-content: center;
         text-align: center;
+        flex-basis: 25%;
+        flex-shrink: 0;
+        flex-grow: 0;
     }
     .camp-image {
         display: block;
-        max-height: 20%;
-        max-width: 30%;
-        overflow: hidden;
+        height: 20%;
+        width: 30%;
     }
-    .camp-image > img {
+    .camp-image-div {
         object-fit: cover;
+         overflow: hidden;
     }
     .button button{
         font-size: 20px;
         border-radius: 20px;
-        width: 6%;
         background-color:#112F40;
         color: white;
-        padding: 3px;
+        padding: 5px 10px 5px 10px;
     }
 </style>
