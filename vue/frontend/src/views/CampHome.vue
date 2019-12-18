@@ -1,7 +1,27 @@
 <template>
   <div id="main">
+<<<<<<< HEAD
     <div v-for="camp in camps" v-bind:key="camp.campId" style="width: 30%; display: inline-block">
         <camp-summary v-bind:campdata="camp" />
+=======
+    <div class="row" v-for="camp in camps" v-bind:key="camp.campId">
+         <p> <router-link v-bind:to="{name: 'campdetails', params:{campdata: camp}} ">
+            {{camp.name}}</router-link></p>
+        <div class="camp-img-div" >
+            <img class="camp-img" :src="camp.image"/>
+        </div>
+        <p>Location: {{camp.location}}</p>
+        <p>When: {{camp.dateRange}}</p>
+        <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
+        <p>Capacity: {{camp.capacity}}</p>
+        <p>{{camp.description}}</p>
+        
+        <div class="button">
+            <router-link v-bind:to="{name: 'campregistration'}">
+                <button>Enroll</button>
+            </router-link>
+        </div>
+>>>>>>> 67f55d50bf1dc9ba5cae515ea4255107428187fd
     </div>
     <!-- <camp-chart v-bind:data-to-render="chartData"/> -->
 
@@ -89,6 +109,36 @@ export default {
         /* padding: 20px 0px 20px 0px; */
         margin-left: auto;
         margin-right: auto;
+<<<<<<< HEAD
+=======
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .row{
+        justify-content: center;
+        text-align: center;
+        flex-basis: 25%;
+        flex-shrink: 0;
+        flex-grow: 0;
+    }
+    .camp-image {
+        display: block;
+        height: 20%;
+        width: 30%;
+    }
+    .camp-image-div {
+        object-fit: cover;
+         overflow: hidden;
+    }
+    .button button{
+        font-size: 20px;
+        border-radius: 20px;
+        background-color:#112F40;
+        color: white;
+        padding: 5px 10px 5px 10px;
+>>>>>>> 67f55d50bf1dc9ba5cae515ea4255107428187fd
     }
     
 </style>

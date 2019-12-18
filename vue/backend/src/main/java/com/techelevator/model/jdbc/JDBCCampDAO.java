@@ -24,7 +24,7 @@ public class JDBCCampDAO implements ICampDAO {
 	
 	@Override
 	public List<Camp> getAllCampDetails() {
-		String sqlGetAllCampDetails = "SELECT camp_id, name, description, location, capacity, min_age, max_age, start_date, end_date, image FROM camp";
+		String sqlGetAllCampDetails = "SELECT camp_id, name, description, location, capacity, min_age, max_age, start_date, end_date, image, about FROM camp";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetAllCampDetails);
 		List<Camp> camps = new ArrayList<Camp>();
 		
@@ -81,6 +81,7 @@ public class JDBCCampDAO implements ICampDAO {
 		camp.setAttendees(getAllAttendeesByCampId(camp.getCampId()));
 		camp.setRemainingSpaces(camp.getTotalCapacity() - camp.getAttendees().size());
 		camp.setDateRange(getDateRange(camp));
+		camp.setAbout(result.getString("about"));
 		
 		return camp;
 	}
@@ -94,7 +95,7 @@ public class JDBCCampDAO implements ICampDAO {
 
 	@Override
 	public Camp getCampByName(String name) {
-		String sqlGetCampById = "SELECT camp_id, name, description, location, capacity, min_age, max_age, start_date, end_date, image FROM camp WHERE name LIKE ?";
+		String sqlGetCampById = "SELECT camp_id, name, description, location, capacity, min_age, max_age, start_date, end_date, image, about FROM camp WHERE name LIKE ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetCampById, ("%" + name + "%"));
 		Camp camp = new Camp();
 		
