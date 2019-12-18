@@ -18,22 +18,69 @@
             </router-link>
         </div>
     </div>
-    <total-registration-metrics v-bind:allcamps="camps"/>
+    <!-- <camp-chart v-bind:data-to-render="chartData"/> -->
+
+    <!-- <total-registration-metrics v-bind:allcamps="camps"/> -->
   </div>
 </template>
 
 <script>
 import APIService from '@/service/APIService';
-import TotalRegistrationMetrics from '@/components/TotalRegistrationMetrics.vue'
+//import TotalRegistrationMetrics from '@/components/TotalRegistrationMetrics.vue'
+import CampChart from '@/components/CampChart.vue'
 
 export default {
   name: 'camp-home',
   components: {
-      TotalRegistrationMetrics
+      CampChart
   },
   data() {
     return {
-        camps: [ ]
+        camps: [ ],
+    //     chartData: {
+    //         type: 'bar',
+    //         data: {
+    //             labels: [ 'Camp North Star', 'Camp Wanahockaloogi', 'Camp Anawanna' ],
+    //             datasets: [
+    //                 {
+    //                     label: 'Total Enrolled in Camp',
+    //                     backgroundColor: ['#EC7063','#EC7063','#EC7063'],
+    //                     data: [
+    //                         (this.campdata[0].totalCapacity - this.campdata[0].remainingSpaces),
+    //                         (this.campdata[1].totalCapacity - this.campdata[1].remainingSpaces),
+    //                         (this.campdata[2].totalCapacity - this.campdata[2].remainingSpaces)
+    //                     ]
+    //                 },
+    //                 {
+    //                     label: 'Remaining Spaces',
+    //                     backgroundColor: ['#58D68D','#58D68D','#58D68D'],
+    //                     data: [
+    //                         (this.campdata[0].remainingSpaces),
+    //                         (this.campdata[1].remainingSpaces),
+    //                         (this.campdata[2].remainingSpaces)
+    //                     ]
+    //                 }
+    //             ]
+    //         },
+    //         options: {
+    //             scales: {
+    //                 yAxes: [{
+    //                     stacked: true,
+    //                     ticks: {
+    //                         beginAtZero: true
+    //                     },
+    //                     gridLines: {
+    //                         display: true
+    //                     }
+    //                 }]
+    //             },
+    //             legend: {
+    //                 display: false
+    //             },
+    //             responsive: true,
+    //             maintainAspectRatio: false
+    //         }
+    //     }
     } 
   },
   methods: {
