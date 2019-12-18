@@ -19,7 +19,15 @@ public class Camp {
 	private Map<String, Integer> ageDistribution;
 	private String image;
 	private String dateRange;
+	private String about;
 	
+	
+	public String getAbout() {
+		return about;
+	}
+	public void setAbout(String about) {
+		this.about = about;
+	}
 	public int getCampId() {
 		return campId;
 	}
