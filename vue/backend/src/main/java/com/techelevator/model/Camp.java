@@ -19,6 +19,7 @@ public class Camp {
 	private Map<String, Integer> ageDistribution;
 	private String image;
 	private String dateRange;
+	private String splashClass;
 	
 	public int getCampId() {
 		return campId;
@@ -31,6 +32,15 @@ public class Camp {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public void setSplashClass() {
+		if(campId == 1) {
+			this.splashClass = "splash-north-star";
+		} else if(campId == 2) {
+			this.splashClass = "splash-crystal-lake";
+		} else {
+			this.splashClass = "splash-anawanna";
+		}
 	}
 	public String getDescription() {
 		return description;

@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import auth from './auth'
-import Home from './views/Home.vue'
+import Dashboard from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import ApplicantList from './views/ApplicantList.vue'
 import ApplicantInfo from './views/ApplicantInfo.vue'
 import CampRegistration from './views/CampRegistration.vue'
-import CampHome from './views/CampHome.vue'
+import Home from './views/CampHome.vue'
 import ApplicationHistory from './views/ApplicationHistory.vue'
 import CampDetails from './views/CampDetails.vue'
 
@@ -29,7 +29,7 @@ const router = new Router({
     routes: [{
             path: '/dashboard',
             name: 'dashboard',
-            component: Home,
+            component: Dashboard,
             meta: {
                 requiresAuth: false
             }
@@ -78,7 +78,7 @@ const router = new Router({
         {
             path: "/",
             name: "camphome",
-            component: CampHome,
+            component: Home,
             meta: {
                 requiresAuth: false
             }
@@ -93,7 +93,7 @@ const router = new Router({
             }
         },
         {
-            path: "/camp-details/:campdata",
+            path: "/camp-details/:campdetailsdata",
             name: "campdetails",
             params: true,
             component: CampDetails,

@@ -2,11 +2,8 @@
     <header>
         <nav>
             <ul>
-                <router-link tag="li" active-class="selected" v-bind:to="{name: 'camphome'}">
+                <router-link tag="li" active-class="selected" v-bind:to="{name: 'camphome'}" exact>
                     <i class="fas fa-campground transparent"></i> Home
-                </router-link>
-                <router-link tag="li" active-class="selected" v-bind:to="{name: 'home'}" exact>
-                    <i class="fas fa-campground transparent"></i> Dashboard
                 </router-link>
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'campregistration'}">
                     <i class="fas fa-campground transparent"></i> Register Now!
@@ -14,7 +11,7 @@
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'applicantlist'}">
                     <i class="fas fa-campground transparent"></i> View Applicants
                 </router-link>
-                <router-link tag="li" active-class="selected" v-bind:to="{name: 'login'}">
+                <router-link tag="li" v-show="!isLoggedIn()" active-class="selected" v-bind:to="{name: 'login'}">
                     <i class="fas fa-campground transparent"></i> Log In
                 </router-link>
             </ul>
@@ -23,8 +20,20 @@
 </template>
 
 <script>
+import auth from '../auth'
+
 export default {
-    name: 'navigation'
+    name: 'navigation',
+    methods: {
+        isLoggedIn() {
+            console.log('getUser');
+            if(auth.getUser()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 }
 </script>
 

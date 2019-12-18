@@ -31,24 +31,17 @@
             <div class="row">
                 <p class="title">Program</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <!-- <input id="program" v-model="applicationdata.program" /> -->
                     <select id ="program" v-model="applicationdata.program">
-                        <option value="North">Camp North Star</option>
-                        <option value="Wanahockaloogi">Camp Wanahockaloogi</option>
-                        <option value="Anawanna">Camp Anawanna</option>
+                        <option value="north">Camp North Star</option>
+                        <option value="crystal">Camp Crystal Lake</option>
+                        <option value="anawanna">Camp Anawanna</option>
                     </select>
                 </div>
                 <div v-else class="subdata">
                     {{applicationdata.program}}
                 </div>
             </div>
-            <!-- <div class="row">
-                <p class="title">Workshop Preferences</p>
-                <div class="subdata">
-                    1st Choice - Workshop A<br> 2nd Choice - Workshop B
-                </div>
-            </div> -->
-            <div class="row">
+            <div class="row" v-show="isAdmin()">
                 <p class="title">Dorm Assignment</p>
                 <div v-if="isInEditMode" class="subdata form">
                     <input id="dormAssignment" v-model="applicationdata.dormAssignment" />
@@ -74,16 +67,28 @@
 </template>
 
 <script scoped>
+import auth from '../auth'
+
 export default {
     name: 'application-details',
     props: {
         applicationdata: null,
         isInEditMode: false
+    },
+    methods: {
+        isAdmin() {
+            this.user = auth.getUser();
+            if(auth.getUser().rol == 'admin') {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
 </script>
 
-<style>
+<style scoped>
         .sidebar {
             flex-basis: 25%;
             flex-grow: 0;

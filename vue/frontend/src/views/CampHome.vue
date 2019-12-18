@@ -1,22 +1,7 @@
 <template>
   <div id="main">
-    <div class="row" v-for="camp in camps" v-bind:key="camp.campId">
-         <p> <router-link v-bind:to="{name: 'campdetails', params:{campdata: camp}} ">
-            {{camp.name}}</router-link></p>
-        <div class="camp-img" >
-            <img :src="camp.image"/>
-        </div>
-        <p>Location: {{camp.location}}</p>
-        <p>When: {{camp.dateRange}}</p>
-        <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
-        <p>Capacity: {{camp.capacity}}</p>
-        <p>{{camp.description}}</p>
-        
-        <div class="button">
-            <router-link v-bind:to="{name: 'campregistration'}">
-                <button>Enroll</button>
-            </router-link>
-        </div>
+    <div v-for="camp in camps" v-bind:key="camp.campId" style="width: 30%; display: inline-block">
+        <camp-summary v-bind:campdata="camp" />
     </div>
     <!-- <camp-chart v-bind:data-to-render="chartData"/> -->
 
@@ -27,16 +12,17 @@
 <script>
 import APIService from '@/service/APIService';
 //import TotalRegistrationMetrics from '@/components/TotalRegistrationMetrics.vue'
-import CampChart from '@/components/CampChart.vue'
+// import CampChart from '@/components/CampChart.vue'
+import CampSummary from '@/components/CampSummary.vue'
 
 export default {
   name: 'camp-home',
   components: {
-      CampChart
+      CampSummary
   },
   data() {
     return {
-        camps: [ ],
+        camps: [ ]
     //     chartData: {
     //         type: 'bar',
     //         data: {
@@ -100,33 +86,9 @@ export default {
         width: 85%;
         flex-shrink: 0;
         flex-grow: 0;
-        padding: 20px 0px 20px 0px;
+        /* padding: 20px 0px 20px 0px; */
         margin-left: auto;
         margin-right: auto;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
     }
-    .row{
-        justify-content: center;
-        text-align: center;
-    }
-    .camp-image {
-        display: block;
-        max-height: 20%;
-        max-width: 30%;
-        overflow: hidden;
-    }
-    .camp-image > img {
-        object-fit: cover;
-    }
-    .button button{
-        font-size: 20px;
-        border-radius: 20px;
-        width: 6%;
-        background-color:#112F40;
-        color: white;
-        padding: 3px;
-    }
+    
 </style>

@@ -83,7 +83,7 @@
 </template>
 
 <script>
-
+import auth from '../auth'
 export default {
     name: 'applicant-info',
     props: {
@@ -93,6 +93,16 @@ export default {
     data() {
         return {
             editButtonText: 'Edit'
+        }
+    },
+    methods: {
+        isAdmin() {
+            this.user = auth.getUser();
+            if(auth.getUser().rol == 'admin') {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 };

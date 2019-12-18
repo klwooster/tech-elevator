@@ -2,7 +2,7 @@
   <div id="main">
     <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
     <applicant-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" v-on:toggle-edit-mode="edit" v-on:save-changes="updateApplication" v-on:discard-changes="edit"/>
-    <application-notes v-bind:allnotes="application" />
+    <application-notes v-bind:allnotes="application" v-show="isAdmin()"/>
     <div>
       <router-link v-bind:to="{name: 'applicationhistory', params: {id: application.applicationId}}">
         <button>View History</button> 
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import auth from '../auth'
 import APIService from '@/service/APIService';
 import ApplicationDetails from '@/components/ApplicationDetails.vue'
 import ApplicantDetails from '@/components/ApplicantDetails.vue'
@@ -34,6 +35,14 @@ export default {
         
   },
   methods: { 
+    isAdmin() {
+            this.user = auth.getUser();
+            if(auth.getUser().rol == 'admin') {
+                return true;
+            } else {
+                return false;
+            }
+        },
       showApplicant(applicantId) {
           APIService.getById(applicantId).then(application => {
             this.application = application;

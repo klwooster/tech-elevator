@@ -19,9 +19,7 @@ public class User {
     private String password;
     private String confirmPassword;
 
-    private boolean passwordMatching;
-
-    @AssertTrue(message = "Passwords must match")
+	@AssertTrue(message = "Passwords must match")
     public boolean isPasswordMatching() {
         if (password != null) {
             return password.equals(confirmPassword);
