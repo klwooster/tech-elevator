@@ -4,8 +4,8 @@
             <h2>Notes</h2>
             <div class="form">
                 <label for="new-note">Add a new note:</label>
-                <textarea id="new-note"></textarea>
-                <button>Submit</button>
+                <textarea id="new-note" v-model="newNote.noteBody"></textarea>
+                <button @click="createNote">Submit</button>
             </div>
             <div v-for="note in allnotes.notes" v-bind:key="note.noteId" class="row">
                 <h3>{{note.createDate}}</h3>
@@ -16,14 +16,38 @@
 </template>
 
 <script>
+import APIService from '@/service/APIService';
+
 export default {
   name: 'application-notes',
   props: ['allnotes'],
+  data() {
+    return {
+        newNote: {
+            noteId: "",
+	        noteBody: "",
+	        createDate: null,
+	        applicationId: this.allnotes.applicationId
+        },
+        responseObject: ""
+    }
+  },
   computed: {
         title(noterecord) {
             return noterecord.createDate.substr(0, 10) + ', by ' + '[NAME PLACEHOLDER]';
         }
-    } 
+    },
+    methods: {
+        createNote() {
+            APIService.createNotes(this.allnotes.applicationId, this.newNote)
+            .then(response => response.json())
+            .then(result => {
+                this.responseObject = result;
+                console.log('Creation was successful' + this.responseObject);
+            })
+            .catch(err => console.error(err))
+            }
+    }
 };
 </script>
 
