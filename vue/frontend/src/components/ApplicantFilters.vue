@@ -1,6 +1,6 @@
 <template>
     <div id="filter" class="list">
-        <h1>Applicants</h1>
+        <h1>{{heading}}</h1>
         <hr>
         <div class="sidebar">
             <p class="title">Search: </p>
@@ -31,7 +31,7 @@
 <script>
 export default {
     name: 'applicant-filters',
-    props: [ 'currentfilter' ],
+    props: [ 'currentfilter','header' ],
     methods: {
         sort(column) {
             this.currentfilter.sortTarget = column;
@@ -39,6 +39,15 @@ export default {
         },
         toggleFocus(evt) {
             evt.target.classList.toggle('focused');
+        }
+    },
+    computed: {
+        heading() {
+            if(this.header !== null && this.header !== undefined) {
+                return this.header;
+            } else {
+                return "Applicants";
+            }
         }
     }
   };

@@ -1,39 +1,41 @@
 <template>
-    <div>
+    <div class="attendees">
+        <h1>Registered Campers</h1>
         <div v-for="attendee in attendees" :key="attendee.personId">
-            <p>{{attendee.firstName}} {{attendee.lastName}}</p>
+            <p class="name">{{attendee.firstName}} {{attendee.lastName}}</p>
         </div>
-        <p>hello</p>
     </div>    
 </template>
 
 <script>
-//import APIService from '@/service/APIService';
-
 export default {
     name: 'camp-attendees',
     props: {
         'attendees': []
 
     }
-    // data() {
-    //     return {
-    //         attendees: []
-    //     }
-    // },
-    // methods: {
-    //     getAttendees(campname){
-    //         APIService.getAttendeesByCamp(campname)
-    //         .then((attendees) => {
-    //             this.attendees = attendees
-    //         });
-    //     }
-    // },
-    // created() {
-    //     this.getAttendees(this.campname);
-    // }
 }
 </script>
 
-<style>
+<style scoped>
+  h1 {
+    text-align: center;
+            font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+  }
+  .attendees {
+      padding-left: 25px;
+  }
+
+  .name {
+        background-color: #DAC3D1;
+        padding: 5px 10px 5px 10px;
+        border-radius: 4px;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        color: #792359;
+        font-weight: bold;
+    }
 </style>

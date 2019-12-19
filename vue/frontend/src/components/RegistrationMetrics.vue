@@ -40,5 +40,10 @@ export default {
   .chart {
     margin-left: 15%;
     margin-right: auto;
+    text-align: center;
+  }
+  h1 {
+    font-size: 1.3em;
+            font-family: 'Playfair Display', serif;
   }
 </style>

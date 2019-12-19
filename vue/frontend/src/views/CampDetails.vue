@@ -1,22 +1,22 @@
 <template>
   <div id="main">
-    <!-- <splash-crystal-lake v-show="isCampCrystalLake()" class="splash"/>
-    <splash-anawanna v-show="isCampAnawanna()" class="splash"/>
-    <splash-north-star v-show="isCampNorthStar()" class="splash"/> -->
-    <camp-splash v-bind:classToBind="camp.splashClass" />
-    <div class="row">
-            <p class="camp-name">{{camp.name}}</p>
-            <p class="about">{{camp.about}}</p>
-            <p>Where: {{camp.location}}</p>
-            <p>Next Session: {{camp.dateRange}}</p>
-            <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
-            <p>Total Capacity: {{camp.totalCapacity}}</p>
-            <!-- <div class="camp-img">
-                <img :src="camp.image"/>
-            </div> -->
-        <registration-metrics v-bind:campers="camp" class="charts" />
-    </div>
-    <camp-attendees v-bind:attendees="camp.attendees" v-show="isAdmin()" />
+        <camp-splash v-bind:classToBind="camp.splashClass" />
+        <div class="row">
+                <p class="camp-name">{{camp.name}}</p>
+                <p class="about">{{camp.about}}</p>
+                <p>Where: {{camp.location}}</p>
+                <p>Next Session: {{camp.dateRange}}</p>
+                <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
+                <p>Total Capacity: {{camp.totalCapacity}}</p>
+            <div class="data">
+                <div class="charts">
+                    <registration-metrics v-bind:campers="camp" />
+                </div>
+                <div class="attendees">
+                    <camp-attendees v-bind:attendees="camp.attendees" v-show="isAdmin()" />
+                </div>
+            </div>
+        </div>
   </div>
 </template>
 
@@ -93,11 +93,15 @@ export default {
         color: white;
         padding: 3px;
     }
-    .charts {
-        display: inline-block;
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
+    .data {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    .charts,
+    .attendees {
+        flex-basis: 45%;
     }
     #main .splash-anawanna,
     #main .splash-crystal-lake,
@@ -106,8 +110,8 @@ export default {
         z-index: -1;
     }
     .camp-name {
-        font-weight: bold;
         font-size: 32px;
+            font-family: 'Playfair Display', serif;
     }
     .about{
         font-size: 20px;

@@ -5,11 +5,17 @@
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'camphome'}" exact>
                     <i class="fas fa-campground transparent"></i> Home
                 </router-link>
-                <router-link tag="li" v-show="localStatus" active-class="selected" v-bind:to="{name: 'campregistration'}">
-                    <i class="fas fa-campground transparent"></i> Register Now!
+                <router-link tag="li" v-show="localStatus && !isAdmin()" active-class="selected" v-bind:to="{name: 'campregistration'}">
+                    <i class="fas fa-campground transparent"></i> Enroll Now!
                 </router-link>
-                <router-link tag="li" v-show="localStatus" active-class="selected" v-bind:to="{name: 'applicantlist'}">
+                <router-link tag="li" v-show="localStatus && isAdmin()" active-class="selected" v-bind:to="{name: 'campregistration'}">
+                    <i class="fas fa-campground transparent"></i> New Application
+                </router-link>
+                <router-link tag="li" v-show="localStatus && isAdmin()" active-class="selected" v-bind:to="{name: 'applicantlist'}">
                     <i class="fas fa-campground transparent"></i> View Applicants
+                </router-link>
+                <router-link tag="li" v-show="localStatus && !isAdmin()" active-class="selected" v-bind:to="{name: 'accounthistory'}">
+                    <i class="fas fa-campground transparent"></i> My Applications
                 </router-link>
                 <router-link tag="li" v-show="!localStatus" active-class="selected" v-bind:to="{name: 'login'}">
                     <i class="fas fa-campground transparent"></i> Log In
@@ -17,9 +23,9 @@
                 <router-link tag="li" v-show="!localStatus" active-class="selected" v-bind:to="{name: 'register'}">
                     <i class="fas fa-campground transparent"></i> Create New Account
                 </router-link>
-                <li v-show="localStatus" @click="signOut()">
-                    <i class="fas fa-campground transparent"></i> Log Out
-                </li>
+                <router-link tag="li" v-show="localStatus" active-class="selected" v-bind:to="{name: 'login'}">
+                    <a @click="signOut()" ><i class="fas fa-campground transparent"></i> Log Out</a>
+                </router-link>
             </ul>
         </nav>
     </header>
@@ -39,8 +45,17 @@ export default {
     },
     methods: {
         signOut() {
+            this.localStatus = null;
             auth.logout();
-        }
+        },
+        isAdmin() {
+          this.user = auth.getUser();
+          if(auth.getUser().rol == 'admin') {
+              return true;
+          } else {
+              return false;
+          }
+      }
     }
 }
 </script>
