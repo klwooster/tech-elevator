@@ -8,7 +8,7 @@
                             <b>STATUS:</b> {{historyrecord.status}}
                         </td>
                     </tr>
-                    <tr class="header-row">
+                    <tr class="header-row"  v-show="historyrecord.status !== 'New Application - Success'">
                         <td>Data Changed</td>
                         <td>Old Value</td>
                         <td>New Value</td>
