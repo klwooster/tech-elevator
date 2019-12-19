@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div id="main" ref="top">
       <div id="first-panel">
                 <div id="splash-text">
                     "Welcome! Thanks for stopping by to check out all of the amazing summer camps we put on each year! We offer three different summer camps that cater to different age groups, so we hope you find one that suits you! Each summer camp offers endless activities, state-of-the-art lodging, trained and skilled staff, and immaculate views of the gorgeous surrounding landscapes. Whether you're a child looking for a summer filled with fun and adventure or an adult looking for the perfect mix of relaxation AND excitement, we have the perfect getaway for you. Check out our three camps below, we know you'll love what you see."
@@ -13,7 +13,7 @@
         <div v-for="camp in camps" v-bind:key="camp.campId" style="width: 33.3%; padding:0px 10px 10px 10px; display: inline-block">
             <camp-summary v-bind:campdata="camp" />
         </div>
-            <i class="fas fa-angle-double-up fa-lg" v-on:click="refreshHome()" v-show="!isTop"></i>
+            <i class="fas fa-angle-double-up fa-lg" v-on:click="scrollMeTo('top')" v-show="!isTop"></i>
       </div>
     <!-- <camp-chart v-bind:data-to-render="chartData"/> -->
     <!-- <total-registration-metrics v-bind:allcamps="camps"/> -->
@@ -47,7 +47,7 @@ export default {
             window.scrollTo(0, top);
         },
         refreshHome() {
-            this.$forceUpdate();
+            router.push({ name: 'backtotop' });
         }
   },
     created() {

@@ -1,11 +1,11 @@
 <template>
-  <div id="login" class="text-center">
+  <div id="login">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
+      <h1>Please Sign In</h1>
+      <div class="alert" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
-      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
+      <div class="success" role="alert" v-if="this.$route.query.registration">
         Thank you for registering, please sign in.
       </div>
       <label for="username" class="sr-only">Username</label>
@@ -75,7 +75,7 @@ export default {
               token = token.replace(/"/g, '');
             }
             auth.saveToken(token);
-            this.$router.push('/');
+            this.$router.push({ name: 'camphome' });
           }
         })
         .catch((err) => console.error(err));
@@ -87,6 +87,59 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+        h1{
+            font-family: 'Playfair Display', serif;
+        }
 
+        #login {
+          width: 100%;
+          padding: 15%;
+          margin: 0;
+          height: 100vh;
+          background: url("http://localhost:8081/mountains.jpg") no-repeat center;
+          background-size: cover;
+        }
+
+        .form-signin {
+            width: 45%;
+            min-height: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid white;
+            text-align: center;
+        }
+
+        .form-signin>textarea,
+        .form-signin>button,
+        .form-signin>input {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: block;
+            border: 1px solid #792359;
+            width: 60%;
+            font-size: 0.9em;
+            border-radius: 4px;
+        }
+
+        .form-signin>button {
+            border: 1px solid #DAC3D1;
+            background-color: #792359;
+            color: #ffffff;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 4px;
+            padding: 0px 15px 0px 15px;
+            box-shadow: 0px 0px 5px 1px darkgray;    
+        }
+
+        .focused {
+            box-shadow: 0px 0px 7px 0px #C9D750;
+        }
 </style>

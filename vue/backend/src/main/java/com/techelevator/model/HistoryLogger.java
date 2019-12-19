@@ -56,7 +56,7 @@ public class HistoryLogger {
 		for(Field field : appFields) {
 			try {
 				field.setAccessible(true);
-				if(!field.getName().equalsIgnoreCase("Notes")) {
+				if(!field.getName().equalsIgnoreCase("Notes") && !field.getName().equalsIgnoreCase("campProgram")) {
 				Object request = field.get(requestBody);
 				Object oldValue = field.get(oldValues);
 				

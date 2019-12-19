@@ -9,6 +9,7 @@ import ApplicantInfo from './views/ApplicantInfo.vue'
 import CampRegistration from './views/CampRegistration.vue'
 import Home from './views/CampHome.vue'
 import ApplicationHistory from './views/ApplicationHistory.vue'
+import AccountHistory from './views/AccountHistory.vue'
 import CampDetails from './views/CampDetails.vue'
 
 Vue.use(Router)
@@ -104,6 +105,22 @@ const router = new Router({
             name: "campdetails",
             params: true,
             component: CampDetails,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: "/account-history",
+            name: "accounthistory",
+            component: AccountHistory,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/",
+            name: "backtotop",
+            component: Home,
             meta: {
                 requiresAuth: false
             }

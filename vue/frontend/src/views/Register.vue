@@ -1,8 +1,8 @@
 <template>
-  <div id="register" class="text-center">
+  <div id="register">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
+      <h1>Create Account</h1>
+      <div class="alert" role="alert" v-if="registrationErrors">
         There were problems registering this user.
       </div>
       <label for="username" class="sr-only">Username</label>
@@ -143,5 +143,59 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+h1{
+            font-family: 'Playfair Display', serif;
+        }
+
+        #register {
+          width: 100%;
+          padding: 8%;
+          margin: 0;
+          height: 100vh;
+          background: url("http://localhost:8081/mountains.jpg") no-repeat center;
+          background-size: cover;
+        }
+
+        .form-register {
+            width: 45%;
+            min-height: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid white;
+            text-align: center;
+        }
+
+        .form-register>textarea,
+        .form-register>button,
+        .form-register>input {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: block;
+            border: 1px solid #792359;
+            width: 60%;
+            font-size: 0.9em;
+            border-radius: 4px;
+        }
+
+        .form-register>button {
+            border: 1px solid #DAC3D1;
+            background-color: #792359;
+            color: #ffffff;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 4px;
+            padding: 0px 15px 0px 15px;
+            box-shadow: 0px 0px 5px 1px darkgray;    
+        }
+
+        .focused {
+            box-shadow: 0px 0px 7px 0px #C9D750;
+        }
 </style>
