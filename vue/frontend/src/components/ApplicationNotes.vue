@@ -39,7 +39,6 @@ export default {
     },
     methods: {
         createNote() {
-            
             APIService.createNotes(this.allnotes.applicationId, this.newNote)
             .then(response => response.json())
             .then(result => {
@@ -47,7 +46,7 @@ export default {
                 console.log('Creation was successful' + this.responseObject);
             })
             .catch(err => console.error(err))
-            }
+        }
     }
 };
 </script>
