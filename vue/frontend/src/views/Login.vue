@@ -38,14 +38,17 @@ import auth from '../auth';
 
 export default {
   name: 'login',
+  props: {
+    'userStatus' : Boolean
+  },
   components: {},
   data() {
     return {
+      invalidCredentials: false,
       user: {
         username: '',
-        password: '',
-      },
-      invalidCredentials: false,
+        password: ''
+      }
     };
   },
   methods: {
@@ -60,6 +63,7 @@ export default {
       })
         .then((response) => {
           if (response.ok) {
+            this.userStatus = true;
             return response.text();
           } else {
             this.invalidCredentials = true;
@@ -77,6 +81,9 @@ export default {
         .catch((err) => console.error(err));
     },
   },
+  created() {
+    this.userStatus = false;
+  }
 };
 </script>
 

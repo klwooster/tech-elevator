@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="chart">
+    <h1>Current Session Enrollment</h1>
     <pie-chart :data="chartData" :options="chartOptions"></pie-chart>
   </div>
 </template>
@@ -21,11 +22,11 @@ export default {
       chartData: {
         hoverBackgroundColor: "red",
         hoverBorderWidth: 10,
-        labels: [ "Total Number of Campers", "Remaining Spaces Available"],
+        labels: [ "Total Enrolled", "Remaining Spaces Available"],
         datasets: [
           {
             label: "Registration",
-            backgroundColor: ["#E46651", "#00D8FF"],
+            backgroundColor: ["#792359","#DAC3D1"],
             data: [(this.campers.totalCapacity - this.campers.remainingSpaces), this.campers.remainingSpaces]
           }
         ]
@@ -35,6 +36,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+  .chart {
+    margin-left: 15%;
+    margin-right: auto;
+  }
 </style>

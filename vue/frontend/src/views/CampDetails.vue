@@ -10,7 +10,7 @@
             <p>Where: {{camp.location}}</p>
             <p>Next Session: {{camp.dateRange}}</p>
             <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
-            <p>Total Capacity: {{camp.capacity}}</p>
+            <p>Total Capacity: {{camp.totalCapacity}}</p>
             <!-- <div class="camp-img">
                 <img :src="camp.image"/>
             </div> -->

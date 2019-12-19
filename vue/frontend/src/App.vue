@@ -1,19 +1,30 @@
 <template>
   <div id="app">
     <div id="test">
-      <navigation/>
+      <navigation v-bind:user-status="checkStatus"/>
     </div>
-    <router-view/>
+    <router-view v-bind:user-status="checkStatus"/>
   </div>
 </template>
 
 <script>
 import Navigation from '@/components/Navigation.vue';
+import auth from './auth'
 
 export default {
   name: 'app',
   components: {
     Navigation
+  },
+  data() {
+    return {
+      isLoggedIn: false
+    }
+  },
+  computed: {
+    checkStatus() {
+      return auth.getUser();
+    }
   }
 }
 </script>

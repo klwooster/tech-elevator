@@ -126,7 +126,8 @@ public class ApiController {
 	}
 
 	@PostMapping(path = "/notes/{applicationId}")
-	public ResponseEntity<Void> updateNotes(@RequestBody Notes notes) {
+	public ResponseEntity<Void> updateNotes(@RequestBody Notes notes, @PathVariable String applicationId) {
+		notes.setApplicationId(Integer.parseInt(applicationId));
 		notesDao.createNewNotes(notes);
 
 		UriComponents uri = ServletUriComponentsBuilder.fromCurrentRequestUri()

@@ -19,6 +19,16 @@ public class User {
     private String password;
     private String confirmPassword;
 
+    private boolean isLoggedIn;
+    
+	public boolean isLoggedIn() {
+		return isLoggedIn;
+	}
+
+	public void setLoggedIn(boolean isLoggedIn) {
+		this.isLoggedIn = isLoggedIn;
+	}
+
 	@AssertTrue(message = "Passwords must match")
     public boolean isPasswordMatching() {
         if (password != null) {
@@ -26,7 +36,7 @@ public class User {
         }
         return true;
     }
-
+	
     public String getPassword() {
         return password;
     }
