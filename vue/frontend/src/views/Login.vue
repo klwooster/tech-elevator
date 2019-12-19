@@ -110,6 +110,7 @@ export default {
             background: rgba(255, 255, 255, 0.7);
             border: 1px solid white;
             text-align: center;
+            border-radius: 4px;
         }
 
         .form-signin>textarea,

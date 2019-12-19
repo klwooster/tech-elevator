@@ -26,7 +26,8 @@ export default {
     data() {
         return {
             campImageStyle: {
-                 maxWidth: '90%'
+                 maxWidth: '90%',
+                 borderRadius: '4px'
             }
         }
     }
@@ -48,7 +49,7 @@ export default {
     .row > a:visited {
         text-decoration: none;
     }
-    .row > a:hover {
+    .row > .camp-name:hover {
         text-decoration: underline;
         color: #792359;
     }
@@ -65,11 +66,24 @@ export default {
         font-family: 'Playfair Display', serif;
         /* font-style: italic; */
     }
-    .button button{
-        font-size: 20px;
-        border-radius: 20px;
-        background-color:#112F40;
-        color: white;
-        padding: 5px 10px 5px 10px;
+    button {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: block;
+            width: 60%;
+            border-radius: 4px;
+            border: 1px solid #DAC3D1;
+            background-color: #792359;
+            color: #ffffff;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            padding: 0px 15px 0px 15px;
+            box-shadow: 0px 0px 5px 1px darkgray;
+        }
+    
+    .button > *, .button a {
+        text-decoration: none;
     }
 </style>

@@ -123,4 +123,5 @@ export default {
         bottom: 50px;
         color: darkgray;
     }
+    
 </style>
