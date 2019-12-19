@@ -49,53 +49,51 @@ VALUES (9);
 INSERT INTO account (person_id)
 VALUES (10);
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (1,1,2,3,'omnivore','no peanuts','Likes to nap','None','Delux','anawanna','Three','L');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (1,1,2,3,'omnivore','no peanuts','Likes to nap','None','Delux','anawanna', 3,'Three','L');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (2,2,2,3,'vegetarian','none','none','none','Light','anawanna','Three','M');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (2,2,2,3,'vegetarian','none','none','none','Light','anawanna', 3, 'Three','M');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (3,3,2,3,'vegan','no meat','none','none','Standard','crystal','Two','S');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (3,3,2,3,'vegan','no meat','none','none','Standard','crystal', 2, 'Two','S');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (4,4,2,3,'omnivore','no avocado','none','none','Light','crystal','Two','XS');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (4,4,2,3,'omnivore','no avocado','none','none','Light','crystal', 2, 'Two','XS');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (5,5,2,3,'omnivore','gluten free','none','none','Delux','anawanna','Three','XXXL');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (5,5,2,3,'omnivore','gluten free','none','none','Delux','anawanna', 3, 'Three','XXXL');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (6,6,2,3,'vegan','no cilantro','none','none','Light','north','One','XS');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (6,6,2,3,'vegan','no cilantro','none','none','Light','north', 1, 'One','XS');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (7,7,2,3,'vegetarian','no gluten','broken leg','none','Delux','crystal','Two','M');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (7,7,2,3,'vegetarian','no gluten','broken leg','none','Delux','crystal', 2, 'Two','M');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (8,8,2,3,'omnivore','none','Wheelchair','none','Standard','north','One','XS');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (8,8,2,3,'omnivore','none','Wheelchair','none','Standard','north', 1, 'One','XS');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (9,9,2,3,'vegetarian','none','none','none','Light','anawanna','Three','M');
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (9,9,2,3,'vegetarian','none','none','none','Light','anawanna',3, 'Three','M');
 
-INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program,dorm_assignment,tshirt_size)
-VALUES (10,10,2,3,'omnivore','none','none','none','Standard','north','One','XS');
-
-INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('So excited to get started!','2019-08-12',1);
+INSERT INTO application (applicant_id ,account_id,guardian_id,emergency_contact_id,dietary_preference ,dietary_restrictions,mobility_issues,medical_concerns,meal_plan,program, program_id, dorm_assignment,tshirt_size)
+VALUES (10,10,2,3,'omnivore','none','none','none','Standard','north',1, 'One','XS');
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('Oh, I forgot to tell you I can not eat bananas.','2019-08-14',1);
+VALUES ('So excited to get started!',NOW()::timestamp,1);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('My son Jim is so excited, we love this camp!','2019-09-15',3);
+VALUES ('Oh, I forgot to tell you I can not eat bananas.',NOW()::timestamp,1);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('This will be the highlight of my year','2019-09-02',5);
+VALUES ('My son Jim is so excited, we love this camp!',NOW()::timestamp,3);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('Little Johnny is not the best swimmer, please keep a close watch on him.','2019-08-22',6);
+VALUES ('This will be the highlight of my year',NOW()::timestamp,5);
 
 INSERT INTO notes (note_body,create_date,application_id)
-VALUES ('I would like to volunteer to chaperone for the kids this year.','2019-07-29',10);
+VALUES ('Little Johnny is not the best swimmer, please keep a close watch on him.',NOW()::timestamp,6);
 
-INSERT INTO workshops (application_id,workshop,rank)
-VALUES (1,'Workshop stuff',1);
+INSERT INTO notes (note_body,create_date,application_id)
+VALUES ('I would like to volunteer to chaperone for the kids this year.', NOW()::timestamp ,10);
+
