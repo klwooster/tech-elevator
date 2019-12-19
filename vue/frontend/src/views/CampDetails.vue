@@ -11,6 +11,7 @@
             <p>Next Session: {{camp.dateRange}}</p>
             <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
             <p>Total Capacity: {{camp.capacity}}</p>
+            <p>{{camp.about}}</p>
             <!-- <div class="camp-img">
                 <img :src="camp.image"/>
             </div> -->
