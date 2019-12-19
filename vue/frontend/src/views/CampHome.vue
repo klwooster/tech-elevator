@@ -2,7 +2,7 @@
   <div id="main" ref="top">
       <div id="first-panel">
                 <div id="splash-text">
-                    "Welcome! Thanks for stopping by to check out all of the amazing summer camps we put on each year! We offer three different summer camps that cater to different age groups, so we hope you find one that suits you! Each summer camp offers endless activities, state-of-the-art lodging, trained and skilled staff, and immaculate views of the gorgeous surrounding landscapes. Whether you're a child looking for a summer filled with fun and adventure or an adult looking for the perfect mix of relaxation AND excitement, we have the perfect getaway for you. Check out our three camps below, we know you'll love what you see."
+                    Welcome! Thanks for stopping by to check out all of the amazing summer camps we put on each year! We offer three different summer camps that cater to different age groups, so we hope you find one that suits you! Each summer camp offers endless activities, state-of-the-art lodging, trained and skilled staff, and immaculate views of the gorgeous surrounding landscapes. Whether you're a child looking for a summer filled with fun and adventure or an adult looking for the perfect mix of relaxation AND excitement, we have the perfect getaway for you. Check out our three camps below, we know you'll love what you see.
                 </div>
             <div id="arrowlink">
                     <i class="fas fa-angle-down fa-7x" @click="scrollMeTo('summer-camp-overview')"></i>
@@ -88,11 +88,11 @@ export default {
         background-attachment: fixed;
         background-position: top left;
         background-size: cover;
-        padding-top: 10%;
+        padding-top: 15%;
     }
 
     #splash-text {
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.6);
         width: 55%;
         height: 45%;
         margin-left: auto;
@@ -101,7 +101,7 @@ export default {
         margin-bottom: auto;
         padding: 20px;
         font-size: 25px;
-        font-weight: 400;
+        font-weight: 550;
         color: #000000;
         border-radius: 4px;
     }
