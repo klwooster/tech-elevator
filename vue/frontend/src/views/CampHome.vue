@@ -2,6 +2,7 @@
   <div id="main" ref="top">
       <div id="first-panel">
                 <div id="splash-text">
+                    <h2>Cascadia Adventures</h2>
                     Welcome! Thanks for stopping by to check out all of the amazing summer camps we put on each year! We offer three different summer camps that cater to different age groups, so we hope you find one that suits you! Each summer camp offers endless activities, state-of-the-art lodging, trained and skilled staff, and immaculate views of the gorgeous surrounding landscapes. Whether you're a child looking for a summer filled with fun and adventure or an adult looking for the perfect mix of relaxation AND excitement, we have the perfect getaway for you. Check out our three camps below, we know you'll love what you see.
                 </div>
             <div id="arrowlink">
@@ -101,9 +102,9 @@ export default {
         margin-bottom: auto;
         padding: 20px;
         font-size: 25px;
-        font-weight: 550;
         color: #000000;
         border-radius: 4px;
+          box-shadow: 0px 0px 5px 1px #404040;
     }
 
     #arrowlink {
@@ -123,5 +124,14 @@ export default {
         bottom: 50px;
         color: darkgray;
     }
-    
+    h2 {
+        font-size: 50px;
+        color: #792359;
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        text-shadow: 1px 1px 2px #112F40, 0 0 5px #0B6E4F;
+        text-align: center;
+        margin-left: 10px;
+        margin-top: 5px;
+    }
 </style>
