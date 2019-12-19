@@ -1,17 +1,15 @@
 package com.techelevator.model.jdbc;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.bouncycastle.util.encoders.Base64;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.Application;
 import com.techelevator.model.INotesDAO;
 import com.techelevator.model.Notes;
 
@@ -67,7 +65,7 @@ public class JDBCNotesDAO implements INotesDAO {
 	public void createNewNotes(Notes inputNotes) {
 		 
 		 String note_body = inputNotes.getNoteBody();
-		 LocalDate create_date = LocalDate.now();
+		 LocalDateTime create_date = LocalDateTime.now();
 		 int application_id = inputNotes.getApplicationId();
 	     
 		 String sqlNewNotes = "INSERT INTO notes (note_body, create_date, application_id) VALUES (?,?,?)";

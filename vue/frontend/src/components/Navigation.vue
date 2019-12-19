@@ -5,33 +5,41 @@
                 <router-link tag="li" active-class="selected" v-bind:to="{name: 'camphome'}" exact>
                     <i class="fas fa-campground transparent"></i> Home
                 </router-link>
-                <router-link tag="li" active-class="selected" v-bind:to="{name: 'campregistration'}">
+                <router-link tag="li" v-show="localStatus" active-class="selected" v-bind:to="{name: 'campregistration'}">
                     <i class="fas fa-campground transparent"></i> Register Now!
                 </router-link>
-                <router-link tag="li" active-class="selected" v-bind:to="{name: 'applicantlist'}">
+                <router-link tag="li" v-show="localStatus" active-class="selected" v-bind:to="{name: 'applicantlist'}">
                     <i class="fas fa-campground transparent"></i> View Applicants
                 </router-link>
-                <router-link tag="li" v-show="!isLoggedIn()" active-class="selected" v-bind:to="{name: 'login'}">
+                <router-link tag="li" v-show="!localStatus" active-class="selected" v-bind:to="{name: 'login'}">
                     <i class="fas fa-campground transparent"></i> Log In
                 </router-link>
+                <router-link tag="li" v-show="!localStatus" active-class="selected" v-bind:to="{name: 'register'}">
+                    <i class="fas fa-campground transparent"></i> Create New Account
+                </router-link>
+                <li v-show="localStatus" @click="signOut()">
+                    <i class="fas fa-campground transparent"></i> Log Out
+                </li>
             </ul>
         </nav>
     </header>
 </template>
 
 <script>
-import auth from '../auth'
+import auth from '../auth';
+import router from '@/router';
 
 export default {
     name: 'navigation',
+    props: ['userStatus'],
+    data() {
+        return {
+            localStatus: this.userStatus
+        }
+    },
     methods: {
-        isLoggedIn() {
-            console.log('getUser');
-            if(auth.getUser()) {
-                return true;
-            } else {
-                return false;
-            }
+        signOut() {
+            auth.logout();
         }
     }
 }
