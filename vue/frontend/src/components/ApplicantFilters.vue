@@ -4,8 +4,13 @@
         <hr>
         <div class="sidebar">
             <p class="title">Search: </p>
-                <input type="text" v-model="currentfilter.filterData">
-                <select v-model="currentfilter.filterType">
+                <input type="text" 
+                    v-model="currentfilter.filterData"
+                    v-on:mouseenter.stop="toggleFocus($event)" 
+                    v-on:mouseleave="toggleFocus($event)" >
+                <select v-model="currentfilter.filterType"
+                    v-on:mouseenter.stop="toggleFocus($event)" 
+                    v-on:mouseleave="toggleFocus($event)" >
                     <option disabled value="">Select...</option>
                     <option value="applicantId">Applicant ID</option> 
                     <option value="firstName">First Name</option>
@@ -15,7 +20,7 @@
         </div>
         <hr>
         <div class="row">
-            <span class="title">Applicant ID <i class="fas fa-sort" v-on:click.stop="sort('applicantId')"></i></span>
+            <span class="title">Applicant ID <i class="fas fa-sort" v-on:click="sort('applicantId')"></i></span>
             <span class="title">First Name <i class="fas fa-sort" v-on:click="sort('firstName')"></i></span>
             <span class="title">Last Name <i class="fas fa-sort" v-on:click="sort('lastName')"></i></span>
             <span class="title">Account # <i class="fas fa-sort" v-on:click="sort('accountId')"></i></span>
@@ -31,6 +36,9 @@ export default {
         sort(column) {
             this.currentfilter.sortTarget = column;
             this.currentfilter.sortAsc = !this.currentfilter.sortAsc;
+        },
+        toggleFocus(evt) {
+            evt.target.classList.toggle('focused');
         }
     }
   };
@@ -41,6 +49,7 @@ export default {
             background: #71C4C1;
             padding: 15px;
             margin-bottom: 15px;
+            border-radius: 4px;
         }
 
         .list {
@@ -49,7 +58,6 @@ export default {
 
         .list>h1 {
             font-family: 'Playfair Display', serif;
-            font-style: italic;
             font-size: 2.3em;
             margin: 5px 0px 20px 5px;
         }
@@ -81,6 +89,7 @@ export default {
             border: 1px solid #792359;
             width: 25%;
             font-size: 1em;
+            border-radius: 4px;
         }
 
         .sidebar > select {
@@ -89,5 +98,8 @@ export default {
             border: 1px solid #792359;
             width: 15%;
             font-size: 1em;
+        }
+        .focused {
+            box-shadow: 0px 0px 7px 0px #C9D750;
         }
 </style>

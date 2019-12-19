@@ -68,9 +68,7 @@ export default {
 
 <style scoped>
    #main {
-            flex-basis: 85%;
-            flex-shrink: 0;
-            flex-grow: 0;
+            width: 85%;
             padding: 5% 0px 20px 0px;
             margin-left: auto;
             margin-right: auto;

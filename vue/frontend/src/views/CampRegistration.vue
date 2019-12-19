@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <application-details v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode" />
-    <applicant-details v-on:create-application="submitApplication" v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode"/>
+    <applicant-details v-bind:isNewApp="true" v-on:create-application="submitApplication" v-bind:applicationdata="application" v-bind:isInEditMode="isEditMode"/>
   </div>
 </template>
 

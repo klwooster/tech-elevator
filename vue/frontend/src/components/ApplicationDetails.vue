@@ -3,10 +3,26 @@
             <div class="row">
                 <p class="title">Guardian</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <input id="guardian.firstName" placeholder="First Name" v-model="applicationdata.guardian.firstName" />
-                    <input id="guardian.lastName" placeholder="Last Name" v-model="applicationdata.guardian.lastName" />
-                    <input id="guardian.email" placeholder="Email" v-model="applicationdata.guardian.email" />
-                    <input id="guardian.phone" placeholder="Phone Number" v-model="applicationdata.guardian.phone" />
+                    <input id="guardian.firstName" 
+                        placeholder="First Name" 
+                        v-model="applicationdata.guardian.firstName"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
+                    <input id="guardian.lastName" 
+                        placeholder="Last Name" 
+                        v-model="applicationdata.guardian.lastName"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
+                    <input id="guardian.email" 
+                        placeholder="Email" 
+                        v-model="applicationdata.guardian.email"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
+                    <input id="guardian.phone" 
+                        placeholder="Phone Number" 
+                        v-model="applicationdata.guardian.phone"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
                 </div>
                 <div v-else class="subdata">
                     {{applicationdata.guardian.firstName}} {{applicationdata.guardian.lastName}}<br> 
@@ -17,10 +33,26 @@
             <div class="row">
                 <p class="title">Emergency Contact</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <input id="emergencyContact.firstName" placeholder="First Name" v-model="applicationdata.emergencyContact.firstName" />
-                    <input id="emergencyContact.lastName" placeholder="Last Name" v-model="applicationdata.emergencyContact.lastName" />
-                    <input id="emergencyContact.email" placeholder="Email" v-model="applicationdata.emergencyContact.email" />
-                    <input id="emergencyContact.phone" placeholder="Phone Number" v-model="applicationdata.emergencyContact.phone" />
+                    <input id="emergencyContact.firstName" 
+                        placeholder="First Name" 
+                        v-model="applicationdata.emergencyContact.firstName"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
+                    <input id="emergencyContact.lastName" 
+                        placeholder="Last Name" 
+                        v-model="applicationdata.emergencyContact.lastName"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
+                    <input id="emergencyContact.email" 
+                        placeholder="Email" 
+                        v-model="applicationdata.emergencyContact.email"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
+                    <input id="emergencyContact.phone" 
+                        placeholder="Phone Number" 
+                        v-model="applicationdata.emergencyContact.phone"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
                 </div>
                 <div v-else class="subdata">
                     {{applicationdata.emergencyContact.firstName}} {{applicationdata.emergencyContact.lastName}}<br> 
@@ -31,10 +63,13 @@
             <div class="row">
                 <p class="title">Program</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <select id ="program" v-model="applicationdata.program">
-                        <option value="north">Camp North Star</option>
-                        <option value="crystal">Camp Crystal Lake</option>
-                        <option value="anawanna">Camp Anawanna</option>
+                    <select id ="program" 
+                        v-model="applicationdata.program" 
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" >
+                            <option value="north">Camp North Star</option>
+                            <option value="crystal">Camp Crystal Lake</option>
+                            <option value="anawanna">Camp Anawanna</option>
                     </select>
                 </div>
                 <div v-else class="subdata">
@@ -44,7 +79,10 @@
             <div class="row" v-show="isAdmin()">
                 <p class="title">Dorm Assignment</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <input id="dormAssignment" v-model="applicationdata.dormAssignment" />
+                    <input id="dormAssignment" 
+                        v-model="applicationdata.dormAssignment"  
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" />
                 </div>
                 <div v-else class="subdata">
                     {{applicationdata.dormAssignment}}
@@ -53,10 +91,13 @@
             <div class="row">
                 <p class="title">Meal Plan</p>
                 <div v-if="isInEditMode" class="subdata form">
-                    <select id ="mealPlan" v-model="applicationdata.mealPlan">
-                        <option value="standard">Standard</option>
-                        <option value="light">Light</option>
-                        <option value="delux">Delux</option>
+                    <select id ="mealPlan" 
+                        v-model="applicationdata.mealPlan" 
+                        v-on:mouseenter.stop="toggleFocus($event)" 
+                        v-on:mouseleave="toggleFocus($event)" >
+                            <option value="standard">Standard</option>
+                            <option value="light">Light</option>
+                            <option value="delux">Delux</option>
                     </select>
                 </div>
                 <div v-else class="subdata">
@@ -83,6 +124,9 @@ export default {
             } else {
                 return false;
             }
+        },
+        toggleFocus(evt) {
+            evt.target.classList.toggle('focused');
         }
     }
 }
@@ -95,6 +139,7 @@ export default {
             flex-shrink: 0;
             background: #71C4C1;
             padding: 15px 15px 15px 15px;
+            border-radius: 4px;
         }
         .sidebar .row {
             display: block;
@@ -103,29 +148,19 @@ export default {
         }
         
         .sidebar .row .title {
+            font-size: 1.2em;
             font-family: 'Playfair Display', serif;
-            font-style: italic;
-            text-transform: capitalize;
+            font-weight: bold;
         }
         
         .sidebar .row>p {
             display: block;
         }
-    .row>h3 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1em;
-        }
-        
+
         .row>p {
             font-size: 1.2em;
             margin: auto;
             padding: 4px;
-        }
-        
-        .row .title {
-            font-size: 1.2em;
-            text-transform: uppercase;
         }
         
         .row hr {
@@ -153,6 +188,7 @@ export default {
             border: 1px solid #792359;
             width: 95%;
             font-size: 0.9em;
+            border-radius: 4px;
         }
 
         .control>* {
@@ -161,5 +197,8 @@ export default {
             color: #792359;
             font-size: 1.1em;
             margin: 5px;
+        }
+        .focused {
+            box-shadow: 0px 0px 7px 0px #C9D750;
         }
 </style>

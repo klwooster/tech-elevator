@@ -28,15 +28,11 @@ export default {
         #app {
             margin: 0px;
             padding: 0px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            align-items: stretch;
-            justify-content: stretch;
             font-size: 16px;
         }
         #test {
           position: fixed;
           width: 100%;
+          box-shadow: 0px 2px 10px 1px darkgray;
         }
 </style>

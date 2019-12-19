@@ -46,6 +46,7 @@ export default {
             flex-direction: row;
             flex-wrap: wrap;
             position: static;
+            box-shadow: 0 1 2px 5px #c9d750;
         }
 
         nav {

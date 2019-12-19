@@ -10,9 +10,10 @@
       </div>
       <div class="panel" ref="summer-camp-overview">
         <h1>Summer Camps in 2020</h1>
-        <div v-for="camp in camps" v-bind:key="camp.campId" style="width: 33.3%; padding:10px; display: inline-block">
+        <div v-for="camp in camps" v-bind:key="camp.campId" style="width: 33.3%; padding:0px 10px 10px 10px; display: inline-block">
             <camp-summary v-bind:campdata="camp" />
         </div>
+            <i class="fas fa-angle-double-up fa-lg" v-on:click="refreshHome()" v-show="!isTop"></i>
       </div>
     <!-- <camp-chart v-bind:data-to-render="chartData"/> -->
     <!-- <total-registration-metrics v-bind:allcamps="camps"/> -->
@@ -21,7 +22,8 @@
 
 <script>
 import APIService from '@/service/APIService';
-import CampSummary from '@/components/CampSummary.vue'
+import CampSummary from '@/components/CampSummary.vue';
+import router from '@/router';
 
 export default {
   name: 'camp-home',
@@ -30,7 +32,8 @@ export default {
   },
   data() {
     return {
-        camps: [ ]
+        camps: [ ],
+        isTop: true
     } 
   },
   methods: {
@@ -40,8 +43,11 @@ export default {
         scrollMeTo(refName) {
             var element = this.$refs[refName];
             var top = element.offsetTop;
-
+            this.isTop = !this.isTop;
             window.scrollTo(0, top);
+        },
+        refreshHome() {
+            this.$forceUpdate();
         }
   },
     created() {
@@ -67,8 +73,8 @@ export default {
     .panel > h1 {
         font-family: 'Playfair Display', serif;
         font-size: 3em;
-        padding: 5% 0px 10px 10px;
-        border-bottom: 2px solid #fb8124;
+        padding: 6% 0px 10px 10px;
+        border-bottom: 2px solid #c9d750;
     }
 
     #first-panel {
@@ -97,6 +103,7 @@ export default {
         font-size: 25px;
         font-weight: 400;
         color: #000000;
+        border-radius: 4px;
     }
 
     #arrowlink {
@@ -108,5 +115,12 @@ export default {
 
     #arrowlink > i {
         color: white;
+    }
+
+    .panel > i {
+        position: fixed;
+        right: 50px;
+        bottom: 50px;
+        color: darkgray;
     }
 </style>

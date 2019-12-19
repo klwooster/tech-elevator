@@ -38,10 +38,10 @@ export default {
           }
       },
       sortByApplicantId() {
-          return this.applicants.sort((a, b) => {
-                  if(a.applicantId > b.applicantId) {
+              return this.applicants.sort((a, b) => {
+                  if(parseInt(a.applicantId) > parseInt(b.applicantId)) {
                       return -1;
-                  } else if (b.applicantId > a.applicantId) {
+                  } else if (parseInt(b.applicantId) > parseInt(a.applicantId)) {
                       return 1;
                   } else {
                       return 0;
@@ -72,9 +72,9 @@ export default {
       },
       sortByAccountId() {
           return this.applicants.sort((a, b) => {
-                  if(String(a.accountId) > String(b.accountId)) {
+                  if(parseInt(a.accountId) > parseInt(b.accountId)) {
                       return -1;
-                  } else if (String(b.accountId) > String(a.accountId)) {
+                  } else if (parseInt(b.accountId) > parseInt(a.accountId)) {
                       return 1;
                   } else {
                       return 0;
@@ -118,6 +118,10 @@ export default {
             margin: 5px 0px 20px -15px;
         }
         
+        .row {
+            border-radius:4px;
+        }
+
         .row:nth-of-type(odd) {
             background-color: #DAC3D1;
         }

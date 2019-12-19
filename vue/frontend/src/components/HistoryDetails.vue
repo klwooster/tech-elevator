@@ -34,11 +34,11 @@ export default {
         width: 95%;
         margin-left: auto;
         margin-right: auto;
-        /* border: 1px solid #fb8124; */
+        border: 1px solid #792359;
         border-radius: 4px;
         padding: 10px;
-        margin-bottom: 15px;
-        margin-top: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
     .top-row > td {
         font-size: 25px;
@@ -50,8 +50,10 @@ export default {
         text-transform: uppercase;
         background-color: #792359;
         color: white;
+        border-radius: 4px;
+        padding: 2px 10px 2px 10px;
     }
     .update-row > td {
-        border: 1px solid #792359;
+        padding: 2px 10px 2px 10px;
     }
 </style>

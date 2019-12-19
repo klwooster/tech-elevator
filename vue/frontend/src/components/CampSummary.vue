@@ -42,6 +42,7 @@ export default {
         vertical-align: top;
         text-align: center;
         justify-content: center;
+        margin-top: -20px;
     }
     .row > a:link,
     .row > a:visited {
