@@ -5,13 +5,12 @@
     <splash-north-star v-show="isCampNorthStar()" class="splash"/> -->
     <camp-splash v-bind:classToBind="camp.splashClass" />
     <div class="row">
-            <p>{{camp.name}}</p>
-            <p>{{camp.location}}</p>
-            <p>{{camp.description}}</p>
+            <p class="camp-name">{{camp.name}}</p>
+            <p class="about">{{camp.about}}</p>
+            <p>Where: {{camp.location}}</p>
             <p>Next Session: {{camp.dateRange}}</p>
             <p>Ages: {{camp.minAge}} - {{camp.maxAge}}</p>
             <p>Total Capacity: {{camp.capacity}}</p>
-            <p>{{camp.about}}</p>
             <!-- <div class="camp-img">
                 <img :src="camp.image"/>
             </div> -->
@@ -105,5 +104,12 @@ export default {
     #main .splash-north-star {
         position: fixed;
         z-index: -1;
+    }
+    .camp-name {
+        font-weight: bold;
+        font-size: 32px;
+    }
+    .about{
+        font-size: 20px;
     }
  </style>
