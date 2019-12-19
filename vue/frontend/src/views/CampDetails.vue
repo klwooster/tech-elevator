@@ -43,10 +43,10 @@ export default {
   methods: {
       isAdmin() {
           this.user = auth.getUser();
-          if(auth.getUser().rol == 'admin') {
-              return true;
-          } else {
+          if(auth.getUser() == null || auth.getUser() == undefined || !auth.getUser().rol == 'admin') {
               return false;
+          } else {
+              return true;
           }
       }
   },

@@ -62,11 +62,11 @@ export default {
             background-color: #F7F0C2;
             margin: 20px 0x 20px 0px;
             padding: 0px 20px 20px 20px;
+            border-radius: 4px;
         }
         
         .notes h2 {
             font-family: 'Playfair Display', serif;
-            font-style: italic;
             font-size: 1.8em;
             padding: 10px 0px 10px 0px;
             color: #792359;
@@ -91,6 +91,7 @@ export default {
         .form>textarea,
         .form>button {
             border: 1px solid #792359;
+            border-radius: 4px;
         }
 
         .row>h3 {

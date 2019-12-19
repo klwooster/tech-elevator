@@ -20,7 +20,9 @@
         </div>
         <hr>
         <div class="row">
-            <span class="title">Applicant ID <i class="fas fa-sort" v-on:click="sort('applicantId')"></i></span>
+            <span class="title">Applicant ID 
+                <!-- <i class="fas fa-sort" v-on:click="sort('applicantId')"></i> -->
+                </span>
             <span class="title">First Name <i class="fas fa-sort" v-on:click="sort('firstName')"></i></span>
             <span class="title">Last Name <i class="fas fa-sort" v-on:click="sort('lastName')"></i></span>
             <span class="title">Account # <i class="fas fa-sort" v-on:click="sort('accountId')"></i></span>
